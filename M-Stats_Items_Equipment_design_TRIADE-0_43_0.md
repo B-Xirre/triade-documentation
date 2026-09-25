@@ -1,23 +1,23 @@
 # Roguelike RPG — Design Plan: Character Stats, Itemisation & Equipment
 
-**Version 0.42.0** — 22 September 2026. Restructured around the Triade, which turned out to be upstream of all three subsystems.
+**Version 0.43.0** — 25 September 2026. Restructured around the Triade, which turned out to be upstream of all three subsystems.
 
 **Document set:** this is one of **ten**.
 
 | Ref | Document | Filename |
 | --- | --- | --- |
-| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_42_0.md` |
-| **M** | **Stats, Items, Equipment** — *this document* | `M-Stats_Items_Equipment_design_TRIADE-0_42_0.md` |
-| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_42_0.md` |
-| **V** | Visual Design | `V-Visual_design_TRIADE-0_42_0.md` |
-| **K** | Combat Design | `K-Combat_design_TRIADE-0_42_0.md` |
-| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_42_0.md` |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_42_0.md` |
-| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_42_0.md` |
-| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_42_0.md` |
-| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_42_0.md` |
+| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_43_0.md` |
+| **M** | **Stats, Items, Equipment** — *this document* | `M-Stats_Items_Equipment_design_TRIADE-0_43_0.md` |
+| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_43_0.md` |
+| **V** | Visual Design | `V-Visual_design_TRIADE-0_43_0.md` |
+| **K** | Combat Design | `K-Combat_design_TRIADE-0_43_0.md` |
+| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_43_0.md` |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_43_0.md` |
+| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_43_0.md` |
+| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_43_0.md` |
+| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_43_0.md` |
 
-**Companion document:** `T-Core_Mechanic_design_TRIADE-0_42_0.md` owns the state model, credit economy, class model, enemy model and trace system. This document owns stats, itemisation, equipment, the data foundations and the agentic development track.
+**Companion document:** `T-Core_Mechanic_design_TRIADE-0_43_0.md` owns the state model, credit economy, class model, enemy model and trace system. This document owns stats, itemisation, equipment, the data foundations and the agentic development track.
 
 **Deliberately out of scope:** final numbers. Numbers are the output of this process, not an input.
 
@@ -588,7 +588,7 @@ A one-hand Mudra requires functional fingers on one selected unoccupied hand. A 
 
 **Somatic is authorization, not a fourth physical source.** `[Innate]` remains retired: the lineage-owned node profile states what the body can physically do. Somatic states which deliberate natural-node Techniques the actor may learn and use. It carries no independent footprint, contributes no delivery hook and cannot satisfy a physical requirement; the active bound node supplies all three. A Somatic Technique therefore uses `innate_node` as its source and Somatic as its required Faculty.
 
-**Faculty lifecycle is explicit.** `conferred` means automatically possessed by an explicit grant; `unlocked` means eligible for acquisition; `acquired` is a persisted character-state fact created through a valid acquisition route. `possessed` is derived as conferred or acquired and is not authored separately. A Lineage grant explicitly chooses `conferred` or `unlocked`; deliberate natural actions such as Bite, Punch and Kick may therefore arrive as conferred Somatic control. Multiple authoritative sources fold to one base-Faculty entitlement, with conferred possession dominating unlocked-only eligibility. An acquired Faculty normally survives loss of its unlock source unless that source explicitly declares a leased or revocable contract. `available` is not another persisted lifecycle value: it is derived from possession, selected hook/node function, activation state and any explicitly Faculty-scoped cooldown. Technique and rendition availability apply their narrower gates afterwards.
+**Faculty lifecycle is explicit.** `conferred` means automatically possessed by an explicit grant; `unlocked` means eligible for acquisition; `acquired` is a persisted character-state fact created through a valid acquisition route. `possessed` is derived as conferred or acquired and is not authored separately. A Lineage grant explicitly chooses `conferred` or `unlocked`; deliberate natural actions such as Bite, Punch and Kick may therefore arrive as conferred Somatic control. Multiple authoritative sources fold to one base-Faculty entitlement, with conferred possession dominating unlocked-only eligibility. An acquired Faculty normally survives loss of its unlock source unless that source explicitly declares a leased or revocable contract. Runtime readiness is not another Faculty lifecycle value: `known`, `selectable` and `executable` derive at Technique-candidate grain from possession, hooks/nodes, activation, position/floor, carrier, target route, costs and cooldowns. Any Faculty-level readiness is a generated aggregate only.
 
 **The gates reuse anatomy.** H's `function_denial` remains the mechanism; the Faculty contract names which function it reads. There is no anti-magic subsystem: counterplay against a caster is anatomical, and the player learns it from the same wound table that governs everything else.
 
@@ -774,7 +774,7 @@ Buckler-versus-tower is therefore a *position on a budget line* rather than thre
 | **M-C13** | Critical | Ordinary striking equipment draws a **2-pip pool** at its node — 1 offence, 1 local defence — and the ordinary offensive composite of innate plus equipment **saturates at 3**. Holding a weapon suppresses both at that hand |
 | **M-C14** | Critical | An ordinary physical `[Combo-Action]` draws at most **3 from its primary source and 2 from its supporting source**. Innate promotion is **Permanent-tier only (H-C8)**; no skill adds pips |
 | **M-C15** | Critical | Equipment interception is derived from the resolved target node, authored coverage and current item state. `Unarmoured` is derived, never persisted; no armour class grants universal Payload immunity |
-| **M-C16** | Critical | Somatic authorizes deliberate natural-node Techniques but contributes no independent footprint or hook. The active bound node is the `innate_node` source. Faculty lifecycle persists entitlement/acquisition facts only; `available` is derived and never authored as an independent truth |
+| **M-C16** | Critical | Somatic authorizes deliberate natural-node Techniques but contributes no independent footprint or hook. The active bound node is the `innate_node` source. Faculty lifecycle persists entitlement/acquisition facts only; `known`, `selectable` and `executable` are derived at Technique-candidate grain and never authored as independent truth |
 | **M-C17** | Critical | Base Faculty profiles are exact: Arcana = Divine 2 + Psychic 1 with voice; Mudra = Chaos 2 + Divine 1 with selected finger hooks; Psyche = Psychic 2 + Chaos 1 with Brain; Somatic carries no Faculty footprint or pull and reads its bound node |
 | **M-C18** | Critical | Composite Faculty profiles are explicit unordered authorization records, never entitlements, with two distinct hooks and their authored five-pip footprint and primitive pull signature. No universal composition arithmetic exists; Arcana + Arcana and Psyche + Psyche are invalid, while Mudra + Mudra requires one possessed Mudra Faculty and two functional, unoccupied hands with distinct functional finger hooks |
 
@@ -828,7 +828,7 @@ Mid-combat swapping, swap cost, locked or cursed items. A pacing lever, not a co
 
 ### 3.6 Comparison and UI data contract
 
-*Visual encoding requirements live in `V-Visual_design_TRIADE-0_42_0.md` (V·4.7). This section defines the **data contract** — what the model must expose for the UI to render.*
+*Visual encoding requirements live in `V-Visual_design_TRIADE-0_43_0.md` (V·4.7). This section defines the **data contract** — what the model must expose for the UI to render.*
 
 Write the tooltip spec now, because it defines what the data model must expose:
 
@@ -1153,7 +1153,7 @@ Agents enter at M⇥5 deliberately. Their value is proportional to validator qua
 
 ## Part 8 — Open questions
 
-*Standardised at 0.11.0. Every live item carries **[OPEN]**; provisional numbers carry **[SIM]**. Mirrored in `B-Open_Items_Index_TRIADE-0_42_0.md`.*
+*Standardised at 0.11.0. Every live item carries **[OPEN]**; provisional numbers carry **[SIM]**. Mirrored in `B-Open_Items_Index_TRIADE-0_43_0.md`.*
 
 **Removed as resolved:** *Position persistence out of combat* was a duplicate of T·1 and is answered by K17 — decay toward home over two or three exploration turns.
 
@@ -1293,6 +1293,7 @@ Expected encounters begin at ~92% of reference-build power and end at ~110%. **T
 
 | Version | Change |
 | --- | --- |
+| **0.43.0** | **P12-B readiness terminology aligned.** Faculty lifecycle stops at possession. `known`, `selectable` and `executable` derive at Technique-candidate grain; any Faculty-level readiness remains a generated aggregate. Mudra && Mudra continues to require both functional, unoccupied hands with distinct functional finger hooks inside one candidate (**M-C16**, **M-C18**). |
 | **0.42.0** | **P12-A entitlement boundary adopted.** Composite Faculty profiles are authorization profiles, never separate entitlements. `possessed` derives from conferred/acquired; acquisition normally survives unlock-source loss. Mudra && Mudra requires one possessed Mudra plus two functional, unoccupied hands with distinct functional finger hooks (**M-C18 amended**). |
 | **0.41.0** | **`◈P11` Faculty semantics adopted.** Four immutable Faculty identities, corrected execution hooks, exact three-pip base profiles, four explicit five-pip composites and primitive actor-pull signatures are authored (**M-C17**, **M-C18**). Definition origin is removed; actor entitlement provenance remains with `◇P12`. Lineage may explicitly confer or unlock Somatic. |
 | **0.40.0** | **Somatic Faculty authored.** The family is authorization for deliberate natural-node Techniques, with `source_mode = bound_node`, no independent footprint and no hook (**M-C16**). Faculty lifecycle distinguishes conferred, unlocked and acquired; availability remains derived. `[Innate]` stays lineage-owned physical capacity rather than returning as a Faculty. |
@@ -1323,7 +1324,7 @@ Expected encounters begin at ~92% of reference-build power and end at ~110%. **T
 | **0.11.0** | **Part 8 rewritten** with `[OPEN]`/`[SIM]` markers and blocking categories; one stale duplicate removed (position persistence, resolved by K17). Two items added: remedy content belongs in M rather than H (◇M8), and Scrap↔Flux conversion (◇M7). Document set grows to eight with the Enemies extraction. |
 | **0.10.0** | Document set grows to seven with **H — Damage & Health**; filename convention standardised. **2.8:** material currencies — **Marks / Scrap / Flux** — with *Flux* declared a reserved word (currency, never a field quantity) and progress currencies barred from crafting and treatment sinks. **2A.3:** Structural group extended to anatomy — bone and flesh integrity are the per-node form of the same path. **2A.4:** rigid discontinuity extended inward as `[Tissue Layer]`. **2A.6:** integrity render separated from wound render (V·4.8). **2A.10:** no-pip-pooling identified as the reason the Standard enemy template splits limbs. |
 | **0.9.0** | Restructured around the Triade; materiel Part 2A. |
-| **0.8.0** | UI requirements moved to the new `V-Visual_design_TRIADE-0_42_0.md`; A3.4c is now a pointer. Document-set note added. |
+| **0.8.0** | UI requirements moved to the new `V-Visual_design_TRIADE-0_43_0.md`; A3.4c is now a pointer. Document-set note added. |
 | **0.7.x** | Skill Anchors (A3.7–A3.8) resolving the grid–math question; demand tier split from Doctrinal/Transgressive flags; UI requirements; Weapon/Armour/Shield Smith agent specs; shield budget. |
 | **0.6.x** | Materiel system: damage taxonomy with Structural group, integrity states, the three bridges, pips and redistribution, shield duality. |
 | **0.5.x** | Dot Framework, grid + Dot Interpreter, stat-groups and field-rendered floor, skill level model, class system, Dictionary and tone. |

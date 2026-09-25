@@ -42,7 +42,7 @@ mode, root = sys.argv[1], os.path.realpath(sys.argv[2])
 LEDGER_NAME = "FOLDER-LEDGER.json"
 LEDGER_PATH = os.path.join(root, LEDGER_NAME)
 EXCLUDE = {LEDGER_NAME}
-EXCLUDE_DIRS = {"Research", "__pycache__"}   # Research: untracked by decision. __pycache__: build artefact, never authored
+EXCLUDE_DIRS = {"Research", ".git", "__pycache__"}   # Research: untracked; .git: operational metadata; __pycache__: build artefact
 
 
 def now_z():

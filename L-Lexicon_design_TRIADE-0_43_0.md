@@ -1,6 +1,6 @@
 # Project Lexicon
 
-**Version 0.42.0** — 22 September 2026. The controlled vocabulary for the roguelike RPG design. Every term that has been *locked* in the design documents is indexed here with a short definition and its home reference.
+**Version 0.43.0** — 25 September 2026. The controlled vocabulary for the roguelike RPG design. Every term that has been *locked* in the design documents is indexed here with a short definition and its home reference.
 
 **Conventions.**
 
@@ -15,19 +15,19 @@ This document is maintained alongside the other nine design documents and three 
 
 | Ref | Document | Filename |
 | --- | --- | --- |
-| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_42_0.md` |
-| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_42_0.md` |
-| **L** | Lexicon *(this document)* | `L-Lexicon_design_TRIADE-0_42_0.md` |
-| **V** | Visual Design | `V-Visual_design_TRIADE-0_42_0.md` |
-| **K** | Combat Design | `K-Combat_design_TRIADE-0_42_0.md` |
-| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_42_0.md` |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_42_0.md` |
-| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_42_0.md` |
-| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_42_0.md` |
-| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_42_0.md` |
-| — | *Open Items Index* | `B-Open_Items_Index_TRIADE-0_42_0.md` |
-| — | *SIM Numbers Register* | `Y-SIM_Numbers_Register_TRIADE-0_42_0.md` |
-| — | *Validation Rules Index* | `R-Validation_Rules_Index_TRIADE-0_42_0.md` |
+| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_43_0.md` |
+| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_43_0.md` |
+| **L** | Lexicon *(this document)* | `L-Lexicon_design_TRIADE-0_43_0.md` |
+| **V** | Visual Design | `V-Visual_design_TRIADE-0_43_0.md` |
+| **K** | Combat Design | `K-Combat_design_TRIADE-0_43_0.md` |
+| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_43_0.md` |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_43_0.md` |
+| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_43_0.md` |
+| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_43_0.md` |
+| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_43_0.md` |
+| — | *Open Items Index* | `B-Open_Items_Index_TRIADE-0_43_0.md` |
+| — | *SIM Numbers Register* | `Y-SIM_Numbers_Register_TRIADE-0_43_0.md` |
+| — | *Validation Rules Index* | `R-Validation_Rules_Index_TRIADE-0_43_0.md` |
 
 ---
 
@@ -264,9 +264,12 @@ Symbols in use across the set. **Not identifiers** — none of these may be repu
 | **`[Mudra]`** | Faculty family for **gesture** casting. Hook: fingers on a selected unoccupied hand. A two-hand Mudra requires two distinct functional finger hooks and both hands unoccupied; it remains one Faculty entitlement. | M · 2A.10a · H · 7.2a |
 | **`[Psyche]`** | Faculty family for **unspoken** casting. Hook and anatomical gate: **Brain only**. `[Psyche]` + `[Psyche]` is impossible — one Brain, one hook. | M · 2A.10a · H · 7.2a |
 | **`[Somatic]`** | Faculty family authorizing deliberate natural-node Techniques. It contributes no independent footprint or delivery hook; an active lineage-bound node is the action source. Anatomy supplies capacity, Somatic supplies acquired control. | M · 2A.10a · T · A3.8a · P · 2.3a |
-| **Faculty lifecycle** | `conferred` = automatically possessed by an explicit grant or build instruction; `unlocked` = eligible for acquisition; `acquired` = a persisted character-state fact. `possessed` derives from conferred or acquired and is not authored separately. Acquisition normally survives loss of its unlock source unless an explicit leased/revocable contract says otherwise. `available` derives from current gates and cooldowns and is never persisted as another lifecycle state. | M · 2A.10a · P · 2.3a · 2.3c |
+| **Faculty lifecycle** | `conferred` = automatically possessed by an explicit grant or build instruction; `unlocked` = eligible for acquisition; `acquired` = a persisted character-state fact. `possessed` derives from conferred or acquired and is not authored separately. Acquisition normally survives loss of its unlock source unless an explicit leased/revocable contract says otherwise. Runtime readiness is not a Faculty lifecycle state. | M · 2A.10a · P · 2.3a · 2.3c |
 | **Faculty profile** | An immutable base or explicit composite Faculty source contract: normalized members, execution hooks, Occult damage footprint, primitive actor-pull signature and Technique authorizations. A composite is an authorization profile, never a separately acquired entitlement, and does not own Technique behaviour. | M · 2A.10a · P · 2.3b · 2.3c |
 | **Faculty pull signature** | A primitive zero-sum direction constraining a Technique's actor `position_delta_q`. The Technique owns magnitude and applies the only runtime delta; the Faculty signature never stacks and never governs target or environmental motion. | T · A3.8c · M · 2A.10a |
+| **Technique readiness** | Three derived predicates: `known` = vocabulary and authorization hold; `selectable` = at least one complete actor-side candidate may initiate; `executable` = one fully contextual candidate passes every gate and may commit costs and resolve. None is persisted. Unqualified *available* is player-facing prose, not an engine predicate. | P · 2.3d · T · A3.8d · K · 5.1a |
+| **Execution candidate** | One exact authorization/grant/source/support/provision/carrier/target route. Alternative complete candidates combine existentially; every dependency inside one candidate combines conjunctively. Failure is local to candidates declaring that dependency. | P · 2.3d · T · A3.8d |
+| **Target-route contract** | The Technique-authored selection origin and shape, reach/range source, visibility requirement and delivery route. Direct and area routes apply different authored gates; source category alone never implies LOS or its bypass. | T · A3.8d · K · 5.1a |
 | **Delivery hook** | The channel an action issues through — `main_hand`, `off_hand` or `voice`. **Distinct from hand occupancy**: a two-hander occupies two hands and presents one hook. A `[Combo-Action]` declares exactly two (T-C13). | M · 2A.10 |
 | **`[Ward]`** | The Occult mitigation channel, covering cognition and focus attacks. A **state track** — `Intact → Scored → Broken` — modelled on integrity, not a pool. Blunts kind, not quantity. | M · 2A.4 |
 | **Occult load** | Cumulative exposure to corruption and displacement, accruing **whether or not the state is purged in combat**. Converts past threshold to ward scars, which only the town rite clears. Makes in-combat purge tactically complete and strategically partial. | H · 8.2a |
@@ -589,14 +592,14 @@ Four. Locked in M·2A.7.
 
 ## 12. Maintenance rules [AUTHORED 0.20.0]
 
-The two rules that keep this document true. **Both were indexed from 0.11.0 and authored nowhere** — stated only in `Z-Design_Stream_Project_Instructions_TRIADE-0_42_0.md`, which holds no design authority and therefore cannot originate a rule. That is why a Lexicon check could return clean while `category` sat locked and unlisted for seven versions.
+The two rules that keep this document true. **Both were indexed from 0.11.0 and authored nowhere** — stated only in `Z-Design_Stream_Project_Instructions_TRIADE-0_43_0.md`, which holds no design authority and therefore cannot originate a rule. That is why a Lexicon check could return clean while `category` sat locked and unlisted for seven versions.
 
 | ID | Severity | Rule |
 | --- | --- | --- |
 | **L-M1** | Medium | Every locked term in any document appears in this Lexicon, entered in the **same pass** as the lock. A term locked without an entry poisons every subsequent grep against it |
 | **L-M2** | Medium | No term shadows a locked term from another domain. Check by grep against the whole set **before** proposing, not after |
 
-**Both are checks, not habits.** The obligation to run them lives in `Z-Design_Stream_Project_Instructions_TRIADE-0_42_0.md` as working practice and carries no ID there; the rule lives here and is enforced by the linter. Conflating the two is what produced eight versions of apparent authorship.
+**Both are checks, not habits.** The obligation to run them lives in `Z-Design_Stream_Project_Instructions_TRIADE-0_43_0.md` as working practice and carries no ID there; the rule lives here and is enforced by the linter. Conflating the two is what produced eight versions of apparent authorship.
 
 ---
 
@@ -604,6 +607,7 @@ The two rules that keep this document true. **Both were indexed from 0.11.0 and 
 
 | Version | Change |
 | --- | --- |
+| **0.43.0** | **P12-B vocabulary locked.** Faculty lifecycle ends at possession; Technique readiness distinguishes `known`, `selectable` and `executable`. Execution candidate and target-route contract enter as locked terms, including existential alternatives and conjunctive within-candidate requirements. |
 | **0.42.0** | Faculty lifecycle distinguishes authoritative acquisition from derived possession and availability. Composite Faculty profiles are authorization profiles rather than separate entitlements; acquisition normally survives unlock-source loss unless explicitly leased or revocable. |
 | **0.41.0** | Faculty hooks corrected to voice, selected fingers, Brain and selected bound node. Faculty lifecycle now records explicit Lineage confer-or-unlock modes; Faculty profile and Faculty pull signature enter as locked terms. |
 | **0.40.0** | `[Somatic]` and Faculty lifecycle entered. `faculty` now separates authorization from physical source; cooldowns gain explicit base, rendition, Faculty and provider scopes. |
@@ -633,7 +637,7 @@ The two rules that keep this document true. **Both were indexed from 0.11.0 and 
 | **0.13.0** *(Stage 1)* | Thirteen entries added — `faculty`, `[Attunement]`, `[Innate]`, `[Arcana]`, `[Mudra]`, `[Psyche]`, delivery hook, `[Ward]`, occult load, Divine purge, martial profile, Trace Signature, `aim_weight`. Three L-M2 resolutions recorded: `capability` returned undivided to the ladder; `signature` freed for `[Signature Action]` by renaming its two other senses; `focus` freed for the Mind side by renaming the Stage 0 aim term. |
 | **0.13.0** | **Stage 0 terms.** `[Chassis]` amended — universal across players and enemies, names the body template, enemy-only floor shape. New entries: **Corner-floor render affinity** (rule T-C11), **Coverage weight** (relative, per-pair), **Aim / focus**. **Body template** amended to record that it is referenced by chassis, never inlined. ◈W2d struck from the deferred list — closed in W and stated in T. |
 | **0.11.0** | **Enemies extracted to `E`** — the capability ladder, tag composition and behaviour-as-AI move from T·Part F to their own document; `F.n` numbering retained so cross-references stay valid. Document set grows to **eight**, plus three derived indexes. `[OPEN]`, `[SIM]` and `[GAP]` markers standardised across all documents. Validation severity scheme unified onto Critical/High/Medium with `{DOC}-{C&#124;H&#124;M}{n}` IDs, extending H's notation set-wide. Two Lexicon propagation rules added (L-M1, L-M2). Nine stale open questions cleared from T and M. |
-| **0.10.0** | **Damage & Health document created** (`H-Damage_Health_design_TRIADE-0_42_0.md`) — new section 9C. **World terms propagated** from W§21 — new section 9D. Filename convention standardised to `TRIADE-[System] design-[Version]`; document set grows to seven. §2 renamed "The credit economy" → "The economy" and extended with **Marks / Scrap / Flux / [Imprint]**. `[Location Grounding]` **unbracketed** to design-model status, resolving ◈W5 and ◈W6. UI requirements 7 → 8. Two failure modes rule re-scoped to V·4.1 (skill bar), clarifying it does not constrain the posture display. |
+| **0.10.0** | **Damage & Health document created** (`H-Damage_Health_design_TRIADE-0_43_0.md`) — new section 9C. **World terms propagated** from W§21 — new section 9D. Filename convention standardised to `TRIADE-[System] design-[Version]`; document set grows to seven. §2 renamed "The credit economy" → "The economy" and extended with **Marks / Scrap / Flux / [Imprint]**. `[Location Grounding]` **unbracketed** to design-model status, resolving ◈W5 and ◈W6. UI requirements 7 → 8. Two failure modes rule re-scoped to V·4.1 (skill bar), clarifying it does not constrain the posture display. |
 | **0.9.0** | Combat Design document created. New section 9B. Adds: Finisher win condition, relational readiness, three symmetric tempo levers, AP-as-elapsed-time, zone graph, glancing rule, Pivot, and the Watch/Riposte reaction system. |
 | **0.8.0** | UI requirements moved to the new Visual Design doc; A3.4c is now a pointer. Document-set note added. |
 | **0.7.x** | Skill Anchors (A3.7–A3.8); demand tier split from Doctrinal/Transgressive flags; UI requirements; Weapon/Armour/Shield Smith agent specs; shield budget. |
@@ -642,4 +646,4 @@ The two rules that keep this document true. **Both were indexed from 0.11.0 and 
 
 ---
 
-*End of Lexicon 0.42.0. Maintained alongside the Core Mechanic, Stats/Items/Equipment, Visual, Combat, World Generation, Damage & Health, Enemies, Tile Pipeline and Content Pipeline documents.*
+*End of Lexicon 0.43.0. Maintained alongside the Core Mechanic, Stats/Items/Equipment, Visual, Combat, World Generation, Damage & Health, Enemies, Tile Pipeline and Content Pipeline documents.*

@@ -1,23 +1,23 @@
 # Triade — Content Pipeline & Data Model
 
-**Version:** 0.42.0
-**Date:** 22 September 2026
+**Version:** 0.43.0
+**Date:** 25 September 2026
 **Status:** Created at 0.15.0 by reconciliation of two independent studies. Architecture settled; operational numbers pending first build.
 
 **Document set:** this is one of **ten**.
 
 | Ref | Document | Filename |
 | --- | --- | --- |
-| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_42_0.md` |
-| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_42_0.md` |
-| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_42_0.md` |
-| **V** | Visual Design | `V-Visual_design_TRIADE-0_42_0.md` |
-| **K** | Combat Design | `K-Combat_design_TRIADE-0_42_0.md` |
-| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_42_0.md` |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_42_0.md` |
-| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_42_0.md` |
-| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_42_0.md` |
-| **P** | **Content Pipeline & Data Model** — *this document* | `P-Content_Pipeline_design_TRIADE-0_42_0.md` |
+| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_43_0.md` |
+| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_43_0.md` |
+| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_43_0.md` |
+| **V** | Visual Design | `V-Visual_design_TRIADE-0_43_0.md` |
+| **K** | Combat Design | `K-Combat_design_TRIADE-0_43_0.md` |
+| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_43_0.md` |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_43_0.md` |
+| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_43_0.md` |
+| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_43_0.md` |
+| **P** | **Content Pipeline & Data Model** — *this document* | `P-Content_Pipeline_design_TRIADE-0_43_0.md` |
 
 **Scope.** **P** owns how content is authored, stored, validated, generated, simulated and attributed. It owns the data model for equipment, affixes, faculties and fixtures; the storage architecture; the trace and signature schema; and the agent pipeline.
 
@@ -228,7 +228,47 @@ An acquisition normally survives loss of the source that unlocked it: removing o
 
 Multiple sources fold deterministically into the generated projection. Conferred possession dominates unlocked-only eligibility; an acquired fact continues to establish possession; provenance remains source-specific even when several rows support the same base Faculty. The projection may explain why the actor possesses or may acquire a Faculty, but it may not cache Technique availability.
 
-P12-A closes entitlement identity and persistence only. `◇P12` remains open for the complete derived availability evaluation, including authorization, lineage/capability grants, node and hook state, Triade position, accessible floor, carrier, route, target, costs and cooldown scopes.
+P12-A closes entitlement identity and persistence only.
+
+### 2.3d Derived Technique readiness and candidate dependencies [LOCKED 0.43.0, ◈P12-B]
+
+Authoritative engine contracts do not use one unqualified `available` flag. They derive three different predicates, none persisted as independent truth:
+
+| Predicate | Meaning |
+| --- | --- |
+| `known` | The actor possesses the required base Faculty or Faculties, the profile authorizes the Technique, and any required lineage/capability binding exists |
+| `selectable` | At least one complete actor-side candidate route can satisfy its initiation gates before a target-specific verdict is required |
+| `executable` | One fully specified candidate — source, rendition, carrier, route and target where required — passes every contextual gate and may commit costs and resolve |
+
+Base Faculty identity owns possession, never executable availability. A Faculty-level readiness value may exist only as a generated UI/diagnostic aggregate answering whether at least one authorized route is currently selectable. It is never canonical state and never authorizes execution by itself.
+
+An execution candidate carries typed dependencies:
+
+```text
+authorization  = possessed base Faculties + authorizing profile
+grant route    = lineage/capability grant + Technique binding, where required
+source route   = selected source instances + required hooks and occupancy
+rendition      = support/provider instances + Payload or other rendition inputs
+provision      = transferred runtime instances, remaining uses and expiry
+carrier        = selected carrier and delivery proof
+target route   = authored selection, reach/range, visibility and delivery contract
+```
+
+Alternative complete candidates combine existentially; requirements inside one candidate combine conjunctively. Punch may remain selectable through a surviving right-hand candidate when the left hand is denied. `Mudra && Mudra` is one candidate with two required hands: one possessed Mudra Faculty plus **both** functional, unoccupied hands, each resolving a distinct functional finger hook. Failure of either hand invalidates that candidate; it is never reduced to “either hand works.” Execution selects one surviving candidate before costs commit.
+
+Invalidation is dependency-local. A failed source, support node, provider, carrier or target route invalidates only candidates declaring it; shared Faculty identity, body, grant or Payload family does not propagate failure sideways. A source delivers the Technique. A support/provider enables only its declared rendition or provision operation and never replaces the source or becomes a delivery hook.
+
+Valid transfer cuts the live provider dependency unless the provision explicitly requires continuous maintenance. Once Apply Venom transfers a coating, the recipient owns the runtime instance, remaining uses and expiry; later gland denial or provider cooldown prevents replenishment but does not erase the existing coating. Provider provenance remains recorded.
+
+Cooldown propagation follows declared identity. A base Technique cooldown blocks the Technique and every derived rendition. A rendition cooldown blocks only that rendition by default. A provider cooldown blocks new production/application, not an existing transferred provision. A Faculty-wide cooldown is an exceptional shared lock. A composite Technique cooldown blocks that Technique and not unrelated Techniques authorized by either member Faculty.
+
+Target-route validity dispatches through the Technique's authored selection and delivery contract. Conceptually the Technique declares a selection origin and shape, a reach/range source, a visibility requirement and a delivery route; B does not prescribe their technical columns. A source supplies reach/range capability, while the Technique supplies selection shape, visibility and delivery rules.
+
+Direct actor-targeted weapon and projectile routes require their selected reach/range, actor perception, actor line of sight and direct/path geometry. A direct Psyche route likewise requires Technique-authored Psyche reach, actor perception and actor line of sight; Mind position, Psyche membership and Psychic damage imply no targeting bypass. Non-visual individual targeting requires an explicitly authored mental link, lock or replacement route.
+
+Area routes validate their selected origin, pattern, propagation and geometry and do not automatically require perception or line of sight to every affected actor. A self-centred weapon area may strike occupants of valid cells within the weapon-derived radius without selecting them individually. A throwable flask or bomb validates throw range, its authored destination-visibility rule, ballistic route and landing cell, then resolves occupants of the propagated area; “throwable” never implies permission to pass through walls, select an unknown cell or ignore a blocked trajectory.
+
+Temporary injury, occupancy, position, accessible-floor failure, target failure, insufficient costs and cooldowns can change `selectable` or `executable`; they do not remove Technique knowledge, base-Faculty possession, acquisition provenance or permanent authorization. Derived verdicts return every currently failed gate for the evaluated candidate — including distinct reach, perception, line-of-sight, path, ballistic, landing-cell, area-pattern, propagation and non-visual-lock failures — without running later side effects. `◇P12-C` remains open for the deterministic evaluation and commit order.
 
 ### 2.4 Editing controls the designer gets without SQL
 
@@ -489,7 +529,7 @@ Unique identity · source resolution (T-C12) · category component completeness 
 | **◇P9** | **Cell-level content versioning.** Dolt is the recorded escalation if file-level JSON merges stop resolving content conflicts. Unchosen, and **the trigger condition — concurrent authors on one content file — has never been measured**, so nothing would tell us we had crossed it. Adoption costs a second storage engine and plain-text authoring | **[OPEN]** | Tooling |
 | **◇P10** | **The protected `ref_tags` registry is empty**, so no legal `equipment_tags` reference can be authored and tag-based search, generation and lints stay unavailable. Authoring plausible tag strings would bypass the protected registry, so the child table is correctly left empty. **The question is whether the M10 vertical slice requires a minimum protected tag registry** — scope, not semantics. No identity or martial-profile loss today | **[OPEN]** | Tooling / P |
 | ~~**◈P11**~~ | **CLOSED 0.41.0.** P·2.3b registers four immutable Faculty identities, four base profiles, four explicit composite profiles, their hook requirements, exact damage footprints, primitive actor-pull signatures and 32 normalized Technique authorizations. Somatic remains bound-node authorization. Rend remains weapon-based; Hex is Arcana && Mudra; derived renditions are not duplicate vocabulary rows. | **CLOSED** | — |
-| **◇P12** | **P12-A closed 0.42.0 in §2.3c.** Entitlement attaches only to base Faculties; build instructions and actor acquisitions are authoritative; actor entitlement is generated; possession derives from conferred/acquired; acquisitions survive unlock-source loss unless explicitly leased/revocable. **Still open under P12-B/C:** complete Technique-availability evaluation across authorization, required lineage/capability grant, active source/support nodes and hooks, current Triade-grid position and accessible floor, then carrier, route, target, costs and cooldown scopes. Availability is never persisted. C defines technical columns only through an explicit implementation pass. *Backlogged from `TS-M10F-02`, 0.30.0* | **[OPEN]** | Design / P |
+| **◇P12** | **P12-A closed 0.42.0 in §2.3c; P12-B closed 0.43.0 in §2.3d.** Entitlement attaches only to base Faculties. `known`, `selectable` and `executable` are distinct derived predicates; candidate alternatives combine existentially while every requirement inside a candidate combines conjunctively. Dependency failure is local, transfer normally cuts the live provider dependency, cooldown propagation follows declared identity, and target validity follows the Technique-authored selection/delivery contract rather than a universal LOS rule. **Still open under P12-C:** the deterministic evaluation and commit order across these gates. C defines technical columns only through an explicit implementation pass. *Backlogged from `TS-M10F-02`, 0.30.0* | **[OPEN]** | Design / P |
 | ~~**◈P13**~~ | **CLOSED 0.40.0.** P·2.3a registers the complete normalized lineage/physique grain plus deliberate/passive innate grants, per-Technique source nodes and per-Payload support dependencies. Equipment `chassis_profiles` remain barred. Somatic authorizes deliberate natural-node Techniques without duplicating their footprint or hook. | **CLOSED** | — |
 | **◇P8** | **Fixture enemy and encounter-membership field sets.** P·10.5–10.6 specify frozen enemy fixtures and multi-enemy compositions; P·2.3 now registers `fixture_enemies` and `fixture_encounter_members` as the normalized relations, but **their column sets are unfixed**. The enemy-fixture fields must be reconciled against **E**'s capability ladder and tag classes and against **H**'s body templates before they are locked. Until then canonical ◈M10 fixture JSON cannot be frozen without guessing | **[OPEN] [GAP]** | Tooling / P *(with E, H)* |
 
@@ -520,6 +560,8 @@ Unique identity · source resolution (T-C12) · category component completeness 
 | **P-C14** | Critical | A passive innate grant binds no executable Technique. A deliberate innate grant references exactly one Faculty, explicitly declares `entitlement_mode` as `conferred` or `unlocked`, and every Technique binding resolves through an eligible source-node row. Payload support is authored at binding × Payload × node grain; a support node is never a source or delivery hook. Lineage never directly grants a Technique |
 | **P-C15** | Critical | Every Faculty profile is an immutable base or explicitly registered unordered composite with normalized member, damage-entry and hook-requirement rows. Profile footprints and primitive actor-pull signatures equal M·2A.10a exactly; no universal composition arithmetic or additive runtime Faculty pull is legal |
 | **P-C16** | Critical | Technique authorization is one Faculty profile × Technique revision row. The seed fixture contains exactly 32 rows; Rend is absent, Hex belongs to Arcana && Mudra, and Poisonous Bite/Poisonous Rend remain derived renditions rather than duplicate authorizations |
+| **P-C17** | Critical | Entitlements attach only to base Faculties. Build instructions and actor acquisitions remain authoritative facts; the actor entitlement is a generated projection, possession derives from conferred or acquired, availability is never stored, and acquisition survives unlock-source loss unless explicitly leased or revocable |
+| **P-C18** | Critical | `known`, `selectable` and `executable` are distinct derived predicates. Alternative complete execution candidates combine existentially; dependencies within a candidate combine conjunctively. Failure is dependency-local, transferred provisions cease depending on their provider unless continuous maintenance is explicit, and every failed gate is reported without executing side effects |
 
 ---
 
@@ -650,6 +692,7 @@ Recorded so nobody later reports the set as complete.
 
 | Version | Change |
 | --- | --- |
+| **0.43.0** | **`◇P12-B` closes.** §2.3d defines route-level readiness as `known`, `selectable` and `executable`; candidate alternatives are existential while within-route requirements are conjunctive. Dependency-local invalidation, transferred-provision survival, declared cooldown propagation and Technique-authored target-route validity are authoritative (**P-C18**). The missing authoritative source row for existing **P-C17** is restored. P12-C remains open for deterministic evaluation/commit order. |
 | **0.42.0** | **`◇P12-A` closes.** P·2.3c adds authoritative build instructions and actor acquisitions plus a generated actor-entitlement projection (**P-C17**). Entitlements attach only to base Faculties; composite profiles remain authorization profiles. Possession derives from conferred/acquired, and acquisition normally survives loss of an unlock source. P12-B/C remain open for complete derived availability and evaluation order. |
 | **0.41.0** | **`◈P11` closed.** P·2.3b adds four normalized Faculty relations, four immutable identities, eight exact profiles and 32 Technique authorizations (**P-C15**, **P-C16**). P·2.3a now lets Lineage grants explicitly confer or unlock a Faculty; both Venomous Hobgoblin grants confer Somatic (**P-C14**). `◇P12` remains open for actor/build entitlement persistence and complete derived availability. |
 | **0.40.0** | **◈P13 closed.** Twelve normalized lineage, physique, innate-profile and grant relations added at §2.3a, taking the authoring set to forty-two sheets. Somatic is the authorization-only Faculty for deliberate natural-node Techniques; binding-source and Payload-support grains remain distinct (**P-C13**, **P-C14**). `◇P11` expands to four concrete Faculty instances and remains open; `◇P12` remains the normalized fixture build × Faculty relation. |

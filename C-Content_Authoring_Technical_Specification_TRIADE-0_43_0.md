@@ -1,9 +1,9 @@
 # Triade — Content Authoring Technical Specification
 
-**Version:** 0.42.0
-**Aligned to Triade:** v0.42.0
-**Date:** 22 September 2026
-**Status:** Stage 2 authoring-schema baseline complete; M10 dependency and equipment layers adopted; v0.29.0 faculties/fixtures candidate proved but not adoptable unchanged; P13, P11 and P12-A logical grains are design-authored and await a technical schema/migration pass; P12-B/C remain open
+**Version:** 0.43.0
+**Aligned to Triade:** v0.43.0
+**Date:** 25 September 2026
+**Status:** Stage 2 authoring-schema baseline complete; M10 dependency and equipment layers adopted; v0.29.0 faculties/fixtures candidate proved but not adoptable unchanged; P13, P11 and P12-A/B logical contracts are design-authored and await a technical schema/migration pass; P12-C remains open
 **Classification:** **Registered technical document.** Implements P; holds no game-design authority  
 **Design authority:** **P — Content Pipeline & Data Model**; game meaning remains in T/M/K/H/E/W/G/V/L
 
@@ -61,14 +61,14 @@ The direction is one-way: authored text/data → canonical JSON → database. Du
 | CR-11 record families | **Design-registered at 0.36.0; not present in the verified Grist implementation.** Five immutable revisioned families require schema, migration and export work before population |
 | M14 innate magnitude | **Design-adopted at 0.37.0; not implemented.** Per-node magnitude, striking-equipment composition and physical Combo caps are validation contracts under M-C12–M-C14. P·2.3a now supplies the logical Lineage/Physique and innate-grant grain; concrete technical columns, migration and export remain unimplemented. The node-payload/aiming intake is separate and unresolved |
 | Legacy innate faculty rows | **Obsolete candidate state, not adopted implementation.** The v0.29.0 candidate's `innate` family, two `faculty.innate_*` identities and definition-level `faculty_origin` conflict with T·A4.8a/M·2A.10a/P·2.3b. Natural actions migrate to Lineage grants/bindings plus `faculty.somatic@1`; P·2.3c now owns entitlement/acquisition logic, but its technical columns and projection remain unimplemented |
-| P12-A entitlement storage | **Design-authored, not implemented.** Technical work must add authoritative build instructions and actor acquisitions plus a generated actor-entitlement projection. Composite profiles must never become entitlement rows. Exact column types, migration and export proof belong to the technical implementation pass; P12-B/C still gate complete runtime availability |
-| Current design-rule suite | **205 rules — 135 Critical / 56 High / 14 Medium.** The proved v0.29.0 `ref_rules` candidate remains at 148 and therefore requires a measured 148→205 migration before adoption against this design set |
+| P12-A/B entitlement and readiness | **Design-authored, not implemented.** Technical work must add authoritative build instructions and actor acquisitions plus a generated actor-entitlement projection. Composite profiles must never become entitlement rows. It must derive `known`, `selectable` and `executable` at candidate grain with typed dependencies and failed-gate output; no readiness predicate becomes stored truth. Exact columns, migration and export proof belong to the technical implementation pass; P12-C still gates deterministic evaluation/commit order |
+| Current design-rule suite | **209 rules — 139 Critical / 56 High / 14 Medium.** The proved v0.29.0 `ref_rules` candidate remains at 148 and therefore requires a measured 148→209 migration before adoption against this design set |
 | ◈P3 fixed-point scale | **Closed 0.34.0 at 12 000.** Every future persisted fractional simulation field must use signed 64-bit `_q`; binary float is excluded from canonical persistence and proof digests |
 | ◈P7 source-rule defect | **CLOSED 0.20.0.** No longer a Stage 2c exit condition |
 
 > **Re-proofed and implemented against 0.29.0 — 12 Aug 2026.** The dependency and equipment candidates were adopted by the operator and landed at repository commit `8d2776b`. The current population was executed from the post-adoption Grist backup, not from a pre-adoption candidate.
 >
-> **Current verification boundary.** *Mechanically executed on a fresh post-equipment copy:* 143→148 stable-ID rule reconciliation; Standard Shield 1/1 pip split; five legacy candidate faculty identities; five builds; 45 stat weights; seven equipment assignments; five scalar encounter shells; 29 coverage records; four M-C11 formula previews; byte-identical eight-table rule/fixture export; exact idempotence; unresolved-reference and `◇M13` tie rejection before persistence; 12/12 regression tests; and SQLite integrity. *Not yet executed:* operator adoption, 148→205 rule migration, removal/migration of obsolete innate-faculty candidate rows, M-C12–M-C18/P-C13–P-C17 validation, CR-11 table creation or population, concrete faculty profiles, build/actor Faculty entitlement relations and projection, actor-lineage/physique authoring, enemy/encounter membership, canonical JSON, DuckDB, simulation, or traces.
+> **Current verification boundary.** *Mechanically executed on a fresh post-equipment copy:* 143→148 stable-ID rule reconciliation; Standard Shield 1/1 pip split; five legacy candidate faculty identities; five builds; 45 stat weights; seven equipment assignments; five scalar encounter shells; 29 coverage records; four M-C11 formula previews; byte-identical eight-table rule/fixture export; exact idempotence; unresolved-reference and `◇M13` tie rejection before persistence; 12/12 regression tests; and SQLite integrity. *Not yet executed:* operator adoption, 148→209 rule migration, removal/migration of obsolete innate-faculty candidate rows, M-C12–M-C18/P-C13–P-C18/T-C19/K-C18/E-C9 validation, CR-11 table creation or population, concrete faculty profiles, build/actor Faculty entitlement relations and projection, candidate-readiness derivation, actor-lineage/physique authoring, enemy/encounter membership, canonical JSON, DuckDB, simulation, or traces.
 
 ## 1.1 Completed implementation stages
 
@@ -85,7 +85,7 @@ The direction is one-way: authored text/data → canonical JSON → database. Du
 11. Five M10 equipment revisions and their text/damage/occupancy/shield-defence child records populated, proved, adopted, and committed as `8d2776b`.
 12. v0.29.0 protected-rule reconciliation, Standard Shield 1/1 split, five faculty identities, unblocked fixture records, and M-C11 loadout previews populated and proved in an offline candidate.
 
-**Next:** preserve the proved v0.29.0 candidate as evidence, migrate `ref_rules` from 148 to the measured 205-row 0.42.0 suite, retire its obsolete `innate` Faculty-family/identity rows and definition-level origin column, then implement P·2.3a/P·2.3b/P·2.3c plus CR-11 through an explicit schema/migration pass. P12-B/C, `TS-M10F-01`, `TS-M10F-02`, and `TS-V029-01`–`03` continue to gate complete availability-, lineage-, and enemy-bearing fixture instantiation.
+**Next:** preserve the proved v0.29.0 candidate as evidence, migrate `ref_rules` from 148 to the measured 209-row 0.43.0 suite, retire its obsolete `innate` Faculty-family/identity rows and definition-level origin column, then implement P·2.3a–d plus CR-11 through an explicit schema/migration pass. P12-C, `TS-M10F-01`, `TS-M10F-02`, and `TS-V029-01`–`03` continue to gate complete readiness-, lineage-, and enemy-bearing fixture instantiation.
 
 ---
 
@@ -1154,10 +1154,10 @@ M-C12–M-C14 are adopted validation contracts, and P·2.3a now supplies the log
 
 The next candidate must:
 
-1. migrate `ref_rules` to all 205 current rules, including M-C12–M-C18, P-C13–P-C17 and the A1/A2 rule set;
+1. migrate `ref_rules` to all 209 current rules, including M-C12–M-C18, P-C13–P-C18, T-C19, K-C18, E-C9 and the A1/A2 rule set;
 2. remove the obsolete `innate` Faculty-family enum value, the two `faculty.innate_*` candidate identities and definition-level `faculty_origin` with an explicit before/after dependency proof;
 3. preserve Arcana/Mudra/Psyche identities and all unrelated fixture rows byte-for-byte; add `faculty.somatic@1`, the eight P·2.3b profiles and 32 authorization rows exactly;
-4. realize P·2.3a's twelve normalized Lineage/Physique/innate-grant relations, P·2.3b's four Faculty child relations, and P·2.3c's two authoritative entitlement/acquisition relations plus generated projection, registering lints for P-C13–P-C17 and M-C17/M-C18 using exact References and child rows rather than notes or delimited cells; and
+4. realize P·2.3a's twelve normalized Lineage/Physique/innate-grant relations, P·2.3b's four Faculty child relations, P·2.3c's two authoritative entitlement/acquisition relations plus generated projection, and P·2.3d's generated candidate-readiness/failed-gate projection, registering lints for P-C13–P-C18, T-C19, K-C18, E-C9 and M-C17/M-C18 using exact References and child rows rather than notes or delimited cells; and
 5. keep A1/A2 implementation outside M14. Their design contracts are adopted at 0.38.0/0.39.0; the A3 §12 authoring/automation pass must reconcile them with P·2.3a rather than infer columns from T/H/K/E prose.
 
 ---
@@ -1190,10 +1190,10 @@ The next candidate must:
 | 22 | DuckDB analytics + log-power decomposition | Pending |
 | 23 | First S-K01 / S-K02 sweep | Stage 2c exit work |
 | 24 | ~~Close ◇P7~~ | **Done — closed centrally at 0.20.0** |
-| 25 | Reconcile protected `ref_rules` from the proved 148-row candidate to the measured 205-row 0.42.0 suite | Pending; preserve stable IDs and existing coverage references |
+| 25 | Reconcile protected `ref_rules` from the proved 148-row candidate to the measured 209-row 0.43.0 suite | Pending; preserve stable IDs and existing coverage references |
 | 26 | Implement the five P·3 CR-11 record families, canonical schemas, migrations and proof fixtures | Pending; §5.24 / §8.9 acceptance applies |
 | 27 | Retire obsolete candidate `innate` Faculty family/identities, preserve the legal `innate` origin, and register M-C12–M-C16 plus P-C13/P-C14 lint coverage | Pending; §8.10 applies; P·2.3a is the design handoff |
-| 28 | Implement P·2.3a's twelve Lineage/Physique/grant relations, P·2.3b's four Faculty child relations, and P·2.3c's two authoritative Faculty relations plus generated entitlement projection with deterministic migration/export proof | Pending; exact technical columns require the technical implementation session; P12-B/C still gate complete availability |
+| 28 | Implement P·2.3a's twelve Lineage/Physique/grant relations, P·2.3b's four Faculty child relations, P·2.3c's two authoritative Faculty relations plus generated entitlement projection, and P·2.3d's candidate-readiness/failed-gate projection with deterministic migration/export proof | Pending; exact technical columns require the technical implementation session; P12-C still gates deterministic evaluation/commit order |
 
 The first sweep target remains S-K01/S-K02; the log-power decomposition is part of the harness requirement, not optional analysis.
 
@@ -1279,7 +1279,7 @@ Database CHECK constraints are for local arithmetic only; cross-row/domain seman
 | CR-11 time representation | Integer offsets and intervals against the sole `world_tick`; no per-turn counter, AP balance or second clock |
 | CR-11 environmental separation | Immutable substance/material/reaction content is distinct from mutable runtime state; Airborne Volume is distinct from face state |
 | M14/P13 implementation state | M-C12–M-C16 and P-C13/P-C14 registered as lint obligations; P·2.3a supplies the normalized logical grain, but technical schema/migration is not yet implemented; node-payload/aiming intake remains separately bounded |
-| Current rule denominator | Design suite 200 (130/56/14); proved offline `ref_rules` candidate 148 (86/48/14) and therefore pending migration |
+| Current rule denominator | Design suite 209 (139/56/14); proved offline `ref_rules` candidate 148 (86/48/14) and therefore pending migration |
 
 ---
 
@@ -1287,6 +1287,7 @@ Database CHECK constraints are for local arithmetic only; cross-row/domain seman
 
 | Version | Date | Change |
 | --- | --- | --- |
+| **0.43.0** | 25 Sep 2026 | Recorded P12-B as a logical handoff without claiming implementation: generated `known`/`selectable`/`executable`, candidate-local typed dependencies, existential alternative routes with conjunctive within-route requirements, provider-transfer survival, declared cooldown propagation and Technique-authored direct/area target contracts. Migration target is **209 — 139/56/14**; P12-C still gates deterministic evaluation/commit order. No AUTHORED DESIGN DECISION. |
 | **0.42.0** | 22 Sep 2026 | Recorded P12-A as a logical handoff without claiming implementation: base-Faculty-only entitlements, authoritative build instructions and actor acquisitions, generated actor entitlement, derived possession, durable acquisition, and composite-profile exclusion. Migration target is **205 — 135/56/14**; P12-B/C still gate complete availability. No AUTHORED DESIGN DECISION. |
 | **0.41.0** | 21 Sep 2026 | Recorded the closed P11 design handoff without claiming implementation: four Faculty identities, eight explicit profiles, corrected hooks, normalized Technique authorization and definition-level origin removal. The candidate remains evidence; migration target is **204 — 134/56/14**, and `◇P12` still gates actor/build entitlement. No AUTHORED DESIGN DECISION. |
 | **0.40.0** | 20 Sep 2026 | Reconciled the technical handoff to closed `◈P13` without claiming implementation. Registered P·2.3a's twelve logical Lineage/Physique/innate-grant relations as the schema/migration target; corrected the Faculty reference contract to four families, retained `innate` as a legal origin while rejecting it as a Faculty family, and left concrete Somatic profiles gated by `◇P11`. Current protected-rule target is **200 — 130/56/14**. No AUTHORED DESIGN DECISION. |

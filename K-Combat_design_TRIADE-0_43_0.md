@@ -1,24 +1,24 @@
 # Combat Design
 
-**Version 0.42.0** — 22 September 2026. Turn structure, action economy, resolution, reactions, and the player-facing exchange loop.
+**Version 0.43.0** — 25 September 2026. Turn structure, action economy, resolution, reactions, and the player-facing exchange loop.
 
 **Document set:** this is one of **ten**.
 
 | Ref | Document | Filename |
 | --- | --- | --- |
-| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_42_0.md` |
-| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_42_0.md` |
-| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_42_0.md` |
-| **V** | Visual Design | `V-Visual_design_TRIADE-0_42_0.md` |
-| **K** | **Combat Design** — *this document* | `K-Combat_design_TRIADE-0_42_0.md` |
-| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_42_0.md` |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_42_0.md` |
-| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_42_0.md` |
-| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_42_0.md` |
-| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_42_0.md` |
-| — | *Open Items Index* | `B-Open_Items_Index_TRIADE-0_42_0.md` |
-| — | *SIM Numbers Register* | `Y-SIM_Numbers_Register_TRIADE-0_42_0.md` |
-| — | *Validation Rules Index* | `R-Validation_Rules_Index_TRIADE-0_42_0.md` |
+| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_43_0.md` |
+| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_43_0.md` |
+| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_43_0.md` |
+| **V** | Visual Design | `V-Visual_design_TRIADE-0_43_0.md` |
+| **K** | **Combat Design** — *this document* | `K-Combat_design_TRIADE-0_43_0.md` |
+| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_43_0.md` |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_43_0.md` |
+| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_43_0.md` |
+| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_43_0.md` |
+| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_43_0.md` |
+| — | *Open Items Index* | `B-Open_Items_Index_TRIADE-0_43_0.md` |
+| — | *SIM Numbers Register* | `Y-SIM_Numbers_Register_TRIADE-0_43_0.md` |
+| — | *Validation Rules Index* | `R-Validation_Rules_Index_TRIADE-0_43_0.md` |
 
 **Scope boundary.** The Triade doc owns the state model, regions, credit economy and skill anchors. This document owns everything that turns those into turn-by-turn play: time, AP, resolution order, reactions, the battlefield, and encounter rhythm.
 
@@ -290,12 +290,24 @@ No propagation is inferred between siblings, from a provider to an existing prov
 
 The proving cases are normative:
 
-- Rend on cooldown → Poisonous Rend unavailable.
-- Poisonous Rend on cooldown → plain Rend may remain available.
+- Rend on cooldown → Rend and Poisonous Rend are not selectable.
+- Poisonous Rend on cooldown → plain Rend may remain selectable.
 - Venom gland regenerating → no new gland venom may be applied; an existing weapon coating may remain usable; plain Rend remains unaffected.
 - A Faculty-wide Arcana vocal-recovery lock started by Resonant Chorus blocks every Arcana-only or composite Technique that requires Arcana without changing entitlement.
 - A composite Technique owns its own Technique cooldown; unrelated cooldowns on Techniques authorized by either member Faculty do not block it.
 - A transferred provision belongs to the recipient and owns its remaining uses/expiry; provider loss or provider cooldown prevents replenishment, not consumption of the existing provision.
+
+### 5.1a Selection and target-route validity [AUTHORED 0.43.0, ◈P12-B]
+
+Combat consumes three derived predicates from the authoritative Technique resolver. `known` is vocabulary membership, `selectable` is at least one complete actor-side initiation candidate, and `executable` is one fully contextual candidate. Only `executable` permits costs to commit or effects to resolve. UI and AI may inspect the earlier predicates and their failed-gate reasons, but neither may convert them into execution permission.
+
+Target validation dispatches by the Technique-authored selection and delivery contract, not by the broad source category. A direct actor-targeted weapon attack validates selected-weapon reach, actor perception, actor line of sight and direct-route geometry. A direct projectile additionally validates its projectile path. A direct Psyche attack validates Technique reach, perception and actor line of sight unless an explicit mental-link or non-visual-lock route replaces those requirements.
+
+Area actions validate their origin, pattern, propagation and geometry rather than perception or line of sight to every affected actor. A Sword Whirlwind may use selected-weapon reach as its actor-centred radius and strike occupants of eligible surrounding cells without selecting them individually. A flask or bomb selects a destination under its authored destination-visibility rule, then validates throw range, ballistic route and landing cell before resolving affected cells. An unseen occupant may be hit without being exposed to the actor or AI before resolution. Walls, closed doors, elevation and other blocking geometry still apply under the authored propagation contract.
+
+Multiple source candidates are alternative complete routes. The resolver may keep Punch selectable when one eligible hand survives, but it may not satisfy a two-hand route with one hand: `Mudra && Mudra` requires both functional, unoccupied hands and their distinct finger hooks in the same candidate. The candidate is selected before costs commit.
+
+The verdict reports every currently failed gate without triggering side effects. P12-C remains responsible for the deterministic evaluation and commit order.
 
 ### 5.2 Fixed resolution order
 
@@ -838,7 +850,7 @@ The schema may support the full damage taxonomy from the start; proof *content* 
 
 ### Hard automated checks
 
-*Severities and IDs standardised at 0.11.0. Full suite in `R-Validation_Rules_Index_TRIADE-0_42_0.md`. Rules owned by other documents are cross-referenced, not duplicated.*
+*Severities and IDs standardised at 0.11.0. Full suite in `R-Validation_Rules_Index_TRIADE-0_43_0.md`. Rules owned by other documents are cross-referenced, not duplicated.*
 
 | ID | Rule | Severity |
 | --- | --- | --- |
@@ -861,6 +873,7 @@ The schema may support the full damage taxonomy from the start; proof *content* 
 | **K-C15** | Critical | Same-`world_tick` resolution is fully ordered — immediate, environmental batch, reactions, actors by Readiness, then stable identity. **A committed action is never resized**; Haste and Slow apply only to actions committed afterwards |
 | **K-C16** | Critical | The carrier contract is fixed after step 7; delivery proof is evaluated once from step 8's immutable layer trace against the contracted carrier type and route. Payload resolution cannot feed back into primary resolution, and a secondary payload cannot prove or recursively spawn another carrier |
 | **K-C17** | Critical | A selected aimed mode contributes its non-negative surcharge to effective AP cost before commit. On a successful attack H samples the reweighted full distribution; landing elsewhere neither converts the hit to a miss nor refunds cost |
+| **K-C18** | Critical | Only `executable` authorizes commitment and resolution. Target-route validity follows the Technique-authored selection shape, visibility and delivery route: direct actor-targeted routes apply their authored reach, perception, LOS and path gates; area routes validate origin, pattern, propagation and geometry without automatically requiring perception or LOS to every affected actor |
 | **K-H1** | Cooldowns used only for rare, dramatic skills — never as a default limiter | High |
 | **K-H4** | A cooldown declares the identities an action checks and starts. Base Technique cooldowns gate all derived renditions; rendition and provider cooldowns do not propagate upward or sideways unless an explicit shared key says so. Faculty-wide cooldowns are exceptional shared locks | High |
 
@@ -877,7 +890,7 @@ The schema may support the full damage taxonomy from the start; proof *content* 
 | H-C1 | Σ of all effective-field reductions per corner ≥ `max(Φ_safe_x, 0.5 × Φ_base_x)` | H · 10.2 |
 | H-C4 | Vital-organ lethality gated on HP below the Finisher threshold, or Downed | H · 9.4 |
 
-*The metrics above (K16 validation targets) are **measurements**, not pass/fail rules; their gates and provisional values live in `Y-SIM_Numbers_Register_TRIADE-0_42_0.md`.*
+*The metrics above (K16 validation targets) are **measurements**, not pass/fail rules; their gates and provisional values live in `Y-SIM_Numbers_Register_TRIADE-0_43_0.md`.*
 
 ---
 
@@ -908,6 +921,7 @@ The schema may support the full damage taxonomy from the start; proof *content* 
 
 | Version | Change |
 | --- | --- |
+| **0.43.0** | **P12-B targeting and candidate semantics adopted.** §5.1a distinguishes `known`, `selectable` and `executable`, requires Technique-authored direct/area targeting contracts, and preserves information boundaries for unseen area occupants (**K-C18**). Alternative candidates are existential; every dependency within the chosen candidate remains conjunctive. |
 | **0.42.0** | Version alignment only. P12-A establishes entitlement persistence but leaves complete runtime availability and cooldown evaluation ordering to P12-B/C. |
 | **0.41.0** | **P11 cooldown fixtures adopted.** K·5.1 now states the asymmetric Rend/Poisonous Rend cases, provider-versus-provision survival, the exceptional Faculty-wide lock and independent composite-Technique cooldown. |
 | **0.40.0** | **Cooldown scopes authored.** Base Technique, derived-rendition, Faculty-wide and provider cooldowns are distinct declared identities. Base cooldowns gate derived renditions; child and provider cooldowns do not propagate upward or sideways without an explicit shared key (**K-H4**). |
@@ -935,4 +949,4 @@ The schema may support the full damage taxonomy from the start; proof *content* 
 
 ---
 
-*End of Combat Design 0.42.0. Maintained alongside the Core Mechanic, Stats/Items/Equipment, Lexicon, Visual Design, World Generation, Damage & Health, Enemies, Tile Pipeline and Content Pipeline documents.*
+*End of Combat Design 0.43.0. Maintained alongside the Core Mechanic, Stats/Items/Equipment, Lexicon, Visual Design, World Generation, Damage & Health, Enemies, Tile Pipeline and Content Pipeline documents.*

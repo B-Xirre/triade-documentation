@@ -1,26 +1,26 @@
 # Triade — Enemies & Bestiary Design
 
-**Version:** 0.42.0
-**Date:** 22 September 2026
+**Version:** 0.43.0
+**Date:** 25 September 2026
 **Status:** Extracted from Core Mechanic Part F at 0.11.0. Architecture settled; numbers pending simulation.
 
 **Document set:** this is one of **ten**.
 
 | Ref | Document | Filename |
 | --- | --- | --- |
-| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_42_0.md` |
-| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_42_0.md` |
-| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_42_0.md` |
-| **V** | Visual Design | `V-Visual_design_TRIADE-0_42_0.md` |
-| **K** | Combat Design | `K-Combat_design_TRIADE-0_42_0.md` |
-| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_42_0.md` |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_42_0.md` |
-| **E** | **Enemies & Bestiary** — *this document* | `E-Enemies_design_TRIADE-0_42_0.md` |
-| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_42_0.md` |
-| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_42_0.md` |
-| — | *Open Items Index* | `B-Open_Items_Index_TRIADE-0_42_0.md` |
-| — | *SIM Numbers Register* | `Y-SIM_Numbers_Register_TRIADE-0_42_0.md` |
-| — | *Validation Rules Index* | `R-Validation_Rules_Index_TRIADE-0_42_0.md` |
+| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_43_0.md` |
+| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_43_0.md` |
+| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_43_0.md` |
+| **V** | Visual Design | `V-Visual_design_TRIADE-0_43_0.md` |
+| **K** | Combat Design | `K-Combat_design_TRIADE-0_43_0.md` |
+| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_43_0.md` |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_43_0.md` |
+| **E** | **Enemies & Bestiary** — *this document* | `E-Enemies_design_TRIADE-0_43_0.md` |
+| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_43_0.md` |
+| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_43_0.md` |
+| — | *Open Items Index* | `B-Open_Items_Index_TRIADE-0_43_0.md` |
+| — | *SIM Numbers Register* | `Y-SIM_Numbers_Register_TRIADE-0_43_0.md` |
+| — | *Validation Rules Index* | `R-Validation_Rules_Index_TRIADE-0_43_0.md` |
 
 **Scope.** This document is **E**. It owns the enemy capability ladder, tag composition, behaviour policy, enemy authoring and the combination-space validation that follows from them.
 
@@ -140,6 +140,8 @@ Worked example — *Goblin Pikeman*: `[Goblin]` chassis, `[Average size]` physiq
 
 **Bots read perceived committed intent, never world truth** [ADOPTED 0.36.0, CR-11]. Behaviour consumes the `PerceptionSnapshot` plus public combat state (**W-H17**) — currently perceived entities, last-known facts, permitted sensory events. **An Intent Marker is visible to a bot only where that bot perceives it**, and the player-facing timeline grants bots nothing. Losing sight changes an information state; it does not delete the target or reveal where it went.
 
+**Bots plan through the same readiness predicates as players** [ADOPTED 0.43.0, ◈P12-B]. Policy may rank `known` Techniques and `selectable` candidates using only its `PerceptionSnapshot` and public state; it may commit only a fully `executable` candidate. An authored area route may strike an unseen occupant after resolving valid cells, but the possibility of that hit does not reveal or target the occupant during planning. Direct non-visual targeting requires the same explicit lock or mental-link route as any other actor.
+
 If `[Compulsive]` means "commits to Momentum early and will not disengage" and `[Simpleminded]` means "never uses Instinct-region actions," then the tag set **is** the behaviour policy. One policy engine reading behaviour tags replaces per-enemy AI.
 
 The second-order benefit matters more than the authoring saving: enemy behaviour becomes **learnable and transferable**. A player who works out that Compulsive things overcommit carries that knowledge to every enemy carrying the tag, for the rest of the game.
@@ -192,6 +194,7 @@ Enemy validation is character validation. These are the additional rules specifi
 | **E-C6** | Every enemy carries at least one acquired or conferred `[Faculty]`; no enemy has zero authorized vocabulary paths. Somatic authorization adds no physical source — its bound active node remains the source | Critical |
 | **E-C7** | A physique size map carries **at most two pairs** per size, each pair an additive integer gain and loss that **sums to zero**. The lineage's `typical` size carries none; a size the lineage does not offer is `null`, never zero | Critical |
 | **E-C8** | Trash and Standard enemy actors cannot use aimed modes. Elite and Commander actors may do so only when the Technique permits and only from perceived candidate anatomy; target tier remains an independent H-owned constraint | Critical |
+| **E-C9** | Enemy policy ranks `known` Techniques and `selectable` candidates only from its `PerceptionSnapshot` plus public state and commits only an `executable` candidate. Area resolution may hit an unseen occupant but never reveals that occupant during planning; direct non-visual targeting requires an explicit authored route | Critical |
 | **E-H5** | An enemy's unarmed footprint is authored per **node** on its lineage, never per chassis and never as a slot *(H-C7, restated 0.32.0)* | High |
 | **E-H1** | `chassis × role` matrix validated exhaustively | High |
 | **E-H2** | Encounter generation enforces behaviour-tag diversity within a group | High |
@@ -206,6 +209,7 @@ Enemy validation is character validation. These are the additional rules specifi
 
 | Version | Change |
 | --- | --- |
+| **0.43.0** | **P12-B propagated to enemy planning.** Bots consume the same `known`/`selectable`/`executable` predicates under their perception boundary; an area route may hit but never pre-reveal an unseen occupant (**E-C9**). |
 | **0.42.0** | Version alignment only. P12-A changes entitlement persistence and projection, not enemy capability tiers, tags, anatomy or aiming authority. |
 | **0.41.0** | Version alignment only. P11's concrete Faculty profiles and authorizations do not change enemy capability-tier, tag, anatomy or aiming authority. |
 | **0.40.0** | **Somatic propagated into enemy composition.** Every enemy still carries at least one Faculty; Somatic authorizes natural-node Techniques while lineage profiles and active nodes remain their physical sources (**E-C6**). |

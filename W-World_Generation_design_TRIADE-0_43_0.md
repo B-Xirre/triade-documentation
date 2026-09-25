@@ -1,24 +1,24 @@
 # Triade Roguelike — World, Maps & Dungeons Design Plan
 
-**Version:** 0.42.0
-**Date:** 22 September 2026
+**Version:** 0.43.0
+**Date:** 25 September 2026
 **Status:** Merged draft — architecture settled, numbers pending simulation
-**File convention:** `W-World_Generation_design_TRIADE-0_42_0.md` → `outputs/analysis/`
+**File convention:** `W-World_Generation_design_TRIADE-0_43_0.md` → `outputs/analysis/`
 
 **Document set:** this is one of **ten**.
 
 | Ref | Document | Filename |
 | --- | --- | --- |
-| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_42_0.md` |
-| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_42_0.md` |
-| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_42_0.md` |
-| **V** | Visual Design | `V-Visual_design_TRIADE-0_42_0.md` |
-| **K** | Combat Design | `K-Combat_design_TRIADE-0_42_0.md` |
-| **W** | **World, Maps & Dungeons** — *this document* | `W-World_Generation_design_TRIADE-0_42_0.md` |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_42_0.md` |
-| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_42_0.md` |
-| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_42_0.md` |
-| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_42_0.md` |
+| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_43_0.md` |
+| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_43_0.md` |
+| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_43_0.md` |
+| **V** | Visual Design | `V-Visual_design_TRIADE-0_43_0.md` |
+| **K** | Combat Design | `K-Combat_design_TRIADE-0_43_0.md` |
+| **W** | **World, Maps & Dungeons** — *this document* | `W-World_Generation_design_TRIADE-0_43_0.md` |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_43_0.md` |
+| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_43_0.md` |
+| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_43_0.md` |
+| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_43_0.md` |
 
 ---
 
@@ -40,15 +40,15 @@ This document is a reconciliation of two independently written reports plus the 
 
 All at **0.39.0**, from the authoritative `X:\Documentation` set:
 
-- `T-Core_Mechanic_design_TRIADE-0_42_0.md` — **T**
-- `M-Stats_Items_Equipment_design_TRIADE-0_42_0.md` — **M**
-- `L-Lexicon_design_TRIADE-0_42_0.md` — **L**
-- `V-Visual_design_TRIADE-0_42_0.md` — **V**
-- `K-Combat_design_TRIADE-0_42_0.md` — **K**
-- `H-Damage_Health_design_TRIADE-0_42_0.md` — **H**
-- `E-Enemies_design_TRIADE-0_42_0.md` — **E**
-- `G-Tile_Pipeline_design_TRIADE-0_42_0.md` — **G**
-- `P-Content_Pipeline_design_TRIADE-0_42_0.md` — **P**
+- `T-Core_Mechanic_design_TRIADE-0_43_0.md` — **T**
+- `M-Stats_Items_Equipment_design_TRIADE-0_43_0.md` — **M**
+- `L-Lexicon_design_TRIADE-0_43_0.md` — **L**
+- `V-Visual_design_TRIADE-0_43_0.md` — **V**
+- `K-Combat_design_TRIADE-0_43_0.md` — **K**
+- `H-Damage_Health_design_TRIADE-0_43_0.md` — **H**
+- `E-Enemies_design_TRIADE-0_43_0.md` — **E**
+- `G-Tile_Pipeline_design_TRIADE-0_43_0.md` — **G**
+- `P-Content_Pipeline_design_TRIADE-0_43_0.md` — **P**
 
 This document is **W**. It owns world/Territory/location/map generation, the tile substrate, affordances, surfaces, dungeon structure, generation validation, world-scoped meta-progression, and the agentic authoring pipeline for world content. It does **not** own the Triade state model, the credit economy, the action contract, or zone-graph combat rules.
 
@@ -1180,7 +1180,7 @@ Engine-agnostic, deterministic, testable.
 
 ## 16. Proofing suite
 
-*Severity scheme aligned to the set-wide standard at 0.11.0 — Critical / High / Medium with `W-C{n}` / `W-H{n}` / `W-M{n}` IDs. Full cross-document suite in `R-Validation_Rules_Index_TRIADE-0_42_0.md`. §16.4 metrics are measurements, not rules; their gates live in `Y-SIM_Numbers_Register_TRIADE-0_42_0.md`.*
+*Severity scheme aligned to the set-wide standard at 0.11.0 — Critical / High / Medium with `W-C{n}` / `W-H{n}` / `W-M{n}` IDs. Full cross-document suite in `R-Validation_Rules_Index_TRIADE-0_43_0.md`. §16.4 metrics are measurements, not rules; their gates live in `Y-SIM_Numbers_Register_TRIADE-0_43_0.md`.*
 
 Runs headless (V·3). Sweep ≥10,000 seeds per Territory in CI.
 
@@ -1363,7 +1363,7 @@ Generation budget: ≤ 50 ms per level (prototype ≤ 200 ms). Under run-structu
 
 ## 19. Open questions
 
-*Markers standardised at 0.11.0. Mirrored in `B-Open_Items_Index_TRIADE-0_42_0.md`; `[SIM]` values also in `Y-SIM_Numbers_Register_TRIADE-0_42_0.md`.*
+*Markers standardised at 0.11.0. Mirrored in `B-Open_Items_Index_TRIADE-0_43_0.md`; `[SIM]` values also in `Y-SIM_Numbers_Register_TRIADE-0_43_0.md`.*
 
 | # | Question | Blocking |
 | --- | --- | --- |
@@ -1390,7 +1390,7 @@ Generation budget: ≤ 50 ms per level (prototype ≤ 200 ms). Under run-structu
 | ◇W14 | **[OPEN] [SIM]** Net Marks yield per `[Incursion]` run after recovery cost (S-W13). Too high defuses H·8.1's banking pressure; too low makes the mode dead content | Economy |
 | ◇W15 | **[OPEN]** `[Incursion]` pacing against S-W02's band targets — a third run unit outside the 3/6/1 run structure is new pacing surface | Balance |
 | **◇W17** | **[OPEN]** **Stratum scaling must follow the career power curve.** M·9.7 sets `E(x) = P(x)(0.92+0.18x)` as an encounter budget — durability, action quality, behaviour tags, spatial pressure, resource denial — not a health multiplier. With ×9 career growth, cleared bands trivialise on replay without it. W does not currently state how Stratum scaling implements this *(partner: **◇E11**)* | Balance / M |
-| **◈W18** | **Rename the world/geographic `region` to Territory.** `region` is locked to **Triade regions (T)** and is never a map area, yet W uses it for geography — and W·5 proves the two are different: *multiple regions may declare the same axis*, so geographic identity is demonstrably not Triade identity. **Ruled 0.33.0, scheduled after Set 1**: `territory_id`, **Territory package**, **launch Territories**, and `[Territory Vocabulary]` where it means geographically taught content. T's and C's barycentric uses do **not** move. ~250 occurrences of `region` across 17 documents need discriminating by sense — a blanket replace is barred, and a half-done rename is worse than none | **Occurrence register at `00-W18_Region_Occurrence_Register_TRIADE-0_42_0.md`** **[CLOSED 0.38.0]** Applied in one transaction. **396 occurrences classified: 263 Triade, 83 geographic, 3 other-spatial, 47 meta/historical.** 75 hand-edits in A, G, L, T, W; the 8 in B, R and Y fell out of regeneration, never hand-edited. **24 identifier forms sat outside the census** — `\bregions?\b` cannot match `region_id` — of which W's 4 became `territory_id`; C's `ref_regions` is Triade (`parent_corner_a/b` → momentum/form/mind) and needed no counter-patch. **Territory is capitalised** for the record and its instances, compounds and plurals; machine identifiers stay snake_case (L · 9D). Historical rows untouched: 0 of 83 geographic occurrences fell in a changelog line. Classification is occurrence-based, never document-based: T·252's *faction/region flavour* is geographic inside the document that owns the barycentric sense. |
+| **◈W18** | **Rename the world/geographic `region` to Territory.** `region` is locked to **Triade regions (T)** and is never a map area, yet W uses it for geography — and W·5 proves the two are different: *multiple regions may declare the same axis*, so geographic identity is demonstrably not Triade identity. **Ruled 0.33.0, scheduled after Set 1**: `territory_id`, **Territory package**, **launch Territories**, and `[Territory Vocabulary]` where it means geographically taught content. T's and C's barycentric uses do **not** move. ~250 occurrences of `region` across 17 documents need discriminating by sense — a blanket replace is barred, and a half-done rename is worse than none | **Occurrence register at `00-W18_Region_Occurrence_Register_TRIADE-0_43_0.md`** **[CLOSED 0.38.0]** Applied in one transaction. **396 occurrences classified: 263 Triade, 83 geographic, 3 other-spatial, 47 meta/historical.** 75 hand-edits in A, G, L, T, W; the 8 in B, R and Y fell out of regeneration, never hand-edited. **24 identifier forms sat outside the census** — `\bregions?\b` cannot match `region_id` — of which W's 4 became `territory_id`; C's `ref_regions` is Triade (`parent_corner_a/b` → momentum/form/mind) and needed no counter-patch. **Territory is capitalised** for the record and its instances, compounds and plurals; machine identifiers stay snake_case (L · 9D). Historical rows untouched: 0 of 83 geographic occurrences fell in a changelog line. Classification is occurrence-based, never document-based: T·252's *faction/region flavour* is geographic inside the document that owns the barycentric sense. |
 | ◇W16 | **[OPEN] [GAP]** No document owns `[Inventory]`. M defines what items *are* and never what holds them; salvage, reroll and remedy items all assume a container specified nowhere | **No owner** |
 
 ---
@@ -1477,6 +1477,7 @@ All **provisional**. Pending Steward review, including the ◈W5 collision check
 
 | Version | Change |
 | --- | --- |
+| **0.43.0** | Version alignment only. P12-B consumes world geometry and perception results through authored target routes without moving world, Territory or generation ownership. |
 | **0.42.0** | Version alignment only. P12-A changes no world, Territory or generation ownership. |
 | **0.41.0** | Version alignment only. P11 changes no world, Territory or generation ownership. |
 | **0.40.0** | Version alignment only. P13 and Somatic author lineage grants and natural-action authorization without changing world, Territory or generation ownership. |
