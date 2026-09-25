@@ -1,0 +1,47 @@
+// Triade design set — markdown lint configuration
+// Adopted 0.20.0. Tracked by FOLDER-LEDGER.json like tools/ledger.sh.
+//
+// WHY THIS FILE EXISTS. At 0.19.0 one document was normalised by hand and the
+// other seventeen were not. Every later lint of a different file would have
+// produced a ledger stop indistinguishable from a real unexplained edit — and a
+// stop that fires on noise gets ignored on signal. Pin the rules, normalise once.
+//
+// Tool: markdownlint-cli. Record the version used in the manifest at every bump;
+// two people running different engines produce two different corpora.
+{
+  "default": true,
+
+  // OFF — the house style requires them off.
+  // "Tables over prose for anything enumerable" produces long rows by design.
+  // 3,349 findings at 0.19.0; enforcing this would rewrite the corpus into prose.
+  "MD013": false,
+
+  // OFF — fenced blocks hold ASCII workflow art and pseudo-schema, not code.
+  // 80 findings, no reader benefit from tagging them all `text`.
+  "MD040": false,
+
+  // ON, explicitly — these are the ones that earned their place.
+  // MD056 is not auto-fixable: a row with the wrong cell count silently drops
+  // content, and the missing cell is a decision, not a formatting question.
+  // Three such rows existed at 0.19.0 — two closed-item rows losing their
+  // marker column, and a changelog row split by an unescaped pipe in a code span.
+  "MD055": { "style": "leading_and_trailing" },
+  "MD056": true,
+  "MD058": true,
+  // `compact` = one space around cell content: `| --- |`, not `|---|`.
+  // Valid MD060 styles are aligned / any / compact / tight. `leading_and_trailing`
+  // is MD055's parameter, and passing it here silently disables the rule while
+  // reporting a clean run — caught by counting separators, not by trusting the exit code.
+  "MD060": { "style": "compact" },
+
+  // MD024 restricted to siblings. Every release summary in VERSION-MANIFEST.md
+  // carries the same subsection names — `Suite`, `Naming`, `Registered, not
+  // solved` — under a different version heading. That repetition is the format
+  // working, not a defect.
+  "MD024": { "siblings_only": true },
+
+  // OFF — bold labels inside worked examples ("Round 1", "Gate T exit criteria")
+  // are deliberately not headings; promoting them would put example scaffolding
+  // in the document outline.
+  "MD036": false
+}

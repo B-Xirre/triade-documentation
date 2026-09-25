@@ -1,0 +1,11 @@
+# token	retired_at	note
+base_AP_pool	0.34.0	AP became a rate; no pool exists
+deck_role	0.33.0	placement context, not a structural role (TD-CR-04)
+zone_contribution	0.35.0	cover derived from current geometry, not stored
+surface_modifiers	0.35.0	replaced by MaterialProfile bindings
+render.region	0.33.0	reserved word; now render.atlas_rect_px
+town_anchor	0.33.0	anchor is reserved to Skill Anchors; now town_id
+usage_phase	0.33.0	phase is reserved to sequencing; now availability_contexts
+n_turns	0.36.0	a turn is not a unit of time; now n_ticks
+# NOTE: C is stream-owned. n_turns there is tracked by counter-patch CP-3, not fixed here.
+[Region Vocabulary]	0.38.0	now [Territory Vocabulary] (◈W18)

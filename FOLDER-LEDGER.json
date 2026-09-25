@@ -1,0 +1,201 @@
+{
+  "schema": "triade-folder-ledger/1",
+  "generated_utc": "2026-09-21T22:13:12Z",
+  "root": "Documentation",
+  "file_count": 32,
+  "total_bytes": 1355367,
+  "files": [
+    {
+      "path": ".markdownlint.jsonc",
+      "bytes": 2374,
+      "sha256": "b31751818d77b663770d1834203538f1d3f660b8f27bc9080c946ce4cc5bd98f",
+      "mtime_utc": "2026-08-10T09:55:42Z"
+    },
+    {
+      "path": "00-Intake_Node_Payload_and_Aiming_TRIADE-0_42_0.md",
+      "bytes": 4972,
+      "sha256": "4fd942d3ddf4b8473ac8666b547ca0fc2b2fcb2f8e620d318fa002a0a890ed07",
+      "mtime_utc": "2026-09-21T22:05:28Z"
+    },
+    {
+      "path": "01-Tarot_Card_Skill_System_Concept_TRIADE-0_42_0.md",
+      "bytes": 17279,
+      "sha256": "51287ced2d1097e348b4f0446c0b69d056c05e0fc45f995bc2c2368884d2bf43",
+      "mtime_utc": "2026-09-21T22:09:33Z"
+    },
+    {
+      "path": "02-M14_Consolidated_Innate_Node_Payload_Aiming_Proposal_TRIADE-0_36_0.md",
+      "bytes": 25478,
+      "sha256": "9c4689a526788da5f79f9b9616a2aea31b699107a4cf0e22c21517da6a855d53",
+      "mtime_utc": "2026-09-20T16:03:12Z"
+    },
+    {
+      "path": "A-ROADMAP.md",
+      "bytes": 25606,
+      "sha256": "30f4afaf1f78608a3b3cf2dfda81ab93dfe65dec266b04c1f932effe7e330b1a",
+      "mtime_utc": "2026-09-21T22:09:34Z"
+    },
+    {
+      "path": "B-Open_Items_Index_TRIADE-0_42_0.md",
+      "bytes": 29773,
+      "sha256": "bdb41178c20ea01c2c86b4963ef3e143f4f7707977094f889a9dfa9a446ecd55",
+      "mtime_utc": "2026-09-21T22:05:32Z"
+    },
+    {
+      "path": "C-Content_Authoring_Technical_Specification_TRIADE-0_42_0.md",
+      "bytes": 90408,
+      "sha256": "7740b32a6032f0d7f17c2507c2e43a54396e74f007114f65dd00cec05e02653f",
+      "mtime_utc": "2026-09-21T22:07:03Z"
+    },
+    {
+      "path": "E-Enemies_design_TRIADE-0_42_0.md",
+      "bytes": 28228,
+      "sha256": "a3ffd7f1d7d05bd66ce8c5ba856e94b7f37571e02f10e57798120b00308aa118",
+      "mtime_utc": "2026-09-21T22:07:03Z"
+    },
+    {
+      "path": "G-Tile_Pipeline_design_TRIADE-0_42_0.md",
+      "bytes": 49012,
+      "sha256": "5ff9f1282d196fe6bf70a51a13f626134fcbf3acce2fb36ebe5fd3ef80016a6e",
+      "mtime_utc": "2026-09-21T22:07:04Z"
+    },
+    {
+      "path": "H-Damage_Health_design_TRIADE-0_42_0.md",
+      "bytes": 105425,
+      "sha256": "f7d40462af4304c8213df6d5b0e96acd2a3b375f175a9d418d727de637770e44",
+      "mtime_utc": "2026-09-21T22:07:31Z"
+    },
+    {
+      "path": "K-Combat_design_TRIADE-0_42_0.md",
+      "bytes": 71343,
+      "sha256": "f2467ef62c7311c55cd3f4fd175ffa1299aaa242f08f12b328321bba108bc1af",
+      "mtime_utc": "2026-09-21T22:10:47Z"
+    },
+    {
+      "path": "L-Lexicon_design_TRIADE-0_42_0.md",
+      "bytes": 94437,
+      "sha256": "dc5809fd1f6a4289a5ae286ecd087fa88a28cdf24546006d73029c8c966f6080",
+      "mtime_utc": "2026-09-21T22:10:48Z"
+    },
+    {
+      "path": "M-Stats_Items_Equipment_design_TRIADE-0_42_0.md",
+      "bytes": 122767,
+      "sha256": "7e76308419d8a06623bb1dac64aa61c3dbedd13c6980c41da5935925509fce68",
+      "mtime_utc": "2026-09-21T22:05:30Z"
+    },
+    {
+      "path": "P-Content_Pipeline_design_TRIADE-0_42_0.md",
+      "bytes": 66178,
+      "sha256": "9b19a7a9ae1af322cf5e3908192dac361a0753bcfdcf8b3fc904c393d451720f",
+      "mtime_utc": "2026-09-21T22:05:30Z"
+    },
+    {
+      "path": "R-Validation_Rules_Index_TRIADE-0_42_0.md",
+      "bytes": 49238,
+      "sha256": "643cb256ddf5172d4e406d01a93235cac9e38d626b5dd6c47b87347ba5a33b4d",
+      "mtime_utc": "2026-09-21T22:05:33Z"
+    },
+    {
+      "path": "T-Core_Mechanic_design_TRIADE-0_42_0.md",
+      "bytes": 133358,
+      "sha256": "93674b7ae3089f6ac37bc32be1d76b186846e59ee35038eea87c4fd853c4fbc5",
+      "mtime_utc": "2026-09-21T22:05:31Z"
+    },
+    {
+      "path": "tools/bump-check.sh",
+      "bytes": 2287,
+      "sha256": "25272a2a7f5dfefc0311b0dbd1bfe5d59612025385d5ebd104aa17a92a43b218",
+      "mtime_utc": "2026-08-14T12:03:28Z"
+    },
+    {
+      "path": "tools/drive-sync.py",
+      "bytes": 10547,
+      "sha256": "3e8e74b840a428f037d385ef04dc73e21627a6f71c9aeb3b141d31ca783de72f",
+      "mtime_utc": "2026-08-14T12:03:28Z"
+    },
+    {
+      "path": "tools/fence-check.sh",
+      "bytes": 2068,
+      "sha256": "663aa8d62b46b82255fbc92c12507b64cd5060c4d7059fa3b5c792976a7b8560",
+      "mtime_utc": "2026-08-14T12:03:28Z"
+    },
+    {
+      "path": "tools/history-check.sh",
+      "bytes": 5471,
+      "sha256": "aaa3790957cf55dd642bb546fdf1f938e10d705617f553f06057418d402a4a53",
+      "mtime_utc": "2026-08-14T12:03:28Z"
+    },
+    {
+      "path": "tools/intake-check.sh",
+      "bytes": 2326,
+      "sha256": "bf903b31ab7b5b6897ec40256f5f2e7dc9dec09eabf936f6102720cc17c51bb5",
+      "mtime_utc": "2026-08-14T12:03:28Z"
+    },
+    {
+      "path": "tools/ledger.sh",
+      "bytes": 5292,
+      "sha256": "551f13e1750bf694a852ed4207923f81ec02e28ebffe4d827d3c6c8b20a63d89",
+      "mtime_utc": "2026-08-14T12:03:28Z"
+    },
+    {
+      "path": "tools/retired-terms.tsv",
+      "bytes": 699,
+      "sha256": "c4359f04ec1168eebb0237d9da7aac5c5d1d4a4ea30487c03a09742afa5f05df",
+      "mtime_utc": "2026-08-14T13:16:58Z"
+    },
+    {
+      "path": "tools/retirement-check.sh",
+      "bytes": 3328,
+      "sha256": "d13e454a22a62f90d1acb50d795dbd49cd6f3e844aa66d32a34c2fe50daefe70",
+      "mtime_utc": "2026-08-14T13:17:36Z"
+    },
+    {
+      "path": "tools/suite-check.sh",
+      "bytes": 3848,
+      "sha256": "8523c4fa4fe2d3c67ff8286dac06d3006f30bb75ab6dd3eb12b692a8cbf57f3a",
+      "mtime_utc": "2026-08-14T12:03:28Z"
+    },
+    {
+      "path": "tools/version-check.sh",
+      "bytes": 4206,
+      "sha256": "8ec7cab988fef19872ef9616ad3107867f68989d764afc1ed5d57d5e07124fbb",
+      "mtime_utc": "2026-08-14T12:03:28Z"
+    },
+    {
+      "path": "V-Visual_design_TRIADE-0_42_0.md",
+      "bytes": 30056,
+      "sha256": "2c1747fadbe86bf49ddc6f132de56f57ecc2ed85c24d6bae3d850a982d3d5790",
+      "mtime_utc": "2026-09-21T22:10:49Z"
+    },
+    {
+      "path": "VERSION-MANIFEST.md",
+      "bytes": 135854,
+      "sha256": "bb5b123ddf92930bd31ba1becce3a831c5af6b17dd9c2a91a47fdccf85257422",
+      "mtime_utc": "2026-09-21T22:12:40Z"
+    },
+    {
+      "path": "W-World_Generation_design_TRIADE-0_42_0.md",
+      "bytes": 143490,
+      "sha256": "314cd8d0a9742e4c275475cc502227a169152ed1c4c8f48bf886a58571aba7d2",
+      "mtime_utc": "2026-09-21T22:07:05Z"
+    },
+    {
+      "path": "Y-SIM_Numbers_Register_TRIADE-0_42_0.md",
+      "bytes": 21789,
+      "sha256": "d85736e3fcee54f5fcd6ce6599b0864466625279dc7168a6d94d39fb4118d6e3",
+      "mtime_utc": "2026-09-21T22:07:32Z"
+    },
+    {
+      "path": "Z-Design_Stream_Project_Instructions_TRIADE-0_42_0.md",
+      "bytes": 60311,
+      "sha256": "54dfd188736c6f8a404c48b3660e79add83813ad7dc9d133f69f5b0c42286ded",
+      "mtime_utc": "2026-09-21T22:07:33Z"
+    },
+    {
+      "path": "Z-Technical_Stream_Project_Instructions_TRIADE-0_42_0.md",
+      "bytes": 7919,
+      "sha256": "5aa9bb41a42fa40ea63c87ba16fb8c612ac5cfeb662e392268906debb000c157",
+      "mtime_utc": "2026-09-20T16:03:12Z"
+    }
+  ]
+}
