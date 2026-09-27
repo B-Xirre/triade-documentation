@@ -3,7 +3,7 @@
 **Source:** `02-M14_Consolidated_Innate_Node_Payload_Aiming_Proposal_TRIADE-0_36_0.md`, §§5–13
 **Type:** `FINDING` — a design proposal arriving with `◇M14`, deliberately **not** adopted under it
 **Central disposition:** `unresolved` — A1 §§5–8 and A2 §§9–11 closed; seven of nine delivery findings are authored or enforced elsewhere
-**Aligned to:** Triade v0.43.0
+**Aligned to:** Triade v0.44.0
 
 ## Why this is separate
 
@@ -36,7 +36,7 @@
 
 **Source restored.** The original 0.36.0 proposal is governed locally as `02-M14_Consolidated_Innate_Node_Payload_Aiming_Proposal_TRIADE-0_36_0.md`. Its historical version and non-authoritative status are preserved. Where it conflicted with the adopted resolution order, the central contract distinguishes the pre-damage carrier contract from post-mitigation delivery proof rather than copying proposal text verbatim.
 
-**Sequence after A2:** Session B has ~~`◇P13`~~ **closed 0.40.0**, ~~`◇P11`~~ **closed 0.41.0**, `◇P12-A` **closed 0.42.0**, and `◇P12-B` **closed 0.43.0**; P12-C is next, and Tarot Session C1 remains after all of Session B. P·2.3a owns lineage/physique and innate grants; P·2.3b owns Faculty profiles and authorizations; P·2.3c owns entitlement/acquisition; P·2.3d and T·A3.8d own derived candidate readiness and target-route contracts without reopening H-owned anatomy. Faculty instances reference the Technique's existing aim capability rather than copy it. Tarot may later affect an already aim-capable Technique, but cannot create target nodes, raise granularity, bypass `AIM_CEILING`, or bypass E's acting-tier/perception boundary without an explicit new rule.
+**Sequence after A2:** Session B closed at 0.44.0: `◈P13`, `◈P11` and `◈P12-A/B/C` now own lineage/physique and innate grants, Faculty profiles/authorizations, entitlement/acquisition, derived readiness and target-route contracts, pure evaluation, exact-candidate commitment and autonomous Plannable Actions without reopening H-owned anatomy. Tarot Session C1 is now current. Faculty instances reference the Technique's existing aim capability rather than copy it. Tarot may later affect an already aim-capable Technique, but cannot create target nodes, raise granularity, bypass `AIM_CEILING`, bypass E's acting-tier/perception boundary, or bypass the exact-candidate/no-silent-fallback contract without an explicit new rule.
 
 ## Boundary
 

@@ -2,8 +2,8 @@
 
 **Recorded:** 17 September 2026  
 **Reference corpus:** Triade v0.38.0  
-**Governed against:** Triade v0.43.0; conflicts are annotations on the concept, not silent adoption
-**Status:** CONCEPT FOR FUTURE DESIGN SESSION — unresolved and non-authoritative  
+**Governed against:** Triade v0.44.0; conflicts are annotations on the concept, not silent adoption
+**Status:** CONCEPT FOR CURRENT SESSION C1 — unresolved and non-authoritative
 **Authority:** This record does not author a rule, term, number, schema, economy decision, or balance value. It may not be cited as an adopted Triade design. Any adoption must be reconciled and centralised through the governed design process.
 
 ## 1. Concept summary
@@ -250,8 +250,8 @@ The concept should inform—but not be silently folded into—the upcoming node-
 **Plan position: Session C, split at the Inventory/Economy boundary.** The dedicated tarot-card system begins only after both predecessor sessions close their design contracts:
 
 1. **Session A — Carrier and Technique:** settle the Technique/source/payload/carrier contract and dispose the node-payload intake rulings required for it.
-2. **Session B — Lineage and Faculty:** Lineage/Physique grains closed at 0.40.0, Faculty identities/profiles/vocabulary closed at 0.41.0, P12-A entitlement/acquisition closed at 0.42.0, and P12-B candidate readiness, dependency locality and target-route contracts closed at 0.43.0. P12-C remains for deterministic evaluation and commit order. This does not reopen H-owned anatomy by default.
-3. **Session C1 — Tarot-card architecture:** resolve system identity, learning and persistence questions, Triade slot geometry, card links, enhancement and Combo boundaries, and generic acquisition interfaces.
+2. **Session B — Lineage and Faculty:** **closed 0.44.0.** Lineage/Physique grants, Faculty identities/profiles/vocabulary, entitlement/acquisition, candidate readiness, dependency locality, target-route contracts, deterministic evaluation, exact-candidate commitment and autonomous Plannable Actions are authoritative. This does not reopen H-owned anatomy.
+3. **Session C1 — Tarot-card architecture — current:** resolve system identity, learning and persistence questions, Triade slot geometry, card links, enhancement and Combo boundaries, and generic acquisition interfaces. Any scheduled or triggered card action inherits P12-C's exact-candidate, autonomous due-node and no-silent-fallback rules.
 4. **Stage 3 — Inventory and Economy:** settle custody, consumption/retention, duplicates, loss/recovery, resale/salvage, vendors, prices, and any crafting provenance.
 5. **Session C2 — acquisition and installation contract:** centralise the approved card/Technique references, unlock, expertise, slot/link, trace, validation, and accessibility requirements before broad Stage 4 content.
 6. **Stages 5–6 — concrete rewards:** author Commander, special-monster, encounter, and boss card placement only after those content owners exist.

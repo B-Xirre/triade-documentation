@@ -1,23 +1,23 @@
 # Roguelike RPG — Design Plan: Character Stats, Itemisation & Equipment
 
-**Version 0.43.0** — 25 September 2026. Restructured around the Triade, which turned out to be upstream of all three subsystems.
+**Version 0.44.0** — 27 September 2026. Restructured around the Triade, which turned out to be upstream of all three subsystems.
 
 **Document set:** this is one of **ten**.
 
 | Ref | Document | Filename |
 | --- | --- | --- |
-| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_43_0.md` |
-| **M** | **Stats, Items, Equipment** — *this document* | `M-Stats_Items_Equipment_design_TRIADE-0_43_0.md` |
-| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_43_0.md` |
-| **V** | Visual Design | `V-Visual_design_TRIADE-0_43_0.md` |
-| **K** | Combat Design | `K-Combat_design_TRIADE-0_43_0.md` |
-| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_43_0.md` |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_43_0.md` |
-| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_43_0.md` |
-| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_43_0.md` |
-| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_43_0.md` |
+| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_44_0.md` |
+| **M** | **Stats, Items, Equipment** — *this document* | `M-Stats_Items_Equipment_design_TRIADE-0_44_0.md` |
+| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_44_0.md` |
+| **V** | Visual Design | `V-Visual_design_TRIADE-0_44_0.md` |
+| **K** | Combat Design | `K-Combat_design_TRIADE-0_44_0.md` |
+| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_44_0.md` |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_44_0.md` |
+| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_44_0.md` |
+| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_44_0.md` |
+| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_44_0.md` |
 
-**Companion document:** `T-Core_Mechanic_design_TRIADE-0_43_0.md` owns the state model, credit economy, class model, enemy model and trace system. This document owns stats, itemisation, equipment, the data foundations and the agentic development track.
+**Companion document:** `T-Core_Mechanic_design_TRIADE-0_44_0.md` owns the state model, credit economy, class model, enemy model and trace system. This document owns stats, itemisation, equipment, the data foundations and the agentic development track.
 
 **Deliberately out of scope:** final numbers. Numbers are the output of this process, not an input.
 
@@ -828,7 +828,7 @@ Mid-combat swapping, swap cost, locked or cursed items. A pacing lever, not a co
 
 ### 3.6 Comparison and UI data contract
 
-*Visual encoding requirements live in `V-Visual_design_TRIADE-0_43_0.md` (V·4.7). This section defines the **data contract** — what the model must expose for the UI to render.*
+*Visual encoding requirements live in `V-Visual_design_TRIADE-0_44_0.md` (V·4.7). This section defines the **data contract** — what the model must expose for the UI to render.*
 
 Write the tooltip spec now, because it defines what the data model must expose:
 
@@ -1153,7 +1153,7 @@ Agents enter at M⇥5 deliberately. Their value is proportional to validator qua
 
 ## Part 8 — Open questions
 
-*Standardised at 0.11.0. Every live item carries **[OPEN]**; provisional numbers carry **[SIM]**. Mirrored in `B-Open_Items_Index_TRIADE-0_43_0.md`.*
+*Standardised at 0.11.0. Every live item carries **[OPEN]**; provisional numbers carry **[SIM]**. Mirrored in `B-Open_Items_Index_TRIADE-0_44_0.md`.*
 
 **Removed as resolved:** *Position persistence out of combat* was a duplicate of T·1 and is answered by K17 — decay toward home over two or three exploration turns.
 
@@ -1293,6 +1293,7 @@ Expected encounters begin at ~92% of reference-build power and end at ~110%. **T
 
 | Version | Change |
 | --- | --- |
+| **0.44.0** | Version alignment only. P12-C binds exact candidates and milestone timing without changing equipment occupancy, Faculty footprints, source composition or the two-hook Combo ceiling. |
 | **0.43.0** | **P12-B readiness terminology aligned.** Faculty lifecycle stops at possession. `known`, `selectable` and `executable` derive at Technique-candidate grain; any Faculty-level readiness remains a generated aggregate. Mudra && Mudra continues to require both functional, unoccupied hands with distinct functional finger hooks inside one candidate (**M-C16**, **M-C18**). |
 | **0.42.0** | **P12-A entitlement boundary adopted.** Composite Faculty profiles are authorization profiles, never separate entitlements. `possessed` derives from conferred/acquired; acquisition normally survives unlock-source loss. Mudra && Mudra requires one possessed Mudra plus two functional, unoccupied hands with distinct functional finger hooks (**M-C18 amended**). |
 | **0.41.0** | **`◈P11` Faculty semantics adopted.** Four immutable Faculty identities, corrected execution hooks, exact three-pip base profiles, four explicit five-pip composites and primitive actor-pull signatures are authored (**M-C17**, **M-C18**). Definition origin is removed; actor entitlement provenance remains with `◇P12`. Lineage may explicitly confer or unlock Somatic. |
@@ -1324,7 +1325,7 @@ Expected encounters begin at ~92% of reference-build power and end at ~110%. **T
 | **0.11.0** | **Part 8 rewritten** with `[OPEN]`/`[SIM]` markers and blocking categories; one stale duplicate removed (position persistence, resolved by K17). Two items added: remedy content belongs in M rather than H (◇M8), and Scrap↔Flux conversion (◇M7). Document set grows to eight with the Enemies extraction. |
 | **0.10.0** | Document set grows to seven with **H — Damage & Health**; filename convention standardised. **2.8:** material currencies — **Marks / Scrap / Flux** — with *Flux* declared a reserved word (currency, never a field quantity) and progress currencies barred from crafting and treatment sinks. **2A.3:** Structural group extended to anatomy — bone and flesh integrity are the per-node form of the same path. **2A.4:** rigid discontinuity extended inward as `[Tissue Layer]`. **2A.6:** integrity render separated from wound render (V·4.8). **2A.10:** no-pip-pooling identified as the reason the Standard enemy template splits limbs. |
 | **0.9.0** | Restructured around the Triade; materiel Part 2A. |
-| **0.8.0** | UI requirements moved to the new `V-Visual_design_TRIADE-0_43_0.md`; A3.4c is now a pointer. Document-set note added. |
+| **0.8.0** | UI requirements moved to the new `V-Visual_design_TRIADE-0_44_0.md`; A3.4c is now a pointer. Document-set note added. |
 | **0.7.x** | Skill Anchors (A3.7–A3.8) resolving the grid–math question; demand tier split from Doctrinal/Transgressive flags; UI requirements; Weapon/Armour/Shield Smith agent specs; shield budget. |
 | **0.6.x** | Materiel system: damage taxonomy with Structural group, integrity states, the three bridges, pips and redistribution, shield duality. |
 | **0.5.x** | Dot Framework, grid + Dot Interpreter, stat-groups and field-rendered floor, skill level model, class system, Dictionary and tone. |

@@ -1,24 +1,24 @@
 # Combat Design
 
-**Version 0.43.0** — 25 September 2026. Turn structure, action economy, resolution, reactions, and the player-facing exchange loop.
+**Version 0.44.0** — 27 September 2026. Turn structure, action economy, resolution, reactions, and the player-facing exchange loop.
 
 **Document set:** this is one of **ten**.
 
 | Ref | Document | Filename |
 | --- | --- | --- |
-| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_43_0.md` |
-| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_43_0.md` |
-| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_43_0.md` |
-| **V** | Visual Design | `V-Visual_design_TRIADE-0_43_0.md` |
-| **K** | **Combat Design** — *this document* | `K-Combat_design_TRIADE-0_43_0.md` |
-| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_43_0.md` |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_43_0.md` |
-| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_43_0.md` |
-| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_43_0.md` |
-| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_43_0.md` |
-| — | *Open Items Index* | `B-Open_Items_Index_TRIADE-0_43_0.md` |
-| — | *SIM Numbers Register* | `Y-SIM_Numbers_Register_TRIADE-0_43_0.md` |
-| — | *Validation Rules Index* | `R-Validation_Rules_Index_TRIADE-0_43_0.md` |
+| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_44_0.md` |
+| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_44_0.md` |
+| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_44_0.md` |
+| **V** | Visual Design | `V-Visual_design_TRIADE-0_44_0.md` |
+| **K** | **Combat Design** — *this document* | `K-Combat_design_TRIADE-0_44_0.md` |
+| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_44_0.md` |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_44_0.md` |
+| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_44_0.md` |
+| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_44_0.md` |
+| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_44_0.md` |
+| — | *Open Items Index* | `B-Open_Items_Index_TRIADE-0_44_0.md` |
+| — | *SIM Numbers Register* | `Y-SIM_Numbers_Register_TRIADE-0_44_0.md` |
+| — | *Validation Rules Index* | `R-Validation_Rules_Index_TRIADE-0_44_0.md` |
 
 **Scope boundary.** The Triade doc owns the state model, regions, credit economy and skill anchors. This document owns everything that turns those into turn-by-turn play: time, AP, resolution order, reactions, the battlefield, and encounter rhythm.
 
@@ -307,34 +307,42 @@ Area actions validate their origin, pattern, propagation and geometry rather tha
 
 Multiple source candidates are alternative complete routes. The resolver may keep Punch selectable when one eligible hand survives, but it may not satisfy a two-hand route with one hand: `Mudra && Mudra` requires both functional, unoccupied hands and their distinct finger hooks in the same candidate. The candidate is selected before costs commit.
 
-The verdict reports every currently failed gate without triggering side effects. P12-C remains responsible for the deterministic evaluation and commit order.
+The verdict reports every currently failed gate without triggering side effects. P12-C's deterministic evaluation and commit order are specified in §5.2 and K·3.7.
 
 ### 5.2 Fixed resolution order
 
-1. Validate target, range, region, weapon and state requirements
-2. Calculate and reserve AP and required credits
-3. **Snapshot the actor's position and current skill level**
-4. Test angular availability
-5. Calculate radial potency
-6. Resolve the action check
-7. Redistribute weapon pips
-8. Resolve active defence, primary damage, mitigation and integrity; emit the immutable layer trace
-9. Evaluate carrier delivery proof from that trace; apply Payload modules, conditions and status hooks
-10. Create or consume relational states
-11. Apply actor and target dot impulses
-12. Integrate sustained forces over **elapsed `world_tick`**, not elapsed AP
-13. Award Edge or Grit
-14. Update affordances, posture, log and victory state
+**Pre-commit is pure.** Run the complete P·2.3e resolver against one immutable snapshot, choose one exact candidate, and require `executable`. AP is a rate and is never reserved or spent. Successful commitment atomically records the candidate and command; captures pre-commit position, current usable skill level and radial-potency inputs; computes effective cost and duration; reserves actual spendables and exclusive dependencies; and creates the action, milestones, timeline nodes, Intent Marker and audit digest. Any write failure rolls the transaction back.
 
-**Step 3 is an anti-exploit.** Availability and potency use the position captured *before* the action resolves, so an action cannot move itself into its own ideal anchor and retroactively benefit. Actions may carry explicit `movement_before` (a charge) — an authored exception reflected in AP cost and risk.
+Post-commit resolution is ordered by consuming milestone:
+
+1. Resolve authored movement-before and preparation milestones
+2. Revalidate the exact source, hooks, occupancy, target route and other gates consumed at release
+3. Consume release-milestone costs and start the cooldown identities declared for successful execution commitment
+4. Resolve the action check
+5. Redistribute weapon pips
+6. Freeze the exact carrier contract
+7. Resolve active defence, primary damage, mitigation and integrity; emit the immutable layer trace
+8. Evaluate delivery proof from that trace; consume any delivery-proof cost
+9. Apply compatible Payload modules, conditions and per-recipient effects
+10. Create or consume relational states
+11. Apply actor and target dot impulses and integrate sustained forces over elapsed `world_tick`
+12. Emit environmental contacts and Named Reaction requests to W's deterministic same-tick batch
+13. Commit atomic geometry changes and traceable child events in stable order
+14. Award Edge or Grit; update affordances, posture, log and victory state; release or expire reservations
+
+The pre-commit snapshot is an anti-exploit. Availability and potency use the position captured *before* the action resolves, so an action cannot move itself into its own ideal anchor and retroactively benefit. Actions may carry explicit `movement_before` (a charge) — an authored exception reflected in effective cost and risk.
+
+Do not rerun the whole readiness resolver at every milestone. Revalidate only the live state consumed there: source/hook/occupancy at release, route contacts in transit, landing and affected set at impact, compatibility/resistance/reactions at effect, and release/expiry at recovery. The bound Technique, level, aim, Faculty profile, source, rendition, provision, carrier and selected target/origin never silently change. Outcomes are `resolved`, `resolved_no_effect`, `route_failed`, `interrupted`, `cancelled`, or explicitly authored `superseded`.
+
+A reservation is not consumption. Every spendable declares `commit`, `release`, `contact`, `delivery_proof` or `effect` as its consumption milestone. A gameplay failure does not roll back milestones already reached. Unreached reservations release; no universal refund exists.
 
 **Why steps 10 and 11 can be ordered this way:** Opening depth is **derived**, not stored (K·6.2). Relational states are created before impulses because depth is recomputed from current state whenever read. *Do not "optimise" depth into a stored value — it silently breaks this ordering.*
 
 ### 5.2a Carrier contract before damage; delivery proof from the trace
 
-The **carrier contract** is fixed at the end of step 7. It names the exact source revision, delivery node and hook or hooks, post-redistribution footprint, authorised Payload module, carrier type and required target-layer route. Step 8 consumes this immutable contract; later results cannot replace its source or add carrier types.
+The **carrier contract** is fixed at the end of step 6. It names the exact source revision, delivery node and hook or hooks, post-redistribution footprint, authorised Payload module, carrier type and required target-layer route. Step 7 consumes this immutable contract; later results cannot replace its source or add carrier types.
 
-The **delivery proof** is evaluated once from step 8's immutable layer trace. It answers only whether the contracted carrier reached the contracted layer by the contracted route — for example, positive Pierce transfer into viable tissue for inoculation, or positive Corrosive damage at an armour layer for corrosion. Merely listing the carrier type in the base footprint is insufficient, while unrelated damage cannot substitute for it.
+The **delivery proof** is evaluated once at step 8 from step 7's immutable layer trace. It answers only whether the contracted carrier reached the contracted layer by the contracted route — for example, positive Pierce transfer into viable tissue for inoculation, or positive Corrosive damage at an armour layer for corrosion. Merely listing the carrier type in the base footprint is insufficient, while unrelated damage cannot substitute for it.
 
 Payload magnitude may consume the proved carrier entry and other explicitly authorised trace outputs, then target susceptibility/resistance, exactly once. It cannot feed back into primary mitigation or anatomical routing, independently reapply attacker/target inputs already represented by the trace, or alter the carrier contract that admitted it.
 
@@ -524,11 +532,30 @@ Three properties follow from the geometry:
 | ---: | --- |
 | 1 | **Immediate** events authored to resolve inline at their own milestone |
 | 2 | **Environmental** due events, as a deterministic batch against a pre-application snapshot (**W-C34**) |
-| 3 | **Reaction** nodes — Armed Intercept Nodes whose trigger and spatial eligibility both hold at this tick |
-| 4 | **Actor** actions, ordered by **Readiness rank**, which breaks ties and never grants frequency (**K-H2**) |
-| 5 | Stable tiebreak on generated identity where all of the above tie |
+| 3 | **Triggered reaction plans** whose trigger holds and whose authored response delay makes them due now |
+| 4 | **Scheduled Plannable Action** resolution nodes due at this tick |
+| 5 | **Ordinary actor** actions, ordered by **Readiness rank**, which breaks ties and never grants frequency (**K-H2**) |
+| 6 | Stable tiebreak on generated identity where all of the above tie |
 
 **Readiness is the tiebreak, not the clock.** It decides *who goes first among simultaneous eligible nodes* and contributes nothing to when those nodes occur.
+
+### 3.7 Plannable Actions and autonomous due nodes [ADOPTED 0.44.0, ◈P12-C]
+
+A Technique is plannable only when its action contract says so. Arming is a paid, visible commitment: it evaluates current actor-side gates, binds one exact candidate, pays setup costs, reserves declared sources, hooks and resources, and creates a plan timeline node plus Intent Marker. It does not assert that a future target route will remain executable.
+
+The plan declares `scheduled` or `triggered` activation, its `world_tick` window, scheduled tick or trigger and response delay, acquisition mode, setup and activation costs, reaction budget, maximum activations, reservations, visibility, expiry and cancellation. The default reactive window lasts until the owner's next activation; a scheduled plan normally stays within the visible round. Multi-round plans require explicit authorship.
+
+The plan node is autonomous. A scheduled plan attempts at its recorded tick; a triggered plan records its attempt tick as `trigger_tick + response_delay`. Lead-up, release, impact and recovery milestones are fixed from that node. The attempt occurs independently of the owner's later position on the actor progress bar, Readiness, AP rate or opportunity to act. Haste and Slow do not move it; only an explicit Advance or Delay effect directed at the plan node may do so.
+
+At activation the exact bound candidate receives a fresh `executable` verdict. Its acquisition mode determines what is attempted:
+
+- `first_eligible` — standard Overwatch takes the first participant satisfying the authored trigger, area and deterministic simultaneous order;
+- `bound_identity` — targeted Overwatch watches one perceived opponent, ignores all others, and cancels without retargeting if that opponent or its route is invalid at activation;
+- `fixed_spatial` — a planned throw, area technique or hazard binds an origin, path or area and discovers recipients only at resolution.
+
+Acquisition never replaces ordinary route validity. A hidden opponent cannot be identity-bound, and current perception or an authored non-visual lock remains required when the attempt activates. `retarget_policy = none` is the default. An aimed planned action stays aimed and does not downgrade unless a visible authored conditional branch explicitly permits it.
+
+If the due attempt fails, the default result is `cancelled_failed`: release unreached reservations, retain setup and already consumed costs/cooldowns, and do not retarget, substitute a source, retry, reschedule or wait for the owner. Planned-action setup cooldown begins at arming; the execution Technique cooldown begins only when activation successfully commits. Watch's own stance cooldown, if Watch is authored as a Technique, begins at arming.
 
 ### 8.1a Armed Intercept Nodes [ADOPTED 0.35.0, CR-11]
 
@@ -850,7 +877,7 @@ The schema may support the full damage taxonomy from the start; proof *content* 
 
 ### Hard automated checks
 
-*Severities and IDs standardised at 0.11.0. Full suite in `R-Validation_Rules_Index_TRIADE-0_43_0.md`. Rules owned by other documents are cross-referenced, not duplicated.*
+*Severities and IDs standardised at 0.11.0. Full suite in `R-Validation_Rules_Index_TRIADE-0_44_0.md`. Rules owned by other documents are cross-referenced, not duplicated.*
 
 | ID | Rule | Severity |
 | --- | --- | --- |
@@ -870,10 +897,12 @@ The schema may support the full damage taxonomy from the start; proof *content* 
 | **K-C13** | Critical | A time-bearing action declares `commit_tick`, its milestones and `resolve_tick`; effects other than resolution are **explicitly authored**. Environmental events read the actor's authoritative position at their exact tick — mid-action movement is neither ignored nor teleported |
 | **K-H3** | High | The Ghost Track runs the **authoritative** resolver against a temporary state copy, classifies forecasts Solid / Conditional / Unknown, and never reveals a future random result or hidden state |
 | **K-C14** | Critical | An Armed Intercept Node fires only on `temporal_crossing AND valid_trigger_type AND spatial_eligibility`, with eligibility evaluated **at the intercept tick**. The node model changes when a reaction may fire, never its cost or payout; broader trigger masks require authored Watch variants |
-| **K-C15** | Critical | Same-`world_tick` resolution is fully ordered — immediate, environmental batch, reactions, actors by Readiness, then stable identity. **A committed action is never resized**; Haste and Slow apply only to actions committed afterwards |
-| **K-C16** | Critical | The carrier contract is fixed after step 7; delivery proof is evaluated once from step 8's immutable layer trace against the contracted carrier type and route. Payload resolution cannot feed back into primary resolution, and a secondary payload cannot prove or recursively spawn another carrier |
+| **K-C15** | Critical | Same-`world_tick` resolution is fully ordered — immediate, environmental batch, triggered reaction plans, scheduled plan nodes, ordinary actors by Readiness, then stable identity. **A committed action or autonomous plan node is never resized by actor-rate changes** |
+| **K-C16** | Critical | The carrier contract is fixed after step 6; delivery proof is evaluated once at step 8 from step 7's immutable layer trace against the contracted carrier type and route. Payload resolution cannot feed back into primary resolution, and a secondary payload cannot prove or recursively spawn another carrier |
 | **K-C17** | Critical | A selected aimed mode contributes its non-negative surcharge to effective AP cost before commit. On a successful attack H samples the reweighted full distribution; landing elsewhere neither converts the hit to a miss nor refunds cost |
 | **K-C18** | Critical | Only `executable` authorizes commitment and resolution. Target-route validity follows the Technique-authored selection shape, visibility and delivery route: direct actor-targeted routes apply their authored reach, perception, LOS and path gates; area routes validate origin, pattern, propagation and geometry without automatically requiring perception or LOS to every affected actor |
+| **K-C19** | Critical | Pre-commit evaluation is pure; one exact candidate commits atomically with its snapshot, spendable reservations, action/milestone nodes, Intent Marker and audit digest or not at all. Live state is revalidated only at its consuming milestone; reservations are not consumption, reached milestones do not roll back after gameplay failure, and no silent fallback or universal refund exists |
+| **K-C20** | Critical | A Plannable Action creates an autonomous `world_tick` node with an exact candidate and `first_eligible`, `bound_identity` or `fixed_spatial` acquisition. It attempts a fresh executable verdict at its due tick independently of the owner's later actor-timeline position, never silently retargets or retries, and defaults to `cancelled_failed` on invalid resolution requirements |
 | **K-H1** | Cooldowns used only for rare, dramatic skills — never as a default limiter | High |
 | **K-H4** | A cooldown declares the identities an action checks and starts. Base Technique cooldowns gate all derived renditions; rendition and provider cooldowns do not propagate upward or sideways unless an explicit shared key says so. Faculty-wide cooldowns are exceptional shared locks | High |
 
@@ -890,7 +919,7 @@ The schema may support the full damage taxonomy from the start; proof *content* 
 | H-C1 | Σ of all effective-field reductions per corner ≥ `max(Φ_safe_x, 0.5 × Φ_base_x)` | H · 10.2 |
 | H-C4 | Vital-organ lethality gated on HP below the Finisher threshold, or Downed | H · 9.4 |
 
-*The metrics above (K16 validation targets) are **measurements**, not pass/fail rules; their gates and provisional values live in `Y-SIM_Numbers_Register_TRIADE-0_43_0.md`.*
+*The metrics above (K16 validation targets) are **measurements**, not pass/fail rules; their gates and provisional values live in `Y-SIM_Numbers_Register_TRIADE-0_44_0.md`.*
 
 ---
 
@@ -921,6 +950,7 @@ The schema may support the full damage taxonomy from the start; proof *content* 
 
 | Version | Change |
 | --- | --- |
+| **0.44.0** | **P12-C timing and commitment adopted.** §5.2 separates pure pre-commit evaluation from atomic commitment and milestone-local live revalidation (**K-C19**). §3.6–3.7 gives triggered and scheduled plans autonomous `world_tick` nodes, three targeting-acquisition modes, exact-candidate/no-retarget semantics and deterministic same-tick priority (**K-C15**, **K-C20**). |
 | **0.43.0** | **P12-B targeting and candidate semantics adopted.** §5.1a distinguishes `known`, `selectable` and `executable`, requires Technique-authored direct/area targeting contracts, and preserves information boundaries for unseen area occupants (**K-C18**). Alternative candidates are existential; every dependency within the chosen candidate remains conjunctive. |
 | **0.42.0** | Version alignment only. P12-A establishes entitlement persistence but leaves complete runtime availability and cooldown evaluation ordering to P12-B/C. |
 | **0.41.0** | **P11 cooldown fixtures adopted.** K·5.1 now states the asymmetric Rend/Poisonous Rend cases, provider-versus-provision survival, the exceptional Faculty-wide lock and independent composite-Technique cooldown. |
@@ -949,4 +979,4 @@ The schema may support the full damage taxonomy from the start; proof *content* 
 
 ---
 
-*End of Combat Design 0.43.0. Maintained alongside the Core Mechanic, Stats/Items/Equipment, Lexicon, Visual Design, World Generation, Damage & Health, Enemies, Tile Pipeline and Content Pipeline documents.*
+*End of Combat Design 0.44.0. Maintained alongside the Core Mechanic, Stats/Items/Equipment, Lexicon, Visual Design, World Generation, Damage & Health, Enemies, Tile Pipeline and Content Pipeline documents.*

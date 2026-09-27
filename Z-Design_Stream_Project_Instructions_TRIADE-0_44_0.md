@@ -1,6 +1,6 @@
 # Triade Roguelike — Design Stream
 
-**Instructions version:** 1.30 · aligned to design set **v0.43.0**
+**Instructions version:** 1.30 · aligned to design set **v0.44.0**
 **Filename:** `Z-Design_Stream_Project_Instructions_TRIADE-[V_e_r].md`
 
 ---
@@ -207,7 +207,7 @@ A reconciliation record earns its place and then loses it. It is a working docum
 
 ### Intake — work arriving from outside the design set
 
-A technical implementation stream, a third-party report or a reconciliation produces claims. **None of them can author a rule.** A document with no design authority may not originate a number, rule or term that no design document owns — the 0.17.0 lock, and it applies to `Z-Design_Stream_Project_Instructions_TRIADE-0_43_0.md` more strictly than to the technical specification, not less.
+A technical implementation stream, a third-party report or a reconciliation produces claims. **None of them can author a rule.** A document with no design authority may not originate a number, rule or term that no design document owns — the 0.17.0 lock, and it applies to `Z-Design_Stream_Project_Instructions_TRIADE-0_44_0.md` more strictly than to the technical specification, not less.
 
 **No ID before a home. The index derives identifiers; it never issues them.** `L-M1` and `L-M2` were accepted in an implementation stream, given IDs in the Validation Rules Index, and authored nowhere for eight versions. An ID in an index is not evidence of authorship — it was the *absence* of a section in the source column that said so, and nobody read it.
 
@@ -488,7 +488,7 @@ Before any content edit and before any rename, snapshot the current set.
 1. Confirm the session-start ledger diff was **empty**. A bump does not begin over an unexplained change.
 2. Create `X:\Documentation-Archive\Archive\v<current>\` — named for the version being **superseded**, not the one being written. A 0.17.0 → 0.18.0 bump creates `v0.17.0\`.
 3. **If that folder already exists, stop.** A prior bump aborted or already ran. Reconcile with the user; never merge into an existing archive folder.
-4. Copy the **entire documentation corpus** from `X:\Documentation` into it — design documents, technical documents, all three derived indexes, `VERSION-MANIFEST.md`, `A-ROADMAP.md`, `Z-Design_Stream_Project_Instructions_TRIADE-0_43_0.md`, `FOLDER-LEDGER.json`, `tools\`, and `Research\`. Exclude operational repository metadata under `.git\` and transient `__pycache__\` directories: neither is documentation content. Other unversioned files are included; a snapshot with holes is not a baseline.
+4. Copy the **entire documentation corpus** from `X:\Documentation` into it — design documents, technical documents, all three derived indexes, `VERSION-MANIFEST.md`, `A-ROADMAP.md`, `Z-Design_Stream_Project_Instructions_TRIADE-0_44_0.md`, `FOLDER-LEDGER.json`, `tools\`, and `Research\`. Exclude operational repository metadata under `.git\` and transient `__pycache__\` directories: neither is documentation content. Other unversioned files are included; a snapshot with holes is not a baseline.
 5. **Verify the archive in two parts, before touching the source.** Ledger-tracked files against the ledger's hashes, file by file. **Ledger-excluded documentation — the `Research\` tree and any other included non-operational file — by direct source-to-archive hash comparison**, because the ledger cannot vouch for what it does not record. `.git\` and `__pycache__\` remain excluded from both the corpus and the comparison. Skipping the second part leaves part of a *complete snapshot* unverified. An unverified archive is not an archive, and every later step assumes it exists.
 
 The archive is **write-once**. Nothing inside `Archive\v*` is edited, renamed or repatched. Each version folder carries its own ledger, so any archived version can be integrity-checked years later.
@@ -524,7 +524,7 @@ The archive is always a **full copy**; moving would make snapshot completeness d
 
 ## Keeping these instructions current
 
-Whenever the documentation **structure** changes, produce a **complete replacement** `Z-Design_Stream_Project_Instructions_TRIADE-0_43_0.md`, bump its instructions version, and tell the user to paste it manually.
+Whenever the documentation **structure** changes, produce a **complete replacement** `Z-Design_Stream_Project_Instructions_TRIADE-0_44_0.md`, bump its instructions version, and tell the user to paste it manually.
 
 **Claude cannot update project instructions directly.** Producing the file and flagging it is the whole of the obligation; do not describe it as done.
 

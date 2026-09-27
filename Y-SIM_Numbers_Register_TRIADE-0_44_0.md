@@ -1,7 +1,7 @@
 # Triade — [SIM] Numbers Register
 
-**Version:** 0.43.0
-**Date:** 25 September 2026
+**Version:** 0.44.0
+**Date:** 27 September 2026
 **Status:** Generated from `[SIM]` markers across the ten-document set. **Derived, not authored.**
 
 **Governing principle**, from M: *"Numbers are the output of this process, not an input."*
@@ -222,7 +222,7 @@ S-V01 posture recognition
 ## 5. Regeneration
 
 ```bash
-grep -nE "\[SIM\]" [A-Z]-*_TRIADE-0_43_0.md
+grep -nE "\[SIM\]" [A-Z]-*_TRIADE-0_44_0.md
 ```
 
 ---
@@ -231,6 +231,7 @@ grep -nE "\[SIM\]" [A-Z]-*_TRIADE-0_43_0.md
 
 | Version | Change |
 | --- | --- |
+| **0.44.0** | Regenerated after P12-C. No `[SIM]` marker opens, closes or changes; plan windows and response delays remain authored per action rather than universal balance constants. |
 | **0.43.0** | Regenerated after P12-B candidate-readiness reconciliation. No `[SIM]` marker opens, closes or changes. |
 | **0.42.0** | Regenerated after P12-A entitlement reconciliation. No `[SIM]` marker opens, closes or changes. |
 | **0.41.0** | Regenerated after P11 Faculty reconciliation. No `[SIM]` marker opens, closes or changes. |

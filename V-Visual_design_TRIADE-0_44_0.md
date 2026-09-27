@@ -1,21 +1,21 @@
 # Visual Design
 
-**Version 0.43.0** — 25 September 2026. The presentation layer: how the Triade's state is rendered, what the UI must convey, and the graphical/technical model that supports it.
+**Version 0.44.0** — 27 September 2026. The presentation layer: how the Triade's state is rendered, what the UI must convey, and the graphical/technical model that supports it.
 
 **Document set:** this is one of **ten**.
 
 | Ref | Document | Filename |
 | --- | --- | --- |
-| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_43_0.md` |
-| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_43_0.md` |
-| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_43_0.md` |
-| **V** | **Visual Design** — *this document* | `V-Visual_design_TRIADE-0_43_0.md` |
-| **K** | Combat Design | `K-Combat_design_TRIADE-0_43_0.md` |
-| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_43_0.md` |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_43_0.md` |
-| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_43_0.md` |
-| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_43_0.md` |
-| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_43_0.md` |
+| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_44_0.md` |
+| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_44_0.md` |
+| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_44_0.md` |
+| **V** | **Visual Design** — *this document* | `V-Visual_design_TRIADE-0_44_0.md` |
+| **K** | Combat Design | `K-Combat_design_TRIADE-0_44_0.md` |
+| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_44_0.md` |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_44_0.md` |
+| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_44_0.md` |
+| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_44_0.md` |
+| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_44_0.md` |
 
 **Scope boundary.** The Core Mechanic doc owns *what information must be conveyed and why* (the Interpreter's mandate, its channels, the Dictionary). This document owns *how it is rendered* — encoding requirements, the graphical model, and tooling. Where the two touch, the Core Mechanic doc holds the design rationale and points here for the visual spec.
 
@@ -114,6 +114,8 @@ Do not optimise while the design is this fluid.
 **V-H1 · Requirement 1 — the two failure modes must look different.** *Wrong direction* (unavailable, angular) and *under-committed* (weak but usable, radial) must be visually distinct. If both render as "dimmed," the player cannot tell whether to **change stance** or **push deeper** — which discards the entire value of the anchor decomposition. This is the single most important UI rule in the system.
 
 **P12-B boundary (0.43.0).** This table explains the positional gate only. Overall action readiness now derives as `known`, `selectable` and `executable` with typed failed-gate reasons (P·2.3d); it may also fail on source, hook, floor, carrier, target, cost or cooldown. Intake A4 owns how those causes are presented and must not collapse them into this one positional binary.
+
+**P12-C boundary (0.44.0).** A Plannable Action creates a visible Intent Marker carrying its scheduled/triggered window, bound identity or fixed area where perception permits, and visible conditional branches. This reuses K's Tactical Timeline surface; it does not settle intake A4's icon, colour, tooltip or failure-explanation design. Hidden identity and future recipients remain hidden.
 
 > **Scope clarification (0.10.0).** Requirement 1 governs the **skill bar**. It does not constrain the character posture display, which is why the wound overlay in V·4.8 does not collide with it. The constraint that *does* apply to posture is Requirement 5's anchor-neighbourhood distinctness.
 
@@ -264,7 +266,7 @@ A readability constraint that must influence generation is expressed as an **int
 
 ### Live items
 
-*Standardised at 0.11.0. Mirrored in `B-Open_Items_Index_TRIADE-0_43_0.md`.*
+*Standardised at 0.11.0. Mirrored in `B-Open_Items_Index_TRIADE-0_44_0.md`.*
 
 | # | Question | Marker | Blocking |
 | --- | --- | --- | --- |
@@ -282,6 +284,7 @@ A readability constraint that must influence generation is expressed as an **int
 
 | Version | Change |
 | --- | --- |
+| **0.44.0** | **P12-C presentation boundary recorded.** Plannable Actions reuse visible Intent Markers without exposing hidden identities or future recipients; exact UI treatment and failed-gate explanation remain intake A4 work. |
 | **0.43.0** | **P12-B boundary recorded.** §4.1's former Availability row is narrowed to positional eligibility. Overall `known`/`selectable`/`executable` and failed-gate presentation remains intake A4 work; no new UI surface is silently adopted. |
 | **0.42.0** | Version alignment only. P12-A gains no presentation surface; P12-B/C and intake A4 still own availability explanation and UI/legibility work. |
 | **0.41.0** | Version alignment only. P11's Faculty profile and availability distinctions gain no presentation surface here; intake A4 remains the UI/legibility pass. |
@@ -309,4 +312,4 @@ A readability constraint that must influence generation is expressed as an **int
 
 ---
 
-*End of Visual Design 0.43.0. Maintained alongside the Core Mechanic, Stats/Items/Equipment, Lexicon, Combat, World Generation, Damage & Health, Enemies, Tile Pipeline and Content Pipeline documents.*
+*End of Visual Design 0.44.0. Maintained alongside the Core Mechanic, Stats/Items/Equipment, Lexicon, Combat, World Generation, Damage & Health, Enemies, Tile Pipeline and Content Pipeline documents.*

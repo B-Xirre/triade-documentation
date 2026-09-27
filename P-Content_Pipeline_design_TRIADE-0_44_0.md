@@ -1,23 +1,23 @@
 # Triade — Content Pipeline & Data Model
 
-**Version:** 0.43.0
-**Date:** 25 September 2026
+**Version:** 0.44.0
+**Date:** 27 September 2026
 **Status:** Created at 0.15.0 by reconciliation of two independent studies. Architecture settled; operational numbers pending first build.
 
 **Document set:** this is one of **ten**.
 
 | Ref | Document | Filename |
 | --- | --- | --- |
-| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_43_0.md` |
-| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_43_0.md` |
-| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_43_0.md` |
-| **V** | Visual Design | `V-Visual_design_TRIADE-0_43_0.md` |
-| **K** | Combat Design | `K-Combat_design_TRIADE-0_43_0.md` |
-| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_43_0.md` |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_43_0.md` |
-| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_43_0.md` |
-| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_43_0.md` |
-| **P** | **Content Pipeline & Data Model** — *this document* | `P-Content_Pipeline_design_TRIADE-0_43_0.md` |
+| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_44_0.md` |
+| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_44_0.md` |
+| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_44_0.md` |
+| **V** | Visual Design | `V-Visual_design_TRIADE-0_44_0.md` |
+| **K** | Combat Design | `K-Combat_design_TRIADE-0_44_0.md` |
+| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_44_0.md` |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_44_0.md` |
+| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_44_0.md` |
+| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_44_0.md` |
+| **P** | **Content Pipeline & Data Model** — *this document* | `P-Content_Pipeline_design_TRIADE-0_44_0.md` |
 
 **Scope.** **P** owns how content is authored, stored, validated, generated, simulated and attributed. It owns the data model for equipment, affixes, faculties and fixtures; the storage architecture; the trace and signature schema; and the agent pipeline.
 
@@ -268,7 +268,50 @@ Direct actor-targeted weapon and projectile routes require their selected reach/
 
 Area routes validate their selected origin, pattern, propagation and geometry and do not automatically require perception or line of sight to every affected actor. A self-centred weapon area may strike occupants of valid cells within the weapon-derived radius without selecting them individually. A throwable flask or bomb validates throw range, its authored destination-visibility rule, ballistic route and landing cell, then resolves occupants of the propagated area; “throwable” never implies permission to pass through walls, select an unknown cell or ignore a blocked trajectory.
 
-Temporary injury, occupancy, position, accessible-floor failure, target failure, insufficient costs and cooldowns can change `selectable` or `executable`; they do not remove Technique knowledge, base-Faculty possession, acquisition provenance or permanent authorization. Derived verdicts return every currently failed gate for the evaluated candidate — including distinct reach, perception, line-of-sight, path, ballistic, landing-cell, area-pattern, propagation and non-visual-lock failures — without running later side effects. `◇P12-C` remains open for the deterministic evaluation and commit order.
+Temporary injury, occupancy, position, accessible-floor failure, target failure, insufficient costs and cooldowns can change `selectable` or `executable`; they do not remove Technique knowledge, base-Faculty possession, acquisition provenance or permanent authorization. Derived verdicts return every currently failed gate for the evaluated candidate — including distinct reach, perception, line-of-sight, path, ballistic, landing-cell, area-pattern, propagation and non-visual-lock failures — without running later side effects.
+
+### 2.3e Deterministic evaluation, commitment and planned actions [LOCKED 0.44.0, ◈P12-C]
+
+One immutable evaluation snapshot feeds one pure resolver. Evaluation performs no writes, consumes no resource, starts no cooldown, draws no randomness and applies no effect. For every candidate it evaluates these stages in fixed order:
+
+1. **Knowledge and authority** — possessed base Faculties, profile authorization, required lineage/capability grant and binding.
+2. **Candidate construction** — exact source instances, hooks and occupancy, support/provider, transferred provision with uses and expiry, rendition/Payload, carrier and delivery route.
+3. **Actor initiation** — functional sources and hooks, unoccupied hands where required, Triade angular gate, accessible floor and current skill level, actor state, cooldown identities and cost affordability.
+4. **Target route** — target requirement and reference; existence; target domain, capability or environmental state; spatial anchor; perception or non-visual lock; reach/range; line of sight; direct, projectile or ballistic route; landing; pattern, propagation and geometry.
+5. **Verdict derivation** — `known`, `selectable`, then `executable`.
+
+Each gate returns `pass`, `fail(reason_code)` or `blocked_by(gate_id)`. The result contains every independent failure and every dependent gate blocked by it, ordered by stage, candidate identity and gate identity. Alternative complete candidates combine by `OR`; requirements inside one candidate combine by `AND`, including the two hands and two distinct finger hooks of `Mudra && Mudra`.
+
+Target domains are explicit: actor, object, `cell_surface`, `environmental_volume`, or `path_or_area`. An object resolves through W-owned `ObjectRuntimeState`; a surface or volume resolves through W-owned environmental state. The Technique must authorize the domain and any required capability or state. T/P own targeting contracts, K owns timing, W owns object/environment semantics, and Named Reactions own transformations.
+
+Four roles prevent target ambiguity:
+
+- **selected target** — the actor's submitted actor, object, cell, volume, path or area;
+- **route contact** — a participant encountered during delivery;
+- **effect recipient** — a participant to which an effect is applicable at its consuming milestone;
+- **reaction product** — a state or participant created by a Named Reaction.
+
+Together they are **resolution participants**. Executability validates the selected target or origin and the authored route; it does not predict every future recipient. Resolution discovers contacts, the affected set and current participants at the relevant milestone. Applicability is local to each recipient. An empty affected set is `resolved_no_effect` unless the Technique explicitly requires at least one recipient. Indirect effects create traceable child events in stable spatial-address, participant-ID and effect-component order; they do not recursively retarget. W resolves non-immediate environmental changes in its deterministic same-tick batch, and geometry changes remain atomic under W-C34.
+
+Before commitment, one exact stable candidate is selected: Technique revision, level and aim, Faculty profile, grant/binding, sources and hooks, rendition/Payload, support/provider or transferred provision, carrier, route, and selected target or origin. UI may aggregate equivalent choices, but submission may not silently replace the hand, weapon, ammunition, provision, plain/Poison rendition, target, cell, level, aim or carrier.
+
+A final full evaluation against one authoritative snapshot must return `executable`. Successful commitment is one atomic transaction: record the exact command and candidate; capture pre-commit Triade position and skill level; compute effective cost and duration from the AP rate without treating AP as a pool; reserve actual spendables and exclusive dependencies; create the action instance, milestones, timeline nodes, Intent Marker and audit digest. Any write failure rolls back the whole transaction. The action identity then stays immutable, but later world success is not guaranteed.
+
+Post-commit validation is milestone-local rather than a rerun of the whole resolver. Source, hook, occupancy, cost and launch gates are checked when consumed; transit checks contacts; impact checks landing and recipients; effect checks applicability, resistance and reactions; recovery releases or expires reservations. Outcomes are `resolved`, `resolved_no_effect`, `route_failed`, `interrupted`, `cancelled`, or an explicitly authored `superseded`. Reservations are not consumption. Costs declare `commit`, `release`, `contact`, `delivery_proof` or `effect` as their consumption milestone; a gameplay failure does not roll back milestones already reached, and no universal refund exists.
+
+Cooldown start follows the identity that actually acts. Ordinary Technique, rendition, composite-profile and exceptional Faculty-lock cooldowns start on successful execution commitment. A provider cooldown starts on actual production or application, while a transferred provision owns its own uses and expiry. A planned setup cooldown starts when the plan arms; the execution Technique cooldown starts when activation commits. If Watch is itself a Technique, its stance cooldown begins at arming.
+
+**Plannable Action** is an authored capability, not a second action economy. Its lifecycle is `known/selectable → plan armed → scheduled/triggered activation → fresh executable verdict → execution commitment/resolution → complete`, with explicit expiry and cancellation branches. Its plan contract declares activation mode (`scheduled` or `triggered`), `world_tick` window, scheduled tick or trigger, targeting-acquisition mode, reservations, setup and activation costs, reaction budget, maximum activations, visibility, expiry and cancellation.
+
+Arming evaluates only authorable and current actor-side gates, atomically pays setup costs, reserves declared sources/hooks/resources, and creates the plan node plus Intent Marker. The exact candidate is bound and gains no silent fallback. The plan node is autonomous: at its scheduled tick, or at `trigger_tick + response_delay`, it attempts the exact bound action independently of the owner's later position on the actor timeline, Readiness, AP rate or opportunity to act. Haste, Slow and owner displacement on the progress bar do not move it; only an explicit Advance or Delay effect aimed at the plan node may do so. Failure at the due tick follows the authored branch and defaults to `cancelled_failed`, releasing unreached reservations without refunding setup or already consumed costs and cooldowns.
+
+Target acquisition is separate from Technique target-route validation:
+
+- `first_eligible` takes the first participant satisfying the declared trigger and deterministic simultaneous-candidate order; it never retrospectively chooses a better target;
+- `bound_identity` watches one perceived participant, ignores other eligible participants and does not retarget if that identity becomes invalid, concealed, displaced, interrupted or removed;
+- `fixed_spatial` binds an origin, path or area and discovers recipients only at resolution.
+
+The plan contract records domain, trigger, area or relation, optional bound identity, visibility or lock requirement, simultaneous order, maximum acquisitions, retarget policy and invalidation branch. The default is `retarget_policy = none`. Hidden participants cannot be identity-bound, and current visibility or an authored non-visual lock is still revalidated at activation. An aimed plan remains aimed; it never silently downgrades unless an explicit visible conditional branch authorizes that change.
 
 ### 2.4 Editing controls the designer gets without SQL
 
@@ -529,7 +572,7 @@ Unique identity · source resolution (T-C12) · category component completeness 
 | **◇P9** | **Cell-level content versioning.** Dolt is the recorded escalation if file-level JSON merges stop resolving content conflicts. Unchosen, and **the trigger condition — concurrent authors on one content file — has never been measured**, so nothing would tell us we had crossed it. Adoption costs a second storage engine and plain-text authoring | **[OPEN]** | Tooling |
 | **◇P10** | **The protected `ref_tags` registry is empty**, so no legal `equipment_tags` reference can be authored and tag-based search, generation and lints stay unavailable. Authoring plausible tag strings would bypass the protected registry, so the child table is correctly left empty. **The question is whether the M10 vertical slice requires a minimum protected tag registry** — scope, not semantics. No identity or martial-profile loss today | **[OPEN]** | Tooling / P |
 | ~~**◈P11**~~ | **CLOSED 0.41.0.** P·2.3b registers four immutable Faculty identities, four base profiles, four explicit composite profiles, their hook requirements, exact damage footprints, primitive actor-pull signatures and 32 normalized Technique authorizations. Somatic remains bound-node authorization. Rend remains weapon-based; Hex is Arcana && Mudra; derived renditions are not duplicate vocabulary rows. | **CLOSED** | — |
-| **◇P12** | **P12-A closed 0.42.0 in §2.3c; P12-B closed 0.43.0 in §2.3d.** Entitlement attaches only to base Faculties. `known`, `selectable` and `executable` are distinct derived predicates; candidate alternatives combine existentially while every requirement inside a candidate combines conjunctively. Dependency failure is local, transfer normally cuts the live provider dependency, cooldown propagation follows declared identity, and target validity follows the Technique-authored selection/delivery contract rather than a universal LOS rule. **Still open under P12-C:** the deterministic evaluation and commit order across these gates. C defines technical columns only through an explicit implementation pass. *Backlogged from `TS-M10F-02`, 0.30.0* | **[OPEN]** | Design / P |
+| ~~**◈P12**~~ | **CLOSED 0.44.0.** P12-A fixes entitlement/acquisition identity; P12-B fixes candidate readiness and target-route dependency; P12-C fixes pure ordered evaluation, explicit environmental target domains and resolution-participant roles, exact-candidate atomic commitment, milestone-local live revalidation and autonomous scheduled/triggered Plannable Actions. C defines technical columns only through an explicit implementation pass. *Backlogged from `TS-M10F-02`, 0.30.0* | **CLOSED** | — |
 | ~~**◈P13**~~ | **CLOSED 0.40.0.** P·2.3a registers the complete normalized lineage/physique grain plus deliberate/passive innate grants, per-Technique source nodes and per-Payload support dependencies. Equipment `chassis_profiles` remain barred. Somatic authorizes deliberate natural-node Techniques without duplicating their footprint or hook. | **CLOSED** | — |
 | **◇P8** | **Fixture enemy and encounter-membership field sets.** P·10.5–10.6 specify frozen enemy fixtures and multi-enemy compositions; P·2.3 now registers `fixture_enemies` and `fixture_encounter_members` as the normalized relations, but **their column sets are unfixed**. The enemy-fixture fields must be reconciled against **E**'s capability ladder and tag classes and against **H**'s body templates before they are locked. Until then canonical ◈M10 fixture JSON cannot be frozen without guessing | **[OPEN] [GAP]** | Tooling / P *(with E, H)* |
 
@@ -562,6 +605,7 @@ Unique identity · source resolution (T-C12) · category component completeness 
 | **P-C16** | Critical | Technique authorization is one Faculty profile × Technique revision row. The seed fixture contains exactly 32 rows; Rend is absent, Hex belongs to Arcana && Mudra, and Poisonous Bite/Poisonous Rend remain derived renditions rather than duplicate authorizations |
 | **P-C17** | Critical | Entitlements attach only to base Faculties. Build instructions and actor acquisitions remain authoritative facts; the actor entitlement is a generated projection, possession derives from conferred or acquired, availability is never stored, and acquisition survives unlock-source loss unless explicitly leased or revocable |
 | **P-C18** | Critical | `known`, `selectable` and `executable` are distinct derived predicates. Alternative complete execution candidates combine existentially; dependencies within a candidate combine conjunctively. Failure is dependency-local, transferred provisions cease depending on their provider unless continuous maintenance is explicit, and every failed gate is reported without executing side effects |
+| **P-C19** | Critical | Technique evaluation is pure and deterministically ordered over one immutable snapshot, returning `pass`, `fail` or `blocked_by` without side effects. Target domains and selected/contact/recipient/reaction-product roles are explicit; executability validates the submitted target/origin and route while milestone resolution discovers and stably orders current resolution participants |
 
 ---
 
@@ -692,6 +736,7 @@ Recorded so nobody later reports the set as complete.
 
 | Version | Change |
 | --- | --- |
+| **0.44.0** | **`◈P12` closes.** §2.3e locks pure ordered evaluation, explicit environmental target domains and resolution-participant roles, exact-candidate atomic commitment, milestone-local live revalidation, cost/cooldown milestones and autonomous scheduled/triggered Plannable Actions (**P-C19**). |
 | **0.43.0** | **`◇P12-B` closes.** §2.3d defines route-level readiness as `known`, `selectable` and `executable`; candidate alternatives are existential while within-route requirements are conjunctive. Dependency-local invalidation, transferred-provision survival, declared cooldown propagation and Technique-authored target-route validity are authoritative (**P-C18**). The missing authoritative source row for existing **P-C17** is restored. P12-C remains open for deterministic evaluation/commit order. |
 | **0.42.0** | **`◇P12-A` closes.** P·2.3c adds authoritative build instructions and actor acquisitions plus a generated actor-entitlement projection (**P-C17**). Entitlements attach only to base Faculties; composite profiles remain authorization profiles. Possession derives from conferred/acquired, and acquisition normally survives loss of an unlock source. P12-B/C remain open for complete derived availability and evaluation order. |
 | **0.41.0** | **`◈P11` closed.** P·2.3b adds four normalized Faculty relations, four immutable identities, eight exact profiles and 32 Technique authorizations (**P-C15**, **P-C16**). P·2.3a now lets Lineage grants explicitly confer or unlock a Faculty; both Venomous Hobgoblin grants confer Somatic (**P-C14**). `◇P12` remains open for actor/build entitlement persistence and complete derived availability. |

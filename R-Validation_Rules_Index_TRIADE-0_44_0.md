@@ -1,8 +1,8 @@
 # Triade — Validation Rules Index
 
-**Version:** 0.43.0
-**Date:** 25 September 2026
-**Status:** Regenerated at 0.43.0. **Derived, not authored** — edit the rule table in the source document, regenerate this.
+**Version:** 0.44.0
+**Date:** 27 September 2026
+**Status:** Regenerated at 0.44.0. **Derived, not authored** — edit the rule table in the source document, regenerate this.
 
 **Scope.** Every automated check across all **ten** design documents, under one severity scheme with stable IDs.
 
@@ -54,6 +54,7 @@
 | **T-C17** | Aim capability is Technique-owned as none, `coarse`, or `targeted`, capped by realised target anatomy; no binding, Payload or enhancement may grant or raise it | T · A3.8b *(new 0.39.0)* |
 | **T-C18** | Every deliberate player-usable `innate_node` Technique requires a possessed authorizing Faculty in addition to its lineage binding and active source node. Current route readiness is evaluated separately; Somatic contributes no footprint or hook, and a passive innate grant binds no executable Technique | T · A3.8a, P · 2.3a *(amended 0.43.0)* |
 | **T-C19** | An execution candidate retains every typed dependency. Alternative complete candidates combine existentially and requirements within one candidate conjunctively; invalidation is dependency-local. The Technique owns selection origin/shape, reach source, visibility and delivery route, so direct and area routes apply their authored gates rather than one universal LOS rule | T · A3.8d, P · 2.3d *(new 0.43.0)* |
+| **T-C20** | One exact candidate and command bind before atomic commitment with no silent source, rendition, target, level, aim or carrier fallback. Selected targets and later resolution participants differ; a permitted Plannable Action attempts a fresh executable verdict from an autonomous `world_tick` node independent of the owner's later actor-timeline position | T · A3.8e, P · 2.3e *(new 0.44.0)* |
 | **H-C6** | Every actor resolves to exactly one `[Chassis]`, and every `[Chassis]` to exactly one `BodyTemplate` | H · 5.3 |
 | **H-C7** | An unarmed footprint is authored per **node** on the lineage, live while that node is; no slot table, never authored per chassis | H · 13, M · 2A.10a |
 | **H-C8** | Only **Permanent**-tier sources (T·G.3) may alter an innate profile. Worn equipment composes with it; Temporary states never touch it | H · 7.1a *(new 0.32.0)* |
@@ -80,10 +81,12 @@
 | **K-C12** | No Triade corner contributes an additive or multiplicative term to AP rate; Form's floor is a clamp | K · 3.3 *(new 0.34.0)* |
 | **K-C13** | Time-bearing actions declare commit, milestones and resolve ticks; non-resolution effects are explicitly authored; environmental events read position at their exact tick | K · 3.5 *(new 0.35.0)* |
 | **K-C14** | An Armed Intercept Node fires only on temporal crossing **and** valid trigger **and** spatial eligibility at the intercept tick; the Watch cost and payout are unchanged | K · 8.1a *(new 0.35.0)* |
-| **K-C15** | Same-tick resolution is fully ordered — immediate, environmental batch, reactions, actors by Readiness, stable identity; a committed action is never resized | K · 3.6 *(new 0.36.0)* |
-| **K-C16** | The carrier contract is fixed after step 7; delivery proof is evaluated once from step 8's immutable layer trace. Payload resolution cannot feed back into primary resolution, and a secondary payload cannot prove or recursively spawn another carrier | K · 5.2a *(amended 0.38.0)* |
+| **K-C15** | Same-tick resolution is fully ordered — immediate, environmental batch, triggered reaction plans, scheduled plan nodes, ordinary actors by Readiness, then stable identity; a committed action or autonomous plan node is never resized by actor-rate changes | K · 3.6 *(amended 0.44.0)* |
+| **K-C16** | The carrier contract is fixed after step 6; delivery proof is evaluated once at step 8 from step 7's immutable layer trace. Payload resolution cannot feed back into primary resolution, and a secondary payload cannot prove or recursively spawn another carrier | K · 5.2a *(amended 0.44.0)* |
 | **K-C17** | A selected aimed mode adds its non-negative surcharge before commit; a successful hit samples H's reweighted full distribution, and landing elsewhere is neither a miss nor a refund | K · 3.4 / 5.2a *(new 0.39.0)* |
 | **K-C18** | Only `executable` authorizes commitment and resolution. Target-route validity follows the Technique-authored selection shape, visibility and delivery route; direct routes apply their authored reach, perception, LOS and path gates, while area routes validate origin, pattern, propagation and geometry without automatically requiring perception or LOS to every affected actor | K · 5.1a *(new 0.43.0)* |
+| **K-C19** | Pre-commit evaluation is pure; one exact candidate commits atomically with its snapshot, spendable reservations, action/milestone nodes, Intent Marker and audit digest or not at all. Live state is revalidated only at its consuming milestone; reservations are not consumption, reached milestones do not roll back after gameplay failure, and no silent fallback or universal refund exists | K · 5.2 *(new 0.44.0)* |
+| **K-C20** | A Plannable Action creates an autonomous `world_tick` node with an exact candidate and `first_eligible`, `bound_identity` or `fixed_spatial` acquisition. It attempts a fresh executable verdict at its due tick independently of the owner's later actor-timeline position, never silently retargets or retries, and defaults to `cancelled_failed` on invalid resolution requirements | K · 3.7 *(new 0.44.0)* |
 
 ### Materiel
 
@@ -128,7 +131,7 @@
 | **E-C4** | Exactly one chassis per enemy; tag cardinality respected | E · F.1 |
 | **E-C7** | A physique size map carries at most two additive integer pairs per size, each summing to zero; typical carries none, absent sizes are `null` | E · F.1 |
 | **E-C8** | Trash and Standard enemy actors cannot aim; Elite and Commander actors require Technique support and perceived candidate anatomy, independently of target tier | E · F.0a *(new 0.39.0)* |
-| **E-C9** | Enemy policy ranks `known` Techniques and `selectable` candidates only from its `PerceptionSnapshot` plus public state and commits only an `executable` candidate. Area resolution may hit an unseen occupant but never reveals that occupant during planning; direct non-visual targeting requires an explicit authored route | E · F.0b *(new 0.43.0)* |
+| **E-C9** | Enemy policy ranks Techniques, candidates and Plannable Action acquisitions only from its `PerceptionSnapshot` plus public state, commits only an executable exact candidate, and uses the same autonomous due-node/no-retarget rules as the player. Fixed-spatial resolution may hit but never pre-reveal an unseen participant; identity-bound plans require perceived identity | E · F.0b *(amended 0.44.0)* |
 
 ### World generation
 
@@ -216,6 +219,7 @@
 | **P-C16** | Technique authorization is one Faculty profile × Technique revision row; the 32-row seed excludes Rend and derived Poison renditions and assigns Hex to Arcana && Mudra | P · 2.3b *(new 0.41.0)* |
 | **P-C17** | Entitlements attach only to base Faculties. Build instructions and actor acquisitions remain authoritative facts; the actor entitlement is a generated projection, possession derives from conferred or acquired, availability is never stored, and acquisition survives unlock-source loss unless explicitly leased or revocable | P · 2.3c *(new 0.42.0)* |
 | **P-C18** | `known`, `selectable` and `executable` are distinct derived predicates. Alternative complete execution candidates combine existentially; dependencies within a candidate combine conjunctively. Failure is dependency-local, transferred provisions cease depending on their provider unless continuous maintenance is explicit, and every failed gate is reported without executing side effects | P · 2.3d *(new 0.43.0)* |
+| **P-C19** | Technique evaluation is pure and deterministically ordered over one immutable snapshot, returning `pass`, `fail` or `blocked_by` without side effects. Target domains and selected/contact/recipient/reaction-product roles are explicit; executability validates the submitted target/origin and route while milestone resolution discovers and stably orders current resolution participants | P · 2.3e *(new 0.44.0)* |
 
 *Filed here at 0.16.0. P·Part 9 has stated these as **Critical** since 0.15.0; the index had all seven — plus `P-M1` — inside §3 High, and its printed totals had not moved since 0.12.0.*
 
@@ -375,12 +379,12 @@ The last is new and the most immediately actionable: 0.12.0 added four Critical 
 
 | Severity | Count | Build behaviour |
 | --- | ---: | --- |
-| **Critical** | 139 | Fail; block merge |
+| **Critical** | 143 | Fail; block merge |
 | **High** | 56 | Fail; overridable with recorded justification |
 | **Medium** | 14 | Warn |
-| **Total** | **209** | |
+| **Total** | **213** | |
 
-By document: T 23 · M 23 · K 22 · W 56 · H 18 · E 16 · V 7 · G 19 · P 23 · L 2.
+By document: T 24 · M 23 · K 24 · W 56 · H 18 · E 16 · V 7 · G 19 · P 24 · L 2.
 
 **Recounted again at 0.17.0 by counting rows: 78 / 47 / 14 = 139, unchanged.** *(the suite has grown since; the current figure is the Suite summary above, and this line records only what 0.17.0 counted.)* M-C1 was reworded, not added, and no rule was created or removed; the by-document line is unchanged. A count that stays the same across a version is still counted, not assumed.
 
@@ -390,7 +394,7 @@ By document: T 23 · M 23 · K 22 · W 56 · H 18 · E 16 · V 7 · G 19 · P 23
 
 ### The index is fully derived — `◈P7` **CLOSED 0.20.0**
 
-**All 209 current rules are authored in their home document.** The census at 0.19.0 measured every rule against **P-C8** — the ID leads its line or its first table cell, changelogs excluded — and 0.20.0 closed the then-current residue at 142 of 142. The current census and published regeneration command agree at **209 of 209**.
+**All 213 current rules are authored in their home document.** The census at 0.19.0 measured every rule against **P-C8** — the ID leads its line or its first table cell, changelogs excluded — and 0.20.0 closed the then-current residue at 142 of 142. The current census and published regeneration command agree at **213 of 213**.
 
 **The figure moved four times before anyone measured it:** seventeen at 0.16.0, nineteen at 0.17.0, thirty at 0.18.0, each recounted from the last. Every one of those counts used a pattern that could only see bolded table rows, while the corpus states rules in tables, in fenced code blocks, inside box-drawing workflow art and as numbered Requirements in prose.
 
@@ -410,11 +414,11 @@ grep -hn "^| \*\*\(TILE\|[TKMHEWVL]\)-[CHM][0-9]" TRIADE-*design-0.17.0.md
 
 and recovered **82 of 139 rules**. Two independent defects: the character class **omits `P`**, dropping all twelve P rules although they are correctly table-formatted; and **H's fifteen invariants live in a fenced code block**, which no `^|` pattern can reach. A command that silently returns 59% of the suite is worse than none, because it looks like it worked. Registered as **◇P7a**.
 
-**One pass, implementing P-C8 — run at 0.19.0, recovered 135 of 140; the current re-run recovers 209 of 209.**
+**One pass, implementing P-C8 — run at 0.19.0, recovered 135 of 140; the current re-run recovers 213 of 213.**
 
 ```bash
 grep -rhoE '^[[:space:]|>│├└─]*[-*•]?[[:space:]]*\**`?(TILE|[TKMHEWVLPG])-[CHM][0-9]+' \
-  [A-Z]-*_design_TRIADE-0_43_0.md C-Content_Authoring_Technical_Specification_TRIADE-0_43_0.md \
+  [A-Z]-*_design_TRIADE-0_44_0.md C-Content_Authoring_Technical_Specification_TRIADE-0_44_0.md \
   | grep -oE '(TILE|[TKMHEWVLPG])-[CHM][0-9]+' | sort -u
 ```
 
@@ -424,7 +428,7 @@ grep -rhoE '^[[:space:]|>│├└─]*[-*•]?[[:space:]]*\**`?(TILE|[TKMHEWVLP
 
 **The residual was ◇P7, and the census has run.** At 0.19.0 all 140 rules were measured against a positional test — **the ID leads its line or its first table cell**, changelogs excluded. **135 are authored; five are not.** Twenty-five rows were authored in the same pass (W§16 ×17, M ×5, V ×3).
 
-> `L-M1` `L-M2` — authored in `Z-Design_Stream_Project_Instructions_TRIADE-0_43_0.md`, which this index does not treat as a source. Home mis-assigned.
+> `L-M1` `L-M2` — authored in `Z-Design_Stream_Project_Instructions_TRIADE-0_44_0.md`, which this index does not treat as a source. Home mis-assigned.
 > `M-C5` — its own row here cites `T · 4.8`. Home mis-assigned.
 > `M-C3` `M-H4` — no statement exists to tag. These need a rule written.
 
@@ -440,6 +444,7 @@ Every rule in a source document must appear here with the same ID and severity; 
 
 | Version | Change |
 | --- | --- |
+| **0.44.0** | **P12-C regeneration:** T-C20, K-C19, K-C20 and P-C19 indexed from their authoritative homes; K-C15/K-C16 and E-C9 regenerated with planned-node, revised carrier-step and perception-limited acquisition wording. Suite recounted by severity and document at **213 — 143/56/14**. |
 | **0.43.0** | **P12-B regeneration:** T-C19, K-C18, E-C9 and P-C18 indexed from their authoritative homes; T-C18 regenerated without the retired Faculty-level availability wording. Suite recounted by severity and document at **209 — 139/56/14**. |
 | **0.42.0** | **P12-A regeneration:** P-C17 indexed from P·2.3c and M-C18 regenerated with entitlement and two-hand Mudra semantics. Suite recounted at **205 — 135/56/14**. |
 | **0.41.0** | **P11 regeneration:** M-C17, M-C18, P-C15 and P-C16 indexed from their authoritative homes. Suite recounted by severity and document at **204 — 134/56/14**. |

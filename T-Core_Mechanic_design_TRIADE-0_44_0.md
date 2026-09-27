@@ -1,21 +1,21 @@
 # Triade — Core Systems Design
 
-**Version 0.43.0** — 25 September 2026. Supersedes the first draft. The Triade has absorbed the state model, the credit economy, the class model and the enemy model, because all four turned out to be the same geometry viewed from different angles.
+**Version 0.44.0** — 27 September 2026. Supersedes the first draft. The Triade has absorbed the state model, the credit economy, the class model and the enemy model, because all four turned out to be the same geometry viewed from different angles.
 
 **Document set:** this is one of **ten**.
 
 | Ref | Document | Filename |
 | --- | --- | --- |
-| **T** | **Core Mechanic** — *this document* | `T-Core_Mechanic_design_TRIADE-0_43_0.md` |
-| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_43_0.md` |
-| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_43_0.md` |
-| **V** | Visual Design | `V-Visual_design_TRIADE-0_43_0.md` |
-| **K** | Combat Design | `K-Combat_design_TRIADE-0_43_0.md` |
-| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_43_0.md` |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_43_0.md` |
-| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_43_0.md` |
-| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_43_0.md` |
-| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_43_0.md` |
+| **T** | **Core Mechanic** — *this document* | `T-Core_Mechanic_design_TRIADE-0_44_0.md` |
+| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_44_0.md` |
+| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_44_0.md` |
+| **V** | Visual Design | `V-Visual_design_TRIADE-0_44_0.md` |
+| **K** | Combat Design | `K-Combat_design_TRIADE-0_44_0.md` |
+| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_44_0.md` |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_44_0.md` |
+| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_44_0.md` |
+| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_44_0.md` |
+| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_44_0.md` |
 
 **Position in the project:** Phase 0.5, upstream of stats, itemisation and equipment. Nothing in the main plan's Parts 1–3 can freeze until Gate T passes.
 
@@ -279,7 +279,7 @@ Three surfaces, clean roles, no overlap:
 
 ### A3.4c UI requirements — see Visual Design
 
-The visual encoding requirements have moved to **`V-Visual_design_TRIADE-0_43_0.md` (Part 4)**. Seven requirements are locked there, governed by the principle that *the UI conveys proximity and consequence, never coordinates*.
+The visual encoding requirements have moved to **`V-Visual_design_TRIADE-0_44_0.md` (Part 4)**. Seven requirements are locked there, governed by the principle that *the UI conveys proximity and consequence, never coordinates*.
 
 The two that most affect the mechanics in this document:
 
@@ -490,7 +490,23 @@ These are logical requirements, not a technical column prescription. Direct acto
 
 Area routes do not select every affected actor. A self-centred weapon area validates its source, authored pattern and local geometry; its radius may read weapon reach without requiring line of sight to every occupant. A throwable area validates its selected destination under the authored visibility rule, throw range, ballistic route and landing cell, then resolves the propagated area. Area resolution may strike an unseen occupant without revealing that occupant before resolution, and geometry may still exclude cells. A broad source category never authorizes firing through walls, selecting unknown cells or bypassing blocked trajectories.
 
-Candidate diagnostics preserve all failed gates — distinct reach/range, perception, line-of-sight, path, ballistic, landing-cell, pattern, propagation and non-visual-lock failures included. Collecting them does not execute later effects. P12-C owns the deterministic check and commit order.
+Candidate diagnostics preserve all failed gates — distinct reach/range, perception, line-of-sight, path, ballistic, landing-cell, pattern, propagation and non-visual-lock failures included. Collecting them does not execute later effects. P12-C's deterministic check and commit order follow in A3.8e.
+
+### A3.8e Exact binding, resolution participants and planned activation [AUTHORED 0.44.0, ◈P12-C]
+
+The authoritative resolver is pure. It evaluates one immutable snapshot in the P·2.3e stage order and returns stable `pass`, `fail(reason_code)` and `blocked_by(gate_id)` results without committing costs, cooldowns, randomness or effects. `executable` remains the sole permission to commit; P12-C introduces no fourth readiness predicate.
+
+One exact candidate is bound before submission: Technique revision, selected level and aim, authorizing Faculty profile, grant/binding, every source and hook, rendition and Payload, support/provider or transferred provision, carrier and delivery route, plus the selected target or origin. Equivalent UI choices may be grouped, but after submission no other hand, weapon, ammunition, provision, rendition, target, cell, level, aim or carrier may replace it silently.
+
+Target contracts declare actor, object, `cell_surface`, `environmental_volume`, or `path_or_area` as eligible domains and may require target capabilities or state. An object uses its W-owned runtime state; environmental surfaces and volumes use W-owned state channels. A **selected target** is part of the command. A **route contact**, **effect recipient** or **reaction product** may arise only later. These four roles are **resolution participants**. A valid area command need not predict all recipients: its consuming milestone discovers the affected set in deterministic order, applies compatibility per recipient, and returns `resolved_no_effect` when that set is empty unless at least one recipient is an explicit Technique requirement.
+
+Indirect collision, displacement, propagation and Named Reaction consequences are child events with traceable parentage, not recursive retargeting. Immediate child effects require an authored immediate rule; otherwise W processes them in its same-tick deterministic batch. Geometry changes remain atomic across collision, navigation, occlusion, line of fire, cover and affordances.
+
+Commitment atomically records the exact command/candidate, captures the pre-commit Triade position and usable skill level, computes effective cost and duration from current AP rate, reserves actual spendables and exclusive dependencies, and creates the action, milestones, timeline nodes, Intent Marker and audit digest. Any write failure rolls the whole commitment back. After success, candidate identity and captured potency inputs are immutable; current world state is revalidated only at the milestone that consumes it.
+
+A Technique may explicitly permit a **Plannable Action**. The plan binds the exact candidate and one acquisition mode: `first_eligible`, `bound_identity`, or `fixed_spatial`. `first_eligible` uses authored trigger criteria and deterministic simultaneous ordering; `bound_identity` ignores all other participants and never retargets by default; `fixed_spatial` binds an origin/path/area and discovers recipients at resolution. Target acquisition selects what the plan attempts; the ordinary Technique target-route contract still decides whether that attempt is executable.
+
+Arming a plan validates current actor-side gates, pays declared setup costs, reserves declared dependencies and creates an autonomous `world_tick` plan node with a visible Intent Marker. A scheduled plan attempts at its authored tick; a triggered plan fixes its attempt at `trigger_tick + response_delay`. The attempt is independent of the owner's later actor-timeline position, Readiness, AP rate or opportunity to act. Haste and Slow do not move it. Only an explicit node-targeted Advance or Delay effect may do so. At the due tick the bound candidate receives a fresh `executable` verdict; failure follows the declared branch, defaults to `cancelled_failed`, never silently retargets, downgrades, retries or reschedules, and releases only unreached reservations.
 
 ---
 
@@ -1058,7 +1074,7 @@ Worked examples:
 
 ## Part F — Enemies — MOVED
 
-**Extracted to `E-Enemies_design_TRIADE-0_43_0.md` (ref E) at 0.11.0.**
+**Extracted to `E-Enemies_design_TRIADE-0_44_0.md` (ref E) at 0.11.0.**
 
 Enemies remain **the same system as characters** — innate floor shape plus equipped vocabulary, one schema with two consumers, running the identical action contract (Part H) with roles swapped. That equivalence is a T-level invariant and stays here.
 
@@ -1210,6 +1226,7 @@ Notes on the region fields:
 | **T-C17** | Aim capability is declared only by the Technique as none, `coarse`, or `targeted`; runtime caps it at the target's realised anatomical depth. Bindings, Payloads and later enhancement layers cannot grant or raise it | A3.8b, H·11 | Critical |
 | **T-C18** | Every deliberate player-usable `innate_node` Technique requires a possessed authorizing Faculty in addition to its lineage binding and active source node. Current route readiness is evaluated separately; Somatic contributes no footprint or hook, and a passive innate grant binds no executable Technique | A3.8a, P·2.3a | Critical |
 | **T-C19** | An execution candidate retains every typed dependency. Alternative complete candidates combine existentially and requirements within one candidate conjunctively; invalidation is dependency-local. The Technique owns selection origin/shape, reach source, visibility and delivery route; direct and area routes therefore apply their authored perception, LOS, path and propagation gates rather than one universal LOS rule | A3.8d, P·2.3d | Critical |
+| **T-C20** | One exact candidate and command are bound before an atomic commitment and never gain silent source, rendition, target, level, aim or carrier fallback. Selected targets and later resolution participants are distinct. A permitted Plannable Action binds an acquisition mode and attempts a fresh executable verdict from its autonomous `world_tick` node, independent of the owner's later actor-timeline position | A3.8e, P·2.3e | Critical |
 | **T-H1** | Every reinforcing loop has a **named brake** | I.5 | High |
 | **T-H2** | No reference build shows an unrecoverable spiral | Gate T | High |
 | **T-H3** | Candidate entities exceed the trace-distance redundancy threshold | I.4 | High |
@@ -1221,7 +1238,7 @@ Notes on the region fields:
 
 ## Part I — Validation and metrics
 
-*Severity scheme standardised at 0.11.0. T's invariants carry `T-C{n}` / `T-H{n}` IDs; Gate T exit criteria remain a **gate**, distinct from the continuous rule suite. Full cross-document suite in `R-Validation_Rules_Index_TRIADE-0_43_0.md`.*
+*Severity scheme standardised at 0.11.0. T's invariants carry `T-C{n}` / `T-H{n}` IDs; Gate T exit criteria remain a **gate**, distinct from the continuous rule suite. Full cross-document suite in `R-Validation_Rules_Index_TRIADE-0_44_0.md`.*
 
 ### I.1 Trace instrumentation
 
@@ -1334,7 +1351,7 @@ Map every feedback loop and label it reinforcing or balancing. Every reinforcing
 
 ## Part K — Open questions
 
-*Standardised at 0.11.0. Every live item carries **[OPEN]**; every provisional number carries **[SIM]**. All items are mirrored in `B-Open_Items_Index_TRIADE-0_43_0.md`, which is generated from these markers — edit here, regenerate there.*
+*Standardised at 0.11.0. Every live item carries **[OPEN]**; every provisional number carries **[SIM]**. All items are mirrored in `B-Open_Items_Index_TRIADE-0_44_0.md`, which is generated from these markers — edit here, regenerate there.*
 
 **Resolved since 0.9.0 and removed from this list.** Eight entries were still listed as open after K17 answered them; they were carried stale into 0.10.0 and are cleared here. Their resolutions:
 
@@ -1369,6 +1386,7 @@ Items 11, 12, 14 and 15 of the former list were already marked RESOLVED in place
 
 | Version | Change |
 | --- | --- |
+| **0.44.0** | **P12-C execution identity adopted.** A3.8e locks pure deterministic evaluation, exact-candidate atomic commitment, explicit target domains and resolution-participant roles, and autonomous Plannable Actions with `first_eligible`, `bound_identity` or `fixed_spatial` acquisition and no silent fallback (**T-C20**). |
 | **0.43.0** | **P12-B execution contract adopted.** A3.8d separates `known`, `selectable` and `executable`, makes dependency invalidation candidate-local, and assigns selection shape, visibility and delivery-route requirements to the Technique (**T-C19**). Candidate alternatives are existential; within-candidate requirements are conjunctive, so Mudra && Mudra requires both complete hand/finger-hook requirements. |
 | **0.42.0** | **P12-A execution identity aligned.** Composite profiles authorize execution but are never entitlements. Two-hand Mudra requires one possessed Mudra plus two functional, unoccupied hands, each resolving a distinct functional finger hook. Complete availability ordering remains P12-B/C. |
 | **0.41.0** | **`◈P11` action boundary adopted.** Faculty profiles authorize Techniques and supply an executable source footprint plus a primitive actor-pull constraint; Techniques remain sole owners of behaviour and the applied `position_delta_q`. Correct voice/finger/Brain/bound-node hook semantics and explicit Lineage confer-or-unlock grants replace the earlier universal-unlock wording. |
@@ -1393,10 +1411,10 @@ Items 11, 12, 14 and 15 of the former list were already marked RESOLVED in place
 | **0.13.0** | **Stage 1 — the `faculty` channel.** A3.8's `sources` enum renames `capability` to `faculty`; the word *capability* is returned undivided to the enemy capability ladder (E·F.0), which held 38 of its 42 uses. New rules **T-C12** (every source resolves to a record — the hole that let `capability` sit for three versions as an enum value with no object) and **T-C13** (a Combo-Action declares exactly two hooks). Magic takes **no new resource**: Mind's locked consumption verb, *"threshold — gates access"* (A.1), is the access economy, surfaced player-facing as `[Attunement]`. Stated as a negative — there is no mana, and its absence is load-bearing. |
 | **0.13.0** | **Part ◈H2 added — T finally has an authored rule table.** T-C1…T-C10 had been in circulation since 0.11.0 with no home in T; the Validation Rules Index carried them while declaring itself derived from source rule tables, which for T it was not. **◈T6 closed after surviving two passes.** A4.4 now states the two-render requirement — corner floor affine, sector floor super-additive — and it is promoted to rule **T-C11** (Critical) rather than left as prose, which is what let it survive. Closed simultaneously in W (◈W2d) and struck from L's deferred list. |
 | **0.12.0** | No structural change to T. Cross-references updated for the nine-document set. Recorded for coherence: *floor* remains reserved to its Triade sense throughout — W§5.8 adopts `[Deck]` and `[Storey]` for dungeon geometry rather than importing a second meaning for T's most load-bearing word. ◈T6 (corner-floor render affinity) remains **[OPEN]** and unaddressed by this pass. |
-| **0.11.0** | **Part F (Enemies) extracted** to `E-Enemies_design_TRIADE-0_43_0.md`; a pointer stub retains the T-level invariants — enemies are the same system as characters, carry positions, and read position-dependently. **Part K rewritten**: eight entries that K17 had already answered were still listed as open and are cleared; seven live items now carry `[OPEN]`/`[SIM]` markers and appear in the Open Items Index. Part I aligned to the set-wide severity scheme. Document set grows to eight. |
+| **0.11.0** | **Part F (Enemies) extracted** to `E-Enemies_design_TRIADE-0_44_0.md`; a pointer stub retains the T-level invariants — enemies are the same system as characters, carry positions, and read position-dependently. **Part K rewritten**: eight entries that K17 had already answered were still listed as open and are cleared; seven live items now carry `[OPEN]`/`[SIM]` markers and appear in the Open Items Index. Part I aligned to the set-wide severity scheme. Document set grows to eight. |
 | **0.10.0** | Document set grows to seven with **H — Damage & Health**; filename convention standardised to `TRIADE-[System] design-[Version]`. **A4.2a: ◈W2f propagated** — Temporary-tier modifiers now clear at the run boundary (Steward-locked 28 Jul 2026), making `ΣF_rendered == ΣF_baseline` at run start architectural rather than conventional; injury interaction resolved via H·9.3's channel split. **A4.2:** effective-field reductions bounded below by the Trauma Safety Clamp (H·10.2), summed across wounds and surfaces. **A4.1:** capacity/application/resilience identified as the wound-effect derivation rule, producing the bone-counters-striker / bleed-counters-controller axis. **I.5:** injury spiral added to the loop audit with four named brakes. |
 | **0.9.0** | Combat Design document split out; Skill Anchors resolve the grid–math question. |
-| **0.8.0** | UI requirements moved to the new `V-Visual_design_TRIADE-0_43_0.md`; A3.4c is now a pointer. Document-set note added. |
+| **0.8.0** | UI requirements moved to the new `V-Visual_design_TRIADE-0_44_0.md`; A3.4c is now a pointer. Document-set note added. |
 | **0.7.x** | Skill Anchors (A3.7–A3.8) resolving the grid–math question; demand tier split from Doctrinal/Transgressive flags; UI requirements; Weapon/Armour/Shield Smith agent specs; shield budget. |
 | **0.6.x** | Materiel system: damage taxonomy with Structural group, integrity states, the three bridges, pips and redistribution, shield duality. |
 | **0.5.x** | Dot Framework, grid + Dot Interpreter, stat-groups and field-rendered floor, skill level model, class system, Dictionary and tone. |
