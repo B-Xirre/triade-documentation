@@ -1,24 +1,24 @@
 # Combat Design
 
-**Version 0.44.0** — 27 September 2026. Turn structure, action economy, resolution, reactions, and the player-facing exchange loop.
+**Version 0.45.0** — 2 October 2026. Turn structure, action economy, resolution, reactions, and the player-facing exchange loop.
 
 **Document set:** this is one of **ten**.
 
 | Ref | Document | Filename |
 | --- | --- | --- |
-| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_44_0.md` |
-| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_44_0.md` |
-| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_44_0.md` |
-| **V** | Visual Design | `V-Visual_design_TRIADE-0_44_0.md` |
-| **K** | **Combat Design** — *this document* | `K-Combat_design_TRIADE-0_44_0.md` |
-| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_44_0.md` |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_44_0.md` |
-| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_44_0.md` |
-| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_44_0.md` |
-| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_44_0.md` |
-| — | *Open Items Index* | `B-Open_Items_Index_TRIADE-0_44_0.md` |
-| — | *SIM Numbers Register* | `Y-SIM_Numbers_Register_TRIADE-0_44_0.md` |
-| — | *Validation Rules Index* | `R-Validation_Rules_Index_TRIADE-0_44_0.md` |
+| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_45_0.md` |
+| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_45_0.md` |
+| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_45_0.md` |
+| **V** | Visual Design | `V-Visual_design_TRIADE-0_45_0.md` |
+| **K** | **Combat Design** — *this document* | `K-Combat_design_TRIADE-0_45_0.md` |
+| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_45_0.md` |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_45_0.md` |
+| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_45_0.md` |
+| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_45_0.md` |
+| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_45_0.md` |
+| — | *Open Items Index* | `B-Open_Items_Index_TRIADE-0_45_0.md` |
+| — | *SIM Numbers Register* | `Y-SIM_Numbers_Register_TRIADE-0_45_0.md` |
+| — | *Validation Rules Index* | `R-Validation_Rules_Index_TRIADE-0_45_0.md` |
 
 **Scope boundary.** The Triade doc owns the state model, regions, credit economy and skill anchors. This document owns everything that turns those into turn-by-turn play: time, AP, resolution order, reactions, the battlefield, and encounter rhythm.
 
@@ -877,7 +877,7 @@ The schema may support the full damage taxonomy from the start; proof *content* 
 
 ### Hard automated checks
 
-*Severities and IDs standardised at 0.11.0. Full suite in `R-Validation_Rules_Index_TRIADE-0_44_0.md`. Rules owned by other documents are cross-referenced, not duplicated.*
+*Severities and IDs standardised at 0.11.0. Full suite in `R-Validation_Rules_Index_TRIADE-0_45_0.md`. Rules owned by other documents are cross-referenced, not duplicated.*
 
 | ID | Rule | Severity |
 | --- | --- | --- |
@@ -919,7 +919,7 @@ The schema may support the full damage taxonomy from the start; proof *content* 
 | H-C1 | Σ of all effective-field reductions per corner ≥ `max(Φ_safe_x, 0.5 × Φ_base_x)` | H · 10.2 |
 | H-C4 | Vital-organ lethality gated on HP below the Finisher threshold, or Downed | H · 9.4 |
 
-*The metrics above (K16 validation targets) are **measurements**, not pass/fail rules; their gates and provisional values live in `Y-SIM_Numbers_Register_TRIADE-0_44_0.md`.*
+*The metrics above (K16 validation targets) are **measurements**, not pass/fail rules; their gates and provisional values live in `Y-SIM_Numbers_Register_TRIADE-0_45_0.md`.*
 
 ---
 
@@ -946,10 +946,13 @@ The schema may support the full damage taxonomy from the start; proof *content* 
 
 ---
 
+**Tarot runtime integration [ADOPTED 0.45.0].** P·2.3f–i resolves layout expressions before candidate construction. A Tarot Combo has one exact Combo-Action and two same-depth endpoints, each supplying one distinct hook; nested contributors supply none. Combo transfer is explicit and counted once. Source/target-route/cost/cooldown and planned-action checks remain under P12-C, with no silent substitute, suppressed-Support fallback or topology mutation on temporary failure.
+
 ## Changelog
 
 | Version | Change |
 | --- | --- |
+| **0.45.0** | Tarot runtime integration preserves exact-candidate P12 commitment, two distinct hooks, explicit contribution transfer and no fallback. |
 | **0.44.0** | **P12-C timing and commitment adopted.** §5.2 separates pure pre-commit evaluation from atomic commitment and milestone-local live revalidation (**K-C19**). §3.6–3.7 gives triggered and scheduled plans autonomous `world_tick` nodes, three targeting-acquisition modes, exact-candidate/no-retarget semantics and deterministic same-tick priority (**K-C15**, **K-C20**). |
 | **0.43.0** | **P12-B targeting and candidate semantics adopted.** §5.1a distinguishes `known`, `selectable` and `executable`, requires Technique-authored direct/area targeting contracts, and preserves information boundaries for unseen area occupants (**K-C18**). Alternative candidates are existential; every dependency within the chosen candidate remains conjunctive. |
 | **0.42.0** | Version alignment only. P12-A establishes entitlement persistence but leaves complete runtime availability and cooldown evaluation ordering to P12-B/C. |
@@ -979,4 +982,4 @@ The schema may support the full damage taxonomy from the start; proof *content* 
 
 ---
 
-*End of Combat Design 0.44.0. Maintained alongside the Core Mechanic, Stats/Items/Equipment, Lexicon, Visual Design, World Generation, Damage & Health, Enemies, Tile Pipeline and Content Pipeline documents.*
+*End of Combat Design 0.45.0. Maintained alongside the Core Mechanic, Stats/Items/Equipment, Lexicon, Visual Design, World Generation, Damage & Health, Enemies, Tile Pipeline and Content Pipeline documents.*

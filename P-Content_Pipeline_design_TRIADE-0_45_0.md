@@ -1,23 +1,23 @@
 # Triade — Content Pipeline & Data Model
 
-**Version:** 0.44.0
-**Date:** 27 September 2026
+**Version:** 0.45.0
+**Date:** 2 October 2026
 **Status:** Created at 0.15.0 by reconciliation of two independent studies. Architecture settled; operational numbers pending first build.
 
 **Document set:** this is one of **ten**.
 
 | Ref | Document | Filename |
 | --- | --- | --- |
-| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_44_0.md` |
-| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_44_0.md` |
-| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_44_0.md` |
-| **V** | Visual Design | `V-Visual_design_TRIADE-0_44_0.md` |
-| **K** | Combat Design | `K-Combat_design_TRIADE-0_44_0.md` |
-| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_44_0.md` |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_44_0.md` |
-| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_44_0.md` |
-| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_44_0.md` |
-| **P** | **Content Pipeline & Data Model** — *this document* | `P-Content_Pipeline_design_TRIADE-0_44_0.md` |
+| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_45_0.md` |
+| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_45_0.md` |
+| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_45_0.md` |
+| **V** | Visual Design | `V-Visual_design_TRIADE-0_45_0.md` |
+| **K** | Combat Design | `K-Combat_design_TRIADE-0_45_0.md` |
+| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_45_0.md` |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_45_0.md` |
+| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_45_0.md` |
+| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_45_0.md` |
+| **P** | **Content Pipeline & Data Model** — *this document* | `P-Content_Pipeline_design_TRIADE-0_45_0.md` |
 
 **Scope.** **P** owns how content is authored, stored, validated, generated, simulated and attributed. It owns the data model for equipment, affixes, faculties and fixtures; the storage architecture; the trace and signature schema; and the agent pipeline.
 
@@ -313,6 +313,127 @@ Target acquisition is separate from Technique target-route validation:
 
 The plan contract records domain, trigger, area or relation, optional bound identity, visibility or lock requirement, simultaneous order, maximum acquisitions, retarget policy and invalidation branch. The default is `retarget_policy = none`. Hidden participants cannot be identity-bound, and current visibility or an authored non-visual lock is still revalidated at activation. An aimed plan remains aimed; it never silently downgrades unless an explicit visible conditional branch authorizes that change.
 
+### 2.3f Tarot acquisition and persistence [LOCKED 0.45.0, ◈C1-A/B]
+
+The Tarot layer owns acquisition outcomes, character-owned card identity, installation and build configuration. **Technique remains the sole executable behaviour owner.** Acquiring a Technique through training, a drop, a tome or another authorized channel produces a character-owned **Technique Card**. Conferred Lineage/build Techniques remain cardless and inherent. A card may enhance or combine with an inherent Technique without converting it into a card. **Support Cards** are a separate non-executable Tarot Card type; their detailed acquisition contract remains Session C1-G work.
+
+```text
+Acquisition channel
+  → character-owned Technique Card
+    → acquired Technique access
+      → installation and build configuration
+        → executable Technique candidate under P12
+```
+
+The acquisition transaction validates the channel, resolves an exact Technique revision, creates the persistent card, records acquired access and provenance atomically, or rolls back entirely. Neither orphan acquired access without its card nor a card without its referenced acquisition is valid. An unlearned physical card may be an Inventory input; it is distinct from the persistent character-owned card. Concrete channel rewards, prices and crafting provenance belong to Stage 3 and Stages 5–6, not this generic interface.
+
+Ownership and installation are independent. Uninstallation preserves the card, acquisition provenance and existing expertise/discovery. Cards remain character-scoped while that character persists, including equipment/source loss and run transitions. Death/account inheritance is unresolved Stage 3 work. Repeated acquisition of the same exact Technique revision creates neither another access truth nor automatic expertise; physical duplicates and disposal remain Inventory/Economy decisions. Card and Technique revisions are pinned independently; migration is explicit, never silent.
+
+The card is the primary player-facing mechanical description, generated from authoritative Technique, card, installation and discovery state. It does not duplicate executable mechanics. Every operative effect, cost and prerequisite is disclosed; latent uses may remain undiscovered. C1-F must settle the visual templates and discovery contract in V before architecture closeout. Formal vocabulary is Technique, Tarot Card, Technique Card, Support Card, installed Tarot Card and Tarot layout; Deck and Arcana retain their existing world/Faculty meanings.
+
+**P-C20 · Critical.** Every acquired Technique has an atomically created character-owned Technique Card and exact acquisition provenance; conferred inherent Techniques remain cardless. Uninstallation preserves ownership/access, and revisions never migrate silently. A Support Card authorizes no independent executable Technique.
+
+### 2.3g Tarot layout and vertical contributions [LOCKED 0.45.0, ◈C1-C]
+
+One global authored Tarot topology carries stable column/depth addresses. Local depth extensions preserve the main node rather than replacing it; three complete global layers are not required. `A@1`, `A@2`, `A@3` denote physical addresses, while `D⌬1`, `D⌬2`, `D⌬3` denote intrinsic Technique/card tiers. Slot depth and intrinsic tier are separate. Classes, progression, rewards and other authorized sources unlock existing positions and links; they do not invent coordinates or rewrite topology.
+
+Progression/build determines slot unlock, installation requirements, compatible occupancy and active neighbouring links. Slot progression is `defined → unlocked → installation-eligible → occupied → layout-valid`. Current character/world state determines `known`, `selectable` and `executable` through P12. Temporary failure never uninstalls a card or changes persistent topology.
+
+Support Cards contribute upward to the first receiving Technique above them in the same column; empty intermediate positions are permitted. A receiving Technique ends that contribution path. A contributor cannot contribute downward, horizontally, recursively or to two receivers. A lower-tier Technique Card may contribute **same-Technique resonance** to a higher-tier receiver in its explicitly authored Technique progression. It remains a Technique Card; while bound it cannot execute independently or join a Combo separately. Other Technique Cards cannot provide cross-Technique vertical modification.
+
+Every vertical contributor must have a lower intrinsic tier than its receiver, and the sum of installed contributor tiers must not exceed the receiver's intrinsic tier. This capacity covers both Supports and resonance. A receiver retains its intrinsic tier; contribution never grants floor access or a higher Technique level.
+
+| Column from lower to higher depth | Result |
+| --- | --- |
+| D⌬1 Support, G⌬2 Support, A⌬3 Technique | Legal: 1 + 2 ≤ 3 |
+| D⌬1 Support, G⌬1 Support, A⌬3 Technique | Legal: 1 + 1 ≤ 3 |
+| D⌬2 Support, G⌬2 Support, A⌬3 Technique | Illegal: 2 + 2 > 3 |
+| D⌬1 Support, G⌬2 Support, A⌬1 Technique | Illegal: contributors are not lower tier |
+| D⌬1 Support, G⌬2 Technique, A@3 empty | Legal: D supports G; no empty apex is required |
+| D⌬1 Technique, D⌬2 Technique | Legal resonance: increased authorized D⌬2 output; lower D is bound |
+| D⌬1 Support, G⌬2 Technique | Legal compatible Support modification; no strength ranking against resonance is presumed |
+
+Same-Technique resonance increases declared existing output values without adding characteristics or effects. Support Cards may modify and/or add explicitly authorized output and characteristics. These builds serve different tactical purposes and neither is universally stronger.
+
+Only one effective contribution of each specific Support identity is accepted per receiver. Different ⌬ variants share that identity: only the highest-tier bound Support contributes, lower variants are suppressed, and equal-tier duplicates contribute once. All installed duplicates still occupy positions and count toward vertical capacity. Suppressed variants never become automatic runtime fallbacks. Distinct Support identities may both contribute if compatible.
+
+**P-C21 · Critical.** Tarot depth and intrinsic tier are separate; vertical contributions are receiver-local, strictly lower-tier and sum to at most the receiver tier. Support and same-Technique resonance remain distinct; bound contributors cannot execute or become Combo endpoints. Duplicate Supports contribute only once at their highest bound tier while all installed contributors consume capacity.
+
+### 2.3h Tarot horizontal links and inherent endpoints [LOCKED 0.45.0, ◈C1-D]
+
+Resolve each column's receiver with its exact contributors before horizontal pairing. This **layout expression** retains receiver identity/tier and exact revisions but is not itself an executable candidate. Its nested contributors provide no additional delivery hooks or endpoints.
+
+Horizontal links join only directly linked positions at the same physical depth. They permit exact Combo authorization; adjacency alone gives no Combo, horizontal potency, action sequence or recursive network traversal. A lower-tier Technique Card may occupy a higher-depth position as a Combo component, but it cannot execute standalone there. It remains a Technique Card, not a Support Card.
+
+```text
+A@1: A⌬1 Technique ↔ B@1: B⌬1 Technique
+  → A⌬1, B⌬1 and authorized A⌬1+B⌬1 Combo
+A@2: A⌬2 Technique; B⌬1 remains at B@1
+  → A⌬2 standalone; no cross-depth A⌬2+B⌬1 Combo
+A@2: A⌬2 Technique ↔ B@2: B⌬1 Technique
+  → authorized A⌬2+B⌬1 Combo; raised B⌬1 has no standalone use
+```
+
+```text
+Combo authorization
+  component A = exact Technique && tier compatibility
+  component B = exact Technique && tier compatibility
+  result      = exact Combo-Action revision
+```
+
+Both Technique identity and tier compatibility are required. The physical link is undirected; an authored Combo may be symmetric or distinguish primary/secondary order. It references an exact Combo-Action, never dynamically merges arbitrary records. Exactly two endpoint expressions supply one distinct delivery hook each; their union must contain exactly two hooks. A two-hook composite cannot take another endpoint. Two Arcana endpoints cannot reuse one voice. Nested Supports/resonance add neither hooks nor components. Construct the exact Combo candidate and evaluate every dependency under P12; a failed component blocks the Combo without silent substitution.
+
+A cardless inherent Technique participates through an **inherent endpoint**, a stable non-card layout position. This is the accepted C1-D4 connection, formerly called an inherent anchor during reconciliation; `anchor` remains reserved to T's Skill Anchor. The endpoint references an already possessed inherent Technique and grants no acquisition, source or hook. It may be empty when no compatible inherent Technique is possessed. The inherent Technique remains independently usable without an endpoint.
+
+Endpoint depth matches the inherent expression's authorized tier; a tier-1 expression cannot be raised to depth 3 merely to reach a Combo. A higher expression must already be authorized by the Technique's progression. An inherent endpoint may receive compatible lower-tier Support Cards and acquired same-Technique resonance Cards under §2.3g, and may join an authorized same-depth Combo under this section. The inherent Technique remains cardless.
+
+**P-C22 · Critical.** A Tarot Combo has exactly two directly linked same-depth endpoint expressions, exact Technique && tier compatibility and one exact Combo-Action revision. Each endpoint resolves one distinct hook; nested contributors supply none. An inherent endpoint references an existing cardless entitlement at matching tier/depth and never grants a Technique or source.
+
+### 2.3i Tarot enhancement contracts [LOCKED 0.45.0, ◈C1-E]
+
+The receiving Technique declares every permitted contribution dimension and variant. Exact contributor identity/revision, receiver identity/revision, receiver tier compatibility, permitted dimensions and layout/capacity requirements combine conjunctively. Resonance additionally requires an explicit same-Technique progression relation; display names and damage types do not establish one. A Support may target one Technique or an authored family whose membership and revisions resolve deterministically.
+
+| Dimension | Same-Technique resonance | Support Card |
+| --- | --- | --- |
+| Damage, healing, shielding or mitigation output | May increase declared existing values | May modify and/or add explicitly authorized output |
+| Effect strength, duration or displacement distance | Only declared existing potency fields | May modify and/or add explicitly authorized effect parameters |
+| Range, area dimensions or target count | No default permission | May modify explicitly permitted parameters |
+| Costs, execution time or cooldown duration | No default permission | May modify explicitly permitted parameters |
+| Payload or other effect characteristics | Preserves existing effect set | May modify and/or add explicitly authorized Payload or effect characteristics |
+| Targeting shape, delivery route or planning behaviour | Preserves existing contract | May modify and/or add explicitly authorized targeting, route or planning behaviour |
+| Tier, entitlement, source requirements, hooks, footprint or aimed-mode capability | Cannot change | Cannot change |
+
+Support additions select behaviour authorized by the receiving Technique; Technique remains the executable owner. Added routes and planning behaviour carry explicit requirements and inherit P12-C. Ordinary Payload cardinality remains zero or one under T-C16; exceptional multi-Payload authority cannot be inferred from cards. Resonance fields are authored individually, never all numerical fields by default.
+
+```text
+receiver at authorized tier
+  → select highest-tier effective Support per identity
+    → resolve authorized Support variants
+      → aggregate same-Technique resonance
+        → aggregate numeric Support contributions
+          → apply declared bounds and rounding
+            → validate the complete expression
+```
+
+Every adjustable field declares its stacking operator. The default uses one reference value after variant selection:
+
+```text
+final = clamp(reference × (1 + sum(proportional adjustments))
+              + sum(flat adjustments))
+```
+
+Contributors never repeatedly multiply enhanced results. Integer counts and exclusive variants require suitable declared operators. Installation order cannot affect the result. Resonance scales only the receiver's declared potency fields; a Support-added effect participates only through explicit receiver authorization. Numeric evaluation uses P-C12 fixed-point/integer semantics, bounded values and deterministic rounding.
+
+Capacity and effect compatibility are independent checks. Mutually exclusive variants make an expression invalid unless an authored composition resolves the pair; never discard a contribution silently or choose by installation order. Duplicate Support suppression occurs before variant and numerical evaluation. Runtime dependency failures remain local under P12 and do not rewrite installed state.
+
+Resolve each enhanced endpoint before Combo authorization. The exact Combo declares which enhanced component values and variants it consumes. It neither discards nor inherits all contributions by default. Count every contribution once; no Combo output feeds back into components or nested contributors.
+
+Each contract states bounds, minimum costs/cooldowns where applicable, and its failure conditions. Concrete tuning remains content/SIM work; no numerical bonuses are invented here. Existing source/Faculty/anatomy/equipment, Triade position/floor, Payload, hook, aimed-mode and M-H5 power constraints still hold. The generated card view exposes operative values, costs, prerequisites, contributions and incompatibility reasons; latent uses may remain undiscovered. C1-F owns the remaining presentation/discovery design.
+
+Required proofs: installation-order invariance; explicit conflict failure; duplicate highest-tier selection; installed duplicates consuming capacity; each contribution counted once; pinned replay provenance; no recursive amplification; supported Combos retaining authorized behaviour and exactly two hooks; dependency-local runtime failure without fallback.
+
+**P-C23 · Critical.** Every Tarot enhancement is authorized by its exact receiving Technique compatibility contract, with declared fields/operators/bounds, deterministic variant-first evaluation and no recursive amplification. Supports may modify/add only authorized effects; resonance increases declared existing output. Combo transfer is explicit and counted once, and no contribution bypasses P12, Payload cardinality, hooks, tier/floor, footprints or aimed-mode authority.
+
 ### 2.4 Editing controls the designer gets without SQL
 
 ID dropdowns restricted to registered taxonomy · enum rejection · conditional formatting for missing required components · protected calculated columns (pip totals, vector sums, shield budgets, tooltip counts) · formula previews for free hands and legal combo pairings · **revision lock — approved revisions are never edited in place** · validation sheet by rule ID and severity · flattened preview that is never canonical · fixture-coverage view showing which rules have no proving fixture.
@@ -545,6 +666,10 @@ Unique identity · source resolution (T-C12) · category component completeness 
 
 | # | Question | Status | Owner |
 | --- | --- | --- | --- |
+| **◇P14** | **Tarot architecture closeout.** C1-A–E are adopted at §2.3f–i; C1-F must settle card information, discovery, V-owned visual templates and previews. C1-G must settle Support acquisition/persistence details and representative fixture/validation handoff before Session C1 closes. Stage 3 custody/economy and C2 implementation remain downstream. | **[OPEN]** | Design / P |
+
+| # | Question | Status | Owner |
+| --- | --- | --- | --- |
 | **◇P1** | **DuckDB v2.0 migration.** v1.4 LTS is pinned and supported to September 2026, the same month v2.0 ships. Storage-format churn across that boundary is unassessed | **[OPEN]** | Tooling |
 | **◇P2** | **Multi-writer escalation path.** PostgreSQL is the chosen fallback; DuckLake (v1.0, April 2026) and Quack (beta) are newer and unproven here | **[OPEN]** | Tooling |
 | ~~**◈P3**~~ | **CLOSED 0.34.0.** `FIXED_POINT_SCALE = 12 000`; `1.0 = 12 000_q`; persisted as **signed 64-bit**; conversion **round-to-nearest, ties away from zero**; multiplication through a **checked wider intermediate** before dividing by 12 000. **Binary floats never enter canonical persistence or a proof digest.** *`world_tick`, tick durations, AP rates and bounded `u8` channels are ordinary integers — not `_q`* | — | — |
@@ -736,6 +861,7 @@ Recorded so nobody later reports the set as complete.
 
 | Version | Change |
 | --- | --- |
+| **0.45.0** | **C1-A–E adopted at §2.3f–i.** Card acquisition/persistence, local-depth layout, Support/resonance capacity, exact same-depth Combos, inherent endpoints and deterministic modify/add enhancement centralized as P-C20–P-C23. ◇P14 owns C1-F/G; Stage 3 and C2 remain gated. |
 | **0.44.0** | **`◈P12` closes.** §2.3e locks pure ordered evaluation, explicit environmental target domains and resolution-participant roles, exact-candidate atomic commitment, milestone-local live revalidation, cost/cooldown milestones and autonomous scheduled/triggered Plannable Actions (**P-C19**). |
 | **0.43.0** | **`◇P12-B` closes.** §2.3d defines route-level readiness as `known`, `selectable` and `executable`; candidate alternatives are existential while within-route requirements are conjunctive. Dependency-local invalidation, transferred-provision survival, declared cooldown propagation and Technique-authored target-route validity are authoritative (**P-C18**). The missing authoritative source row for existing **P-C17** is restored. P12-C remains open for deterministic evaluation/commit order. |
 | **0.42.0** | **`◇P12-A` closes.** P·2.3c adds authoritative build instructions and actor acquisitions plus a generated actor-entitlement projection (**P-C17**). Entitlements attach only to base Faculties; composite profiles remain authorization profiles. Possession derives from conferred/acquired, and acquisition normally survives loss of an unlock source. P12-B/C remain open for complete derived availability and evaluation order. |

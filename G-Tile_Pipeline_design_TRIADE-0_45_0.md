@@ -1,25 +1,25 @@
 # Triade — Tile Pipeline Design
 
-**Version:** 0.44.0
-**Date:** 27 September 2026
+**Version:** 0.45.0
+**Date:** 2 October 2026
 **Status:** Created at 0.12.0. Architecture settled; numbers pending simulation. Art production standards pending the ◇V6 posture test.
 
 **Document set:** this is one of **ten**.
 
 | Ref | Document | Filename |
 | --- | --- | --- |
-| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_44_0.md` |
-| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_44_0.md` |
-| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_44_0.md` |
-| **V** | Visual Design | `V-Visual_design_TRIADE-0_44_0.md` |
-| **K** | Combat Design | `K-Combat_design_TRIADE-0_44_0.md` |
-| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_44_0.md` |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_44_0.md` |
-| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_44_0.md` |
-| **G** | **Tile Pipeline** — *this document* | `G-Tile_Pipeline_design_TRIADE-0_44_0.md` |
-| — | *Open Items Index* | `B-Open_Items_Index_TRIADE-0_44_0.md` |
-| — | *SIM Numbers Register* | `Y-SIM_Numbers_Register_TRIADE-0_44_0.md` |
-| — | *Validation Rules Index* | `R-Validation_Rules_Index_TRIADE-0_44_0.md` |
+| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_45_0.md` |
+| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_45_0.md` |
+| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_45_0.md` |
+| **V** | Visual Design | `V-Visual_design_TRIADE-0_45_0.md` |
+| **K** | Combat Design | `K-Combat_design_TRIADE-0_45_0.md` |
+| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_45_0.md` |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_45_0.md` |
+| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_45_0.md` |
+| **G** | **Tile Pipeline** — *this document* | `G-Tile_Pipeline_design_TRIADE-0_45_0.md` |
+| — | *Open Items Index* | `B-Open_Items_Index_TRIADE-0_45_0.md` |
+| — | *SIM Numbers Register* | `Y-SIM_Numbers_Register_TRIADE-0_45_0.md` |
+| — | *Validation Rules Index* | `R-Validation_Rules_Index_TRIADE-0_45_0.md` |
 
 **Scope.** **G** owns the tile as a *content package*: ontology, concept brief, graphical production, socket and adjacency encoding, the archetype record, batch bake, linting, and the agentic and human authoring pipeline around all of it.
 
@@ -478,6 +478,7 @@ Humans do not hand-place routine decoration across generated dungeons. A designe
 
 | Version | Change |
 | --- | --- |
+| **0.45.0** | Version and cross-reference alignment; Tarot acquisition/layout authority belongs to P·2.3f–i and does not alter this document's existing rules. |
 | **0.44.0** | Version alignment only. P12-C may consume current geometry for target routes, contacts and environmental participants but changes no tile, material, adjacency, bake or render-proof authority. |
 | **0.43.0** | Version alignment only. P12-B changes no tile, material, adjacency, bake or render-proof contract. |
 | **0.42.0** | Version alignment only. P12-A changes no tile, material, adjacency, bake or render-proof contract. |

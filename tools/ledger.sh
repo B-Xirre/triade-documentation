@@ -4,7 +4,7 @@
 # Contract: TRIADE-Design_Stream_Project_Instructions, Session protocol / The ledger.
 #   Records every file under the documentation root, sorted by path.
 #   Fields: path (relative, forward slashes), bytes, sha256, mtime_utc (ISO-8601 Z).
-#   Excludes FOLDER-LEDGER.json, the untracked Research/ tree, and __pycache__.
+#   Excludes FOLDER-LEDGER.json, Research/, .git/, .obsidian/, and __pycache__/.
 #   Recursive otherwise.
 #   Research/ holds imported third-party material and retired reconciliation records;
 #   it carries no design authority, so churn there is noise, not signal.
@@ -42,7 +42,7 @@ mode, root = sys.argv[1], os.path.realpath(sys.argv[2])
 LEDGER_NAME = "FOLDER-LEDGER.json"
 LEDGER_PATH = os.path.join(root, LEDGER_NAME)
 EXCLUDE = {LEDGER_NAME}
-EXCLUDE_DIRS = {"Research", ".git", "__pycache__"}   # Research: untracked; .git: operational metadata; __pycache__: build artefact
+EXCLUDE_DIRS = {"Research", ".git", ".obsidian", "__pycache__"}   # Research: untracked; .git/.obsidian: local operational state; __pycache__: build artefact
 
 
 def now_z():

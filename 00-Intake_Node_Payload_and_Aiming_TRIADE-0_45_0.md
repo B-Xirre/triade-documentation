@@ -3,7 +3,7 @@
 **Source:** `02-M14_Consolidated_Innate_Node_Payload_Aiming_Proposal_TRIADE-0_36_0.md`, §§5–13
 **Type:** `FINDING` — a design proposal arriving with `◇M14`, deliberately **not** adopted under it
 **Central disposition:** `unresolved` — A1 §§5–8 and A2 §§9–11 closed; seven of nine delivery findings are authored or enforced elsewhere
-**Aligned to:** Triade v0.44.0
+**Aligned to:** Triade v0.45.0
 
 ## Why this is separate
 

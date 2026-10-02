@@ -1,7 +1,7 @@
 # Triade — Open Items Index
 
-**Version:** 0.44.0
-**Date:** 27 September 2026
+**Version:** 0.45.0
+**Date:** 2 October 2026
 **Status:** Generated from `[OPEN]`, `[SIM]` and `[GAP]` markers across the ten-document set. **Derived, not authored** — edit the source document, regenerate this.
 
 > **Caveat withdrawn, 0.21.0 amended.** The sibling *Validation Rules Index* **is** fully derived — `◈P7` closed at 0.20.0, all 142 rules authored in their home document and verified against **P-C8**. This index has still not been audited the same way; a marker census across the ten design documents and the technical specification would settle it.
@@ -26,6 +26,7 @@
 | --- | ---: | --- |
 | **Balance** *(needs the sim harness)* | 15 | ◇T1, ◇T2, ◇T3, ◇M4, ◇W2a, ◇W3, ◇W4, ◇W2g, ◇W15, ◇E2, ◇E4, ◇E8, ◇E9, **◇E11**, **◇W17** |
 | **Design — gates the harness** | 0 | *(◈M1, ◈M2 closed 0.14.0 — Gate 0 passed)* |
+| **Design — Tarot closeout** | 1 | ◇P14 — C1-F/G at P·Part 8 |
 | **Content** | 12 | ◇T1, ◇T5, ◇W8, ◇W10, ◇W13, ◇E3, ◇E5, ◇E6, ◇E7, ◇G2, ◇G3, ◇G6 |
 | **Economy** | 4 | ◇M6, ◇M7, ◇H13, ◇W14 |
 | **UI / Prototype** | 5 | **◇M3**, ◇V2, **◇V3**, ◇H14, **◇V6** — ◇M3/◇V3 and ◇V6 run as one session |
@@ -118,7 +119,7 @@ No live open items. K's provisional numbers are in the SIM Register.
 | **◇W15** | `[Incursion]` pacing against S-W02 band targets | **[OPEN]** | Balance |
 | **◇W16** | `[Inventory]` gap *(= ◇M9)* | **[OPEN] [GAP]** | **No owner** |
 | **◇W17** | **Stratum scaling must follow the career power curve** — unimplemented, a ×9 career trivialises cleared bands *(partner to ◇E11)* | **[OPEN] [SIM]** | Balance / W |
-| **◈W18** | **Rename the world/geographic `region` to Territory.** `region` is locked to **Triade regions (T)** and is never a map area, yet W uses it for geography — and W·5 proves the two are different: *multiple regions may declare the same axis*, so geographic identity is demonstrably not Triade identity. **Ruled 0.33.0, scheduled after Set 1**: `territory_id`, **Territory package**, **launch Territories**, and `[Territory Vocabulary]` where it means geographically taught content. T's and C's barycentric uses do **not** move. ~250 occurrences of `region` across 17 documents need discriminating by sense — a blanket replace is barred, and a half-done rename is worse than none | **[CLOSED 0.38.0]** | Vocabulary / W **Occurrence register at `00-W18_Region_Occurrence_Register_TRIADE-0_44_0.md`** **[CLOSED 0.38.0]** Applied in one transaction. **396 occurrences classified: 263 Triade, 83 geographic, 3 other-spatial, 47 meta/historical.** 75 hand-edits in A, G, L, T, W; the 8 in B, R and Y fell out of regeneration, never hand-edited. **24 identifier forms sat outside the census** — `\bregions?\b` cannot match `region_id` — of which W's 4 became `territory_id`; C's `ref_regions` is Triade (`parent_corner_a/b` → momentum/form/mind) and needed no counter-patch. **Territory is capitalised** for the record and its instances, compounds and plurals; machine identifiers stay snake_case (L · 9D). Historical rows untouched: 0 of 83 geographic occurrences fell in a changelog line. Classification is occurrence-based, never document-based: T·252's *faction/region flavour* is geographic inside the document that owns the barycentric sense. |
+| **◈W18** | **Rename the world/geographic `region` to Territory.** `region` is locked to **Triade regions (T)** and is never a map area, yet W uses it for geography — and W·5 proves the two are different: *multiple regions may declare the same axis*, so geographic identity is demonstrably not Triade identity. **Ruled 0.33.0, scheduled after Set 1**: `territory_id`, **Territory package**, **launch Territories**, and `[Territory Vocabulary]` where it means geographically taught content. T's and C's barycentric uses do **not** move. ~250 occurrences of `region` across 17 documents need discriminating by sense — a blanket replace is barred, and a half-done rename is worse than none | **[CLOSED 0.38.0]** | Vocabulary / W **Occurrence register at `00-W18_Region_Occurrence_Register_TRIADE-0_45_0.md`** **[CLOSED 0.38.0]** Applied in one transaction. **396 occurrences classified: 263 Triade, 83 geographic, 3 other-spatial, 47 meta/historical.** 75 hand-edits in A, G, L, T, W; the 8 in B, R and Y fell out of regeneration, never hand-edited. **24 identifier forms sat outside the census** — `\bregions?\b` cannot match `region_id` — of which W's 4 became `territory_id`; C's `ref_regions` is Triade (`parent_corner_a/b` → momentum/form/mind) and needed no counter-patch. **Territory is capitalised** for the record and its instances, compounds and plurals; machine identifiers stay snake_case (L · 9D). Historical rows untouched: 0 of 83 geographic occurrences fell in a changelog line. Classification is occurrence-based, never document-based: T·252's *faction/region flavour* is geographic inside the document that owns the barycentric sense. |
 
 ### H · Damage & Health
 
@@ -159,6 +160,7 @@ No live open items. K's provisional numbers are in the SIM Register.
 
 | # | Item | Markers | Blocking |
 | --- | --- | --- | --- |
+| **◇P14** | **Tarot architecture closeout.** C1-A–E are adopted at §2.3f–i; C1-F must settle card information, discovery, V-owned visual templates and previews. C1-G must settle Support acquisition/persistence details and representative fixture/validation handoff before Session C1 closes. Stage 3 custody/economy and C2 implementation remain downstream. | **[OPEN]** | Design / P |
 | ◇P1 | DuckDB v2.0 migration — v1.4 LTS pinned; v2.0 and LTS expiry land the same month | [OPEN] | Tooling |
 | ◇P2 | Multi-writer escalation — PostgreSQL chosen; DuckLake and Quack unproven here | [OPEN] | Tooling |
 | ~~**◈P3**~~ | **CLOSED 0.34.0** — `FIXED_POINT_SCALE = 12 000`, derived from the Triade fractions the corpus uses | — | — |
@@ -222,7 +224,7 @@ No live open items. K's provisional numbers are in the SIM Register.
 ## 6. Regeneration
 
 ```bash
-grep -nE "\[OPEN\]|\[SIM\]|\[GAP\]" [A-Z]-*_TRIADE-0_44_0.md
+grep -nE "\[OPEN\]|\[SIM\]|\[GAP\]" [A-Z]-*_TRIADE-0_45_0.md
 ```
 
 **Corrected at 0.17.0 and run before publishing.** The previous command globbed `TRIADE-*design-0.17.0.md`, which matched **zero files** on two counts: filenames use underscores in the version (`0_17_0`), and `*design*` excluded the three indexes and the technical specification. It had been publishing a clean result by matching nothing. **The first correction was also wrong** — `TRIADE-*_0_17_0.md` matches nothing either, because the version is preceded by a hyphen, not an underscore. Both were caught by running the command instead of reading it.
@@ -235,6 +237,7 @@ Any item in a source document without a marker, or in this index without a sourc
 
 | Version | Change |
 | --- | --- |
+| **0.45.0** | P-owned ◇P14 generated for remaining C1-F/G; live-row census 70. C1-A–E are adopted at P·2.3f–i. |
 | **0.44.0** | **`◈P12` closed.** The regenerated projection records the complete A/B/C contract and removes the final Session B gate. Board recount: **68 live items**. |
 | **0.43.0** | **`◇P12-B` closed internally; `◇P12` remains open for P12-C only.** The index now projects route-level `known`/`selectable`/`executable`, dependency-local invalidation and Technique-authored direct/area targeting. Board recount remains **69 live items**. |
 | **0.42.0** | **`◇P12-A` closed internally; `◇P12` remains open.** Entitlement/acquisition identity is now sourced from P·2.3c; P12-B/C retain complete availability evaluation. Board recount remains **69 live items**. |

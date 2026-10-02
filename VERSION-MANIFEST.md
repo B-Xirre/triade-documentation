@@ -1,7 +1,7 @@
 # VERSION MANIFEST
 
-**Current version:** 0.44.0
-**Date:** 27 September 2026
+**Current version:** 0.45.0
+**Date:** 2 October 2026
 **Naming convention:** `<REF>-<Name>_TRIADE-[V_e_r].md` — ref letter first, `TRIADE` in the stem, version last. Adopted 0.22.0. `VERSION-MANIFEST.md`, `FOLDER-LEDGER.json`, `.markdownlint.jsonc` and `tools/*` keep their names.
 
 ---
@@ -10,17 +10,17 @@
 
 | Field | Value |
 | --- | --- |
-| `version` | **0.44.0** |
-| `updated` | 2026-09-27T10:54Z |
+| `version` | **0.45.0** |
+| `updated` | 2026-10-02T19:13Z |
 | `signed_off` | **Delegated by Bart** — this process holds routine governing responsibility for the central design stream until explicitly revoked. The delegation authorises cohesive documentation maintenance; it does not adopt any individual proposal |
-| `changed_this_session` | **`◈P12` and Session B closed.** P12-C authors pure ordered gate evaluation, explicit environmental target domains and resolution-participant roles, exact-candidate atomic commitment, milestone-local revalidation, cost/cooldown milestones and autonomous scheduled/triggered Plannable Actions with three acquisition modes (**P-C19, T-C20, K-C19, K-C20**). No Tarot mechanic was adopted |
-| `blocking` | **Session C1 is now current.** Tarot architecture must reconcile system identity, learning/persistence, Triade slot topology, links, enhancement and Combo boundaries without bypassing P12-C, aiming, anatomy or perception authority. P13/P11/P12-A/B/C remain technical schema and migration handoffs; A3/A4 remain separately bounded |
-| `next_action` | Open Tarot Session C1 from the governed concept; settle architecture before Stage 3 physical-card lifecycle and later C2 acquisition/install implementation. Keep A3 authoring/automation and A4 UI as separate packages |
-| `last_archive` | `Archive/v0.43.0/` — taken before source edits; verified 56/56 total corpus files with 0 byte-hash mismatches; `.git` operational metadata excluded |
-| `tooling` | **Nine checks** — `markdownlint` · `ledger` · `history` · `version` · `fence` · `suite` · `retirement` · `intake` · `bump` |
+| `changed_this_session` | **C1-A–E adopted** at P·2.3f–i with P-C20–P-C23; T/K/M/V/C integration, L vocabulary, concept disposition, ROADMAP and derived projections aligned. `.obsidian` is local-only under user approval; ledger and Git exclude it. Design instructions advance to 1.31 |
+| `blocking` | **◇P14: C1-F/G remain open.** Card presentation/discovery/templates/previews, Support acquisition/persistence details and architecture fixture/validation closeout precede Stage 3 and C2. A3/A4 and technical schema/migration handoffs remain separately bounded |
+| `next_action` | Open C1-F1: required card information, then discovery, visual templates and build previews. Continue C1-G closeout before Stage 3 Tarot Card management and C2 implementation |
+| `last_archive` | `Archive/v0.44.0/` — verified before source edits: 32 ledger-tracked and 56/56 total corpus files, 0 hash mismatches; `.git`, `.obsidian` and `__pycache__` excluded |
+| `tooling` | **Nine checks** — markdownlint-cli2 **0.23.3**, markdownlint **0.41.1**, 21 Markdown files; ledger · history · version · fence · suite · retirement · intake · bump. Generator exclusion proof and source/index census accompany release |
 | `drive_mirror` | **BACKUP STALE — NOT UPDATED THIS SESSION.** `X:\Documentation` remains authoritative. Standing create/update authorization remains in force, but Drive is touched only as a requested session-final backup action |
-| `board` | **68 live items**, home and index agreeing |
-| `ledger_written` | 2026-09-27T10:54Z |
+| `board` | **70 live items**, source/index agreeing; ◇P14 added. Current census corrects the inherited baseline tally to 69; historical release counts remain unchanged |
+| `ledger_written` | 2026-10-02T19:13Z |
 
 ---
 
@@ -28,16 +28,16 @@
 
 | Ref | Document | Filename | Status |
 | --- | --- | --- | --- |
-| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_44_0.md` | 🟢 CURRENT |
-| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_44_0.md` | 🟢 CURRENT |
-| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_44_0.md` | 🟢 CURRENT |
-| **V** | Visual Design | `V-Visual_design_TRIADE-0_44_0.md` | 🟢 CURRENT |
-| **K** | Combat Design | `K-Combat_design_TRIADE-0_44_0.md` | 🟢 CURRENT |
-| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_44_0.md` | 🟢 CURRENT |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_44_0.md` | 🟢 CURRENT |
-| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_44_0.md` | 🟢 CURRENT |
-| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_44_0.md` | 🟢 CURRENT |
-| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_44_0.md` | 🟢 **CURRENT — NEW** |
+| **T** | Core Mechanic | `T-Core_Mechanic_design_TRIADE-0_45_0.md` | 🟢 CURRENT |
+| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_45_0.md` | 🟢 CURRENT |
+| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_45_0.md` | 🟢 CURRENT |
+| **V** | Visual Design | `V-Visual_design_TRIADE-0_45_0.md` | 🟢 CURRENT |
+| **K** | Combat Design | `K-Combat_design_TRIADE-0_45_0.md` | 🟢 CURRENT |
+| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_45_0.md` | 🟢 CURRENT |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_45_0.md` | 🟢 CURRENT |
+| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_45_0.md` | 🟢 CURRENT |
+| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_45_0.md` | 🟢 CURRENT |
+| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_45_0.md` | 🟢 **CURRENT — NEW** |
 
 ## Derived indexes — three
 
@@ -45,9 +45,9 @@
 
 | Index | Filename | Generated from |
 | --- | --- | --- |
-| Open Items | `B-Open_Items_Index_TRIADE-0_44_0.md` | `[OPEN]` and `[GAP]` markers |
-| SIM Numbers Register | `Y-SIM_Numbers_Register_TRIADE-0_44_0.md` | `[SIM]` markers |
-| Validation Rules | `R-Validation_Rules_Index_TRIADE-0_44_0.md` | `{DOC}-{C\|H\|M}{n}` rule tables |
+| Open Items | `B-Open_Items_Index_TRIADE-0_45_0.md` | `[OPEN]` and `[GAP]` markers |
+| SIM Numbers Register | `Y-SIM_Numbers_Register_TRIADE-0_45_0.md` | `[SIM]` markers |
+| Validation Rules | `R-Validation_Rules_Index_TRIADE-0_45_0.md` | `{DOC}-{C\|H\|M}{n}` rule tables |
 
 ## Technical documents — one
 
@@ -55,7 +55,7 @@
 
 | Document | Filename | Implements | Authority |
 | --- | --- | --- | --- |
-| Content Authoring Technical Specification | `C-Content_Authoring_Technical_Specification_TRIADE-0_44_0.md` | **P** | Concrete Grist/repository realization. **Where it conflicts with P, P wins and the technical document is patched** |
+| Content Authoring Technical Specification | `C-Content_Authoring_Technical_Specification_TRIADE-0_45_0.md` | **P** | Concrete Grist/repository realization. **Where it conflicts with P, P wins and the technical document is patched** |
 
 **The design set remains ten documents.** This class is deliberately not counted among them: P is still the design owner of the content pipeline, and admitting an implementation record to the design count would misstate where authority sits.
 
@@ -63,11 +63,11 @@
 
 | Document | Filename |
 | --- | --- |
-| Design-stream instructions | `Z-Design_Stream_Project_Instructions_TRIADE-0_44_0.md` *(v1.30 — ledger/archive exclude `.git` operational metadata; `X:\Documentation` primary; Drive backup only, session-end when requested)* |
-| Technical-stream instructions | `Z-Technical_Stream_Project_Instructions_TRIADE-0_44_0.md` *(v1.3, aligned v0.38.0, 7,887 of 8,000 characters — 113 headroom)* |
-| Technical implementation status | **R7, M10 dependency layer and the five M10 equipment records all adopted** into active document `3TwLJyu7fythPjAj1e1424`; repository at commit `8d2776b`, regression suite 7/7 with no skips. **Next: migrate the proved candidate through P·2.3e and the 213-rule set, including exact-candidate commitment and Plannable Action nodes** |
+| Design-stream instructions | `Z-Design_Stream_Project_Instructions_TRIADE-0_45_0.md` *(v1.31 — `.obsidian` local-only, excluded alongside operational metadata; `X:\Documentation` primary; Drive backup only when requested)* |
+| Technical-stream instructions | `Z-Technical_Stream_Project_Instructions_TRIADE-0_45_0.md` *(v1.3, aligned v0.38.0, 7,887 of 8,000 characters — 113 headroom)* |
+| Technical implementation status | **R7/M10 prior checkpoint retained**, active document `3TwLJyu7fythPjAj1e1424`, repository `8d2776b`, prior regression 7/7. **Next: migrate to the 217-rule design set and P·2.3a–i through explicit implementation gates.** Tarot architecture is adopted; C1-F/G, Stage 3 and C2 still gate its schema/fixture realization |
 | Counter-patch | `Research\03-Counter_Patch_Z_Technical_TRIADE-0_39_0.md` — **CP-5.1 pending**; technical instructions remain self-aligned to v0.38.0 until their stream adopts the zero-character alignment change |
-| Active temporary records | `00-Intake_Node_Payload_and_Aiming_TRIADE-0_44_0.md` *(7/9 delivered; A1+A2 closed)*; `01-Tarot_Card_Skill_System_Concept_TRIADE-0_44_0.md` *(current Session C1 governed concept, no adopted mechanics)*; `02-M14_Consolidated_Innate_Node_Payload_Aiming_Proposal_TRIADE-0_36_0.md` *(historical 0.36.0 proposal, non-authoritative, retained while intake remains open)* |
+| Active temporary records | `00-Intake_Node_Payload_and_Aiming_TRIADE-0_45_0.md` *(7/9 delivered; A1+A2 closed)*; `01-Tarot_Card_Skill_System_Concept_TRIADE-0_45_0.md` *(C1-A–E assigned to P·2.3f–i; C1-F/G remain ◇P14)*; `02-M14_Consolidated_Innate_Node_Payload_Aiming_Proposal_TRIADE-0_36_0.md` *(historical non-authoritative proposal retained while intake remains open)* |
 | Retired intake records | *both retired 10 Aug 2026 to `Research\` — central reconciliation (7 items) and the technical stream's companion (TS-R7)* |
 | Folder ledger | `FOLDER-LEDGER.json` *(derived — never hand-edited)* |
 | Ledger generator | `tools/ledger.sh` |
@@ -75,6 +75,22 @@
 | Version Manifest | `VERSION-MANIFEST.md` |
 
 ---
+
+## 0.45.0 release summary
+
+### Tarot architecture C1-A–E — 2 October 2026
+
+The predecessor P12-C rules **P-C19, T-C20, K-C19 and K-C20** remain the execution/commitment foundation for the card layer.
+
+P·2.3f–i centralizes the accepted acquisition/persistence, Tarot layout, Support/resonance, horizontal Combo, inherent endpoint and enhancement contracts. Acquired Techniques create pinned character-owned Technique Cards atomically; conferred Lineage/build Techniques remain cardless. Support Cards are non-executable, and uninstallation preserves acquired ownership/access.
+
+Physical depth and intrinsic tier are distinct. Vertical contributors must be lower tier and their installed tier sum cannot exceed the receiver tier. Highest-tier duplicate Support suppression does not free capacity. Horizontal Combo endpoints share depth, each resolves one distinct hook, and exact Technique && tier compatibility resolves one Combo-Action revision. Cardless inherent endpoints retain the approved connection behaviour while preserving Skill Anchor vocabulary.
+
+Supports may modify and/or add receiver-authorized output/effects/routes/planning variants. Resonance increases declared existing potency fields. Variant-first deterministic aggregation uses declared operators/bounds and explicit Combo transfer without recursive amplification. P12 runtime checks, Payload cardinality, source/footprint/hook, aimed-mode and floor authority remain controlling.
+
+Four Critical rules are added: **P-C20–P-C23**. The suite is **217 — 147 Critical / 56 High / 14 Medium**. **◇P14** tracks C1-F/G. Source/index census finds **70 live items**: the prior current board actually contained 69 rather than its stated 68; historical release claims are preserved. Inventory Stage 3 includes Tarot Card management; C2 follows closeout and custody/economy design. No schema implementation or simulation pass is claimed.
+
+The verified archive is `Archive/v0.44.0/`, 56/56 corpus files. `.obsidian` stays locally and is excluded from Git, ledger, archive and Drive. Design instructions advance to **1.31**. Technical-stream instruction content remains unchanged and self-aligned to 0.38.0; only its filename advances under approval. Drive backup was not requested and remains stale.
 
 ## 0.44.0 release summary
 
@@ -639,7 +655,7 @@ One exception, stated so it is not stretched: repointing a filename *this proces
 
 **The last five ◇P7 rules were a process failure, not a documentation gap.**
 
-`L-M1` and `L-M2` were accepted during a technical implementation stream and deliberately not written into the design set, on the expectation that a centralised process would land them. There was no such process. They were given IDs in the Validation Rules Index and stated in `Z-Design_Stream_Project_Instructions_TRIADE-0_44_0.md` — a document that, by the 0.17.0 authority lock, cannot originate a rule at all. They sat that way for eight versions.
+`L-M1` and `L-M2` were accepted during a technical implementation stream and deliberately not written into the design set, on the expectation that a centralised process would land them. There was no such process. They were given IDs in the Validation Rules Index and stated in `Z-Design_Stream_Project_Instructions_TRIADE-0_45_0.md` — a document that, by the 0.17.0 authority lock, cannot originate a rule at all. They sat that way for eight versions.
 
 **The signal existed and nobody read it.** Of 141 rules, exactly two cited a source naming a document and no section. A bare source column *was* the defect.
 
@@ -686,7 +702,7 @@ Every previous count used a *pattern* — `^| **X-Cn` — which finds a rule onl
 
 ### The five that remain, and why they are two problems
 
-**Home mis-assigned, three.** `L-M1` and `L-M2` are authored — in `Z-Design_Stream_Project_Instructions_TRIADE-0_44_0.md`, which the index does not treat as a rule source. `M-C5`'s own index row cites `T · 4.8`. Nothing is missing; the index points at the wrong document.
+**Home mis-assigned, three.** `L-M1` and `L-M2` are authored — in `Z-Design_Stream_Project_Instructions_TRIADE-0_45_0.md`, which the index does not treat as a rule source. `M-C5`'s own index row cites `T · 4.8`. Nothing is missing; the index points at the wrong document.
 
 **Never written, two.** `M-C3` and `M-H4` have no statement anywhere to tag. These need a rule authored, which is design work, not bookkeeping.
 
@@ -1119,6 +1135,7 @@ Snapshot of each superseded version, written once and never edited.
 
 | Version | Location | Files | Ledger |
 | --- | --- | --- | --- |
+| 0.44.0 | `Archive/v0.44.0/` | 56 | ✓ |
 | 0.43.0 | `Archive/v0.43.0/` | 56 | ✓ |
 | 0.42.0 | `Archive/v0.42.0/` | 56 | ✓ |
 | 0.41.0 | `Archive/v0.41.0/` | 56 | ✓ |
@@ -1162,6 +1179,7 @@ Snapshot of each superseded version, written once and never edited.
 
 | Version | Date | Change |
 | --- | --- | --- |
+| **0.45.0** | 2 Oct 2026 | **C1-A–E adopted** at P·2.3f–i. Four Critical rules; suite **217 — 147/56/14**. ◇P14 tracks C1-F/G; measured **70 live items**, correcting the inherited current tally without editing history. Archive verified 56/56; `.obsidian` local-only; Drive untouched. |
 | **0.44.0** | 27 Sep 2026 | **`◈P12` and Session B close.** Pure ordered evaluation, environmental target domains and resolution participants, exact-candidate atomic commitment, milestone-local revalidation and autonomous Plannable Actions with three acquisition modes are adopted. Tarot C1 becomes current. Suite **213 — 143 / 56 / 14**; board **68 live items**. |
 | **0.43.0** | 25 Sep 2026 | **`◇P12-B` closes.** Technique readiness is generated as `known` / `selectable` / `executable`; alternative complete candidates are existential and within-candidate dependencies conjunctive. Typed local invalidation, transfer survival, cooldown propagation and authored direct/area target routes are adopted, including enemy perception boundaries. `◇P12-C` remains next; Tarot C1 stays after Session B. Suite **209 — 139 / 56 / 14**. |
 | **0.42.0** | 22 Sep 2026 | **`◇P12-A` closes.** Entitlements attach only to base Faculties; build instructions and actor acquisitions are authoritative; actor entitlement and possession are derived; acquisition is durable unless explicitly leased/revocable. Composite profiles remain authorization profiles. Mudra && Mudra requires one possessed Mudra and two functional, unoccupied hands with distinct finger hooks. P12-B/C remain next; Tarot C1 stays after Session B. Suite **205 — 135 / 56 / 14**. |
@@ -1188,7 +1206,7 @@ Snapshot of each superseded version, written once and never edited.
 | **0.23.0** | 10 Aug 2026 | **The first `AUTHORED DESIGN DECISION` centralised.** The technical stream resolved the Standard Shield's integrity path to proceed, implemented against it, marked it non-authoritative and handed it over; this process checked the reasoning against the sources and **authored it into M·2A.6** — `Stable → Cracked → Broken Guard` for shields and rigid off-hand profiles, body armour keeping `Fractured`. **The rejected four-state alternative was rejected for the right reason:** K·2 gates the Finisher on *Fractured/Broken Guard*, alternative terminals rather than a sequence, and nothing says a broken shield opens a **body** Finisher. Trade-off named — shield attrition is one step coarser. **◇M11 backlogged**, and the finding understated it: `medium` is not merely unmapped, it is **not a member of the weight-class set M·2A.7 defines**. Updated **C** accepted; A-ROADMAP Stage 2c reconciled; R7 recorded as centrally validated. |
 | **0.22.0** | 10 Aug 2026 | **Filename convention: `<REF>-<Name>_TRIADE-[V_e_r].md`.** The ref letter leads so the folder is readable without opening anything; `TRIADE` moves into the stem. 17 files renamed, **175 references repointed**. **`R`, not `X`, for the Validation Rules Index** — `X` is the generic document-letter placeholder in twenty-one template sites, and taking it would have made `X-C1` read as a rule of the index that merely derives it. `Z` for both instruction documents, distinguished by full name. Temporary records take `00-`, recycled on retirement. **`VERSION-MANIFEST.md`, `FOLDER-LEDGER.json`, `.markdownlint.jsonc` and `tools/*` keep their names** — the last three are read by exact name by the linter and the scripts. **The rename would have blinded `history-check.sh`**, which pairs live to archived documents by filename stem: the map was written and tested before a single file moved. Both published regeneration globs matched zero files afterwards and were repointed and re-run — 143 of 143. |
 | **0.21.0** | 10 Aug 2026 | **The two streams get one governance.** The technical-stream instructions enter the set as a governed document; the central instructions are renamed **`TRIADE-Design_Stream_Project_Instructions`**. Both now carry the design-set version in the filename — a co-authorship marker, deliberately alongside their independent internal versions. **Intake gains a second axis:** an item has a **type** (`FINDING` or **`AUTHORED DESIGN DECISION`**) as well as a disposition, and a fifth disposition `unresolved`. **`P-C10` authored** — an authored design decision is legal to implement against and **non-authoritative until disposed `authored`**, labelled *authored-but-not-yet-centralised* until then. This does not weaken the 0.17.0 authority lock; it names the state the lock left undefined, which is exactly how `L-M1` and `L-M2` went eight versions unauthored. **Changes flow both ways now:** the central process governs the technical instructions but does not author them, and issues a **counter-patch** instead — five items, the first instance shipped with this release. Suite 141 → 142, recounted — 80 / 48 / 14. L·10A extended by five terms. **Closed out in-version:** the technical stream returned **v1.1** (aligned v0.21.0, 7,990 characters), adopting all five counter-patch items; the counter-patch retired to `Research\` with a verified retirement record. The central process made **no edit** to the technical file at any point — the one time it tried, a two-reference sweep put the file 220 characters over an 8,000 limit with five spare, and the exception that permitted it was withdrawn in the same release. **Amended in-version, 10 Aug:** the `◈P7` closure had not propagated — 27 sites across four documents still described it as open, including a Stage 2c exit condition and an implementation decision holding `ref_rules` empty. Repaired, and with it a worse defect the stream's report surfaced indirectly: **blanket version sweeps at 0.19.0–0.21.0 had overwritten historical counts** in 5 changelog rows and 8 release summaries, so documents asserted figures that were never true when written. Restored from the archives, which were the only surviving record. `P-C9` renamed **`P-H5`** — a High rule carrying a `C` in its ID. **`P-C11` authored and enforced:** historical factual claims may not be swept; notation migrates retroactively by design. `tools/history-check.sh` compares every historical entry against **the earliest archive holding it**, and found nine violations the manual repair had missed. **Drive is recorded as an unmanaged copy** — its connector cannot update or delete, so no mirror exists and a claim sourced from it is unverified until checked against `X:\Documentation`. **R7 accepted and both intake records retired**, closing the first full cycle of the intake lane. The technical stream populated `ref_rules` with 143 source-derived rows and migrated `fixture_coverage.rule_id` to a stable-ID reference; the proof's five corpus-checkable claims — count, unique IDs and the 81/48/14 split — were re-measured against the governed index and matched exactly. **No rule, number, term or vocabulary lock was originated**, and `P-C999` was confirmed to be a negative test fixture that never leads a line and so cannot enter the census. |
-| **0.20.0** | 10 Aug 2026 | **◈P7 closed, and the process gap behind it.** All **141** indexed rules are authored in their home document, measured against **P-C8**; census and the published command agree at 141 of 141. The final five were not missing rules — `L-M1` and `L-M2` were **accepted in a technical implementation stream and left for a centralised process that did not exist**, living in `Z-Design_Stream_Project_Instructions_TRIADE-0_44_0.md`, which holds no authority; `M-C3`, `M-C5` and `M-H4` were stated in **M** all along and simply carried no ID. **L·12 authored** for the first pair, **L·10A** locks the intake vocabulary, and the instructions now carry an **intake lane**: nothing arriving from outside may author a rule, the index derives identifiers rather than issuing them, and every item takes one disposition — `authored`, `enforced-elsewhere`, `backlog` or `struck`. **`backlog` is the state that had no name**, which is why an accepted decision could sit invisible for eight versions. **`P-H5`** enforces it; suite 140 → 141, recounted by counting — 79 / 48 / 14. **Corpus normalised to markdownlint** under a tracked `.markdownlint.jsonc`: 1,956 table separators unified, content-equivalence proven by normalised diff. **Three MD056 defects were real content loss** — two closed-item rows dropping their marker column at render, and a changelog row split by an unescaped pipe inside a code span. |
+| **0.20.0** | 10 Aug 2026 | **◈P7 closed, and the process gap behind it.** All **141** indexed rules are authored in their home document, measured against **P-C8**; census and the published command agree at 141 of 141. The final five were not missing rules — `L-M1` and `L-M2` were **accepted in a technical implementation stream and left for a centralised process that did not exist**, living in `Z-Design_Stream_Project_Instructions_TRIADE-0_45_0.md`, which holds no authority; `M-C3`, `M-C5` and `M-H4` were stated in **M** all along and simply carried no ID. **L·12 authored** for the first pair, **L·10A** locks the intake vocabulary, and the instructions now carry an **intake lane**: nothing arriving from outside may author a rule, the index derives identifiers rather than issuing them, and every item takes one disposition — `authored`, `enforced-elsewhere`, `backlog` or `struck`. **`backlog` is the state that had no name**, which is why an accepted decision could sit invisible for eight versions. **`P-H5`** enforces it; suite 140 → 141, recounted by counting — 79 / 48 / 14. **Corpus normalised to markdownlint** under a tracked `.markdownlint.jsonc`: 1,956 table separators unified, content-equivalence proven by normalised diff. **Three MD056 defects were real content loss** — two closed-item rows dropping their marker column at render, and a changelog row split by an unescaped pipe inside a code span. |
 | **0.19.0** | 10 Aug 2026 | **The ◇P7 census, and twenty-five rules authored.** All 140 indexed rules were measured against a positional test — **the ID leads its line or its first table cell**, changelogs excluded — and the answer is a total, not a floor. **◇P7 falls from thirty to five.** Seventeen rows authored in W§16's proofing suite where the rules had always been stated but never numbered, five in M, three in V. **`P-C8` written** to make the test enforceable, taking the suite to **140 — 79 / 47 / 14, recounted by counting**. **◈P7a closed**: the regeneration command was never defective, its shortfall *was* ◇P7, and the two now agree exactly at 135 of 140. §8's two-pass command replaced by a single positional pass, run before publication. **The residual five are two different problems** — `L-M1`, `L-M2` and `M-C5` are authored, in documents the index does not treat as their home; `M-C3` and `M-H4` have no statement anywhere to attach an ID to. **80 subsection headings deletterd** across K, P, V and G, completing a pass 0.18.0 left half done: `## Part Xn` was changed and `### Xn.n` was not, so `### V4.1` and `V · 4.1` had been the same section spelled two ways. |
 | **0.18.1** | 10 Aug 2026 | **Non-goals take `⦻`** — W's `N1`–`N5` become `⦻W1`–`⦻W5`, H's `HN1`–`HN6` become `⦻H1`–`⦻H6`. The sixth and last unglyphed identifier namespace, and the one still colliding with `N`, structural complexity (W·5.8). **`H3` had been a non-goal, a goal *and* a live open item**; `⦻H3`, `◉H3-H§3` and `◇H3` are now three distinct strings. **L·§0 rebuilt as the Glyph index** — six identifier glyphs with home references, plus a notation table covering every non-ASCII symbol in the set and ruling that `—` in a table cell means *not applicable*, never *unknown*. ROADMAP gains the `⦻` table beside its `◉` goals. The 0.18.0 migration script retired to `Archive/v0.18.0/` and removed from the live set. **No design decision changed, no rule added, no section moved** — which is why this is a patch and not a minor. |
 | **0.18.0** | 10 Aug 2026 | **Identifier namespaces separated by glyph.** Five ID spaces had shared one token space: `◇` live open item, `◈` closed, `◉` goal with its home reference, `⇥` sequencing phase, `⌬` skill level — locked in **L·§0**, **859 identifiers glyphed**. The collisions were real and load-bearing: `H3`, `H5`–`H8` were a goal *and* a live open item in the same document; `G1`–`G8` were **W** goals *and* **G** open items; `P1`–`P7` were **M** phases *and* **P** open items, twice in one sentence. **Section headings across K, V, E, G and P lost their document letter** — 47 headings, 110 cross-references — so a bare `Xn` in prose is a section and everything else carries a glyph. **P Part 9 reordered** from after Part 10. **◇P9 registered** (Dolt, cell-level content versioning, trigger unmeasured). **◇E11 and ◇W17 added to the Open Items Index**, live in their home documents and absent from the register; **◈M10 struck** from the Gap row, closed at 0.15.0. All ten §1 counts recomputed by counting — Balance 13 → 15, Gap 10 → 8. **◇P7 measured at thirty, not the stated nineteen**, and published as a list rather than a figure. **Both index regeneration commands were broken and are now run before publication** — the Validation Rules command recovers 109 of 139, up from 82; the residual thirty are ◇P7 itself. **145 stale spaced filenames repointed** across eleven documents. Archive of v0.17.0 verified hash-by-hash against the ledger before any edit. |
@@ -1205,4 +1223,4 @@ Snapshot of each superseded version, written once and never edited.
 
 ---
 
-*Manifest current as of 0.44.0, 27 September 2026. Filenames underscored; design-stream instructions v1.30.*
+*Manifest current as of 0.45.0, 2 October 2026. Filenames underscored; design-stream instructions v1.31.*

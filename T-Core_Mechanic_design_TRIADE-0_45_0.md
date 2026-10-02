@@ -1,21 +1,21 @@
 # Triade — Core Systems Design
 
-**Version 0.44.0** — 27 September 2026. Supersedes the first draft. The Triade has absorbed the state model, the credit economy, the class model and the enemy model, because all four turned out to be the same geometry viewed from different angles.
+**Version 0.45.0** — 2 October 2026. Supersedes the first draft. The Triade has absorbed the state model, the credit economy, the class model and the enemy model, because all four turned out to be the same geometry viewed from different angles.
 
 **Document set:** this is one of **ten**.
 
 | Ref | Document | Filename |
 | --- | --- | --- |
-| **T** | **Core Mechanic** — *this document* | `T-Core_Mechanic_design_TRIADE-0_44_0.md` |
-| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_44_0.md` |
-| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_44_0.md` |
-| **V** | Visual Design | `V-Visual_design_TRIADE-0_44_0.md` |
-| **K** | Combat Design | `K-Combat_design_TRIADE-0_44_0.md` |
-| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_44_0.md` |
-| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_44_0.md` |
-| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_44_0.md` |
-| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_44_0.md` |
-| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_44_0.md` |
+| **T** | **Core Mechanic** — *this document* | `T-Core_Mechanic_design_TRIADE-0_45_0.md` |
+| **M** | Stats, Items, Equipment | `M-Stats_Items_Equipment_design_TRIADE-0_45_0.md` |
+| **L** | Lexicon | `L-Lexicon_design_TRIADE-0_45_0.md` |
+| **V** | Visual Design | `V-Visual_design_TRIADE-0_45_0.md` |
+| **K** | Combat Design | `K-Combat_design_TRIADE-0_45_0.md` |
+| **W** | World, Maps & Dungeons | `W-World_Generation_design_TRIADE-0_45_0.md` |
+| **H** | Damage & Health | `H-Damage_Health_design_TRIADE-0_45_0.md` |
+| **E** | Enemies & Bestiary | `E-Enemies_design_TRIADE-0_45_0.md` |
+| **G** | Tile Pipeline | `G-Tile_Pipeline_design_TRIADE-0_45_0.md` |
+| **P** | **Content Pipeline & Data Model** | `P-Content_Pipeline_design_TRIADE-0_45_0.md` |
 
 **Position in the project:** Phase 0.5, upstream of stats, itemisation and equipment. Nothing in the main plan's Parts 1–3 can freeze until Gate T passes.
 
@@ -279,7 +279,7 @@ Three surfaces, clean roles, no overlap:
 
 ### A3.4c UI requirements — see Visual Design
 
-The visual encoding requirements have moved to **`V-Visual_design_TRIADE-0_44_0.md` (Part 4)**. Seven requirements are locked there, governed by the principle that *the UI conveys proximity and consequence, never coordinates*.
+The visual encoding requirements have moved to **`V-Visual_design_TRIADE-0_45_0.md` (Part 4)**. Seven requirements are locked there, governed by the principle that *the UI conveys proximity and consequence, never coordinates*.
 
 The two that most affect the mechanics in this document:
 
@@ -457,6 +457,8 @@ Technique archetype
 ```
 
 Multiple ordinary payloads are invalid. An exceptional multi-payload rendition requires an explicit Transgressive/Inscription rule; merely listing several modules is not authority. The derived rendition retains immutable references to its Technique, binding, source node and Payload module so replay and attribution never depend on display-name reconstruction.
+
+**Tarot enhancement boundary [ADOPTED 0.45.0].** P·2.3f–i owns acquired cards, layout, Support and resonance contracts. Technique remains the executable owner. Supports may modify and/or add only receiver-authorized output/effects/routes/planning variants; resonance increases declared existing potency fields. Neither grants a source, hook, footprint, aimed-mode capability, entitlement or tier/floor access. Layout expressions feed P12 exact candidates with attributable revisions/contributions.
 
 ### A3.8c Faculty authorization, footprint and pull [AUTHORED 0.41.0, ◈P11]
 
@@ -1074,7 +1076,7 @@ Worked examples:
 
 ## Part F — Enemies — MOVED
 
-**Extracted to `E-Enemies_design_TRIADE-0_44_0.md` (ref E) at 0.11.0.**
+**Extracted to `E-Enemies_design_TRIADE-0_45_0.md` (ref E) at 0.11.0.**
 
 Enemies remain **the same system as characters** — innate floor shape plus equipped vocabulary, one schema with two consumers, running the identical action contract (Part H) with roles swapped. That equivalence is a T-level invariant and stays here.
 
@@ -1238,7 +1240,7 @@ Notes on the region fields:
 
 ## Part I — Validation and metrics
 
-*Severity scheme standardised at 0.11.0. T's invariants carry `T-C{n}` / `T-H{n}` IDs; Gate T exit criteria remain a **gate**, distinct from the continuous rule suite. Full cross-document suite in `R-Validation_Rules_Index_TRIADE-0_44_0.md`.*
+*Severity scheme standardised at 0.11.0. T's invariants carry `T-C{n}` / `T-H{n}` IDs; Gate T exit criteria remain a **gate**, distinct from the continuous rule suite. Full cross-document suite in `R-Validation_Rules_Index_TRIADE-0_45_0.md`.*
 
 ### I.1 Trace instrumentation
 
@@ -1351,7 +1353,7 @@ Map every feedback loop and label it reinforcing or balancing. Every reinforcing
 
 ## Part K — Open questions
 
-*Standardised at 0.11.0. Every live item carries **[OPEN]**; every provisional number carries **[SIM]**. All items are mirrored in `B-Open_Items_Index_TRIADE-0_44_0.md`, which is generated from these markers — edit here, regenerate there.*
+*Standardised at 0.11.0. Every live item carries **[OPEN]**; every provisional number carries **[SIM]**. All items are mirrored in `B-Open_Items_Index_TRIADE-0_45_0.md`, which is generated from these markers — edit here, regenerate there.*
 
 **Resolved since 0.9.0 and removed from this list.** Eight entries were still listed as open after K17 answered them; they were carried stale into 0.10.0 and are cleared here. Their resolutions:
 
@@ -1386,6 +1388,7 @@ Items 11, 12, 14 and 15 of the former list were already marked RESOLVED in place
 
 | Version | Change |
 | --- | --- |
+| **0.45.0** | Tarot integration points to P·2.3f–i; receiver-authorized enhancement preserves Technique authority, sources/hooks, footprints, aimed-mode and P12 readiness. |
 | **0.44.0** | **P12-C execution identity adopted.** A3.8e locks pure deterministic evaluation, exact-candidate atomic commitment, explicit target domains and resolution-participant roles, and autonomous Plannable Actions with `first_eligible`, `bound_identity` or `fixed_spatial` acquisition and no silent fallback (**T-C20**). |
 | **0.43.0** | **P12-B execution contract adopted.** A3.8d separates `known`, `selectable` and `executable`, makes dependency invalidation candidate-local, and assigns selection shape, visibility and delivery-route requirements to the Technique (**T-C19**). Candidate alternatives are existential; within-candidate requirements are conjunctive, so Mudra && Mudra requires both complete hand/finger-hook requirements. |
 | **0.42.0** | **P12-A execution identity aligned.** Composite profiles authorize execution but are never entitlements. Two-hand Mudra requires one possessed Mudra plus two functional, unoccupied hands, each resolving a distinct functional finger hook. Complete availability ordering remains P12-B/C. |
@@ -1411,10 +1414,10 @@ Items 11, 12, 14 and 15 of the former list were already marked RESOLVED in place
 | **0.13.0** | **Stage 1 — the `faculty` channel.** A3.8's `sources` enum renames `capability` to `faculty`; the word *capability* is returned undivided to the enemy capability ladder (E·F.0), which held 38 of its 42 uses. New rules **T-C12** (every source resolves to a record — the hole that let `capability` sit for three versions as an enum value with no object) and **T-C13** (a Combo-Action declares exactly two hooks). Magic takes **no new resource**: Mind's locked consumption verb, *"threshold — gates access"* (A.1), is the access economy, surfaced player-facing as `[Attunement]`. Stated as a negative — there is no mana, and its absence is load-bearing. |
 | **0.13.0** | **Part ◈H2 added — T finally has an authored rule table.** T-C1…T-C10 had been in circulation since 0.11.0 with no home in T; the Validation Rules Index carried them while declaring itself derived from source rule tables, which for T it was not. **◈T6 closed after surviving two passes.** A4.4 now states the two-render requirement — corner floor affine, sector floor super-additive — and it is promoted to rule **T-C11** (Critical) rather than left as prose, which is what let it survive. Closed simultaneously in W (◈W2d) and struck from L's deferred list. |
 | **0.12.0** | No structural change to T. Cross-references updated for the nine-document set. Recorded for coherence: *floor* remains reserved to its Triade sense throughout — W§5.8 adopts `[Deck]` and `[Storey]` for dungeon geometry rather than importing a second meaning for T's most load-bearing word. ◈T6 (corner-floor render affinity) remains **[OPEN]** and unaddressed by this pass. |
-| **0.11.0** | **Part F (Enemies) extracted** to `E-Enemies_design_TRIADE-0_44_0.md`; a pointer stub retains the T-level invariants — enemies are the same system as characters, carry positions, and read position-dependently. **Part K rewritten**: eight entries that K17 had already answered were still listed as open and are cleared; seven live items now carry `[OPEN]`/`[SIM]` markers and appear in the Open Items Index. Part I aligned to the set-wide severity scheme. Document set grows to eight. |
+| **0.11.0** | **Part F (Enemies) extracted** to `E-Enemies_design_TRIADE-0_45_0.md`; a pointer stub retains the T-level invariants — enemies are the same system as characters, carry positions, and read position-dependently. **Part K rewritten**: eight entries that K17 had already answered were still listed as open and are cleared; seven live items now carry `[OPEN]`/`[SIM]` markers and appear in the Open Items Index. Part I aligned to the set-wide severity scheme. Document set grows to eight. |
 | **0.10.0** | Document set grows to seven with **H — Damage & Health**; filename convention standardised to `TRIADE-[System] design-[Version]`. **A4.2a: ◈W2f propagated** — Temporary-tier modifiers now clear at the run boundary (Steward-locked 28 Jul 2026), making `ΣF_rendered == ΣF_baseline` at run start architectural rather than conventional; injury interaction resolved via H·9.3's channel split. **A4.2:** effective-field reductions bounded below by the Trauma Safety Clamp (H·10.2), summed across wounds and surfaces. **A4.1:** capacity/application/resilience identified as the wound-effect derivation rule, producing the bone-counters-striker / bleed-counters-controller axis. **I.5:** injury spiral added to the loop audit with four named brakes. |
 | **0.9.0** | Combat Design document split out; Skill Anchors resolve the grid–math question. |
-| **0.8.0** | UI requirements moved to the new `V-Visual_design_TRIADE-0_44_0.md`; A3.4c is now a pointer. Document-set note added. |
+| **0.8.0** | UI requirements moved to the new `V-Visual_design_TRIADE-0_45_0.md`; A3.4c is now a pointer. Document-set note added. |
 | **0.7.x** | Skill Anchors (A3.7–A3.8) resolving the grid–math question; demand tier split from Doctrinal/Transgressive flags; UI requirements; Weapon/Armour/Shield Smith agent specs; shield budget. |
 | **0.6.x** | Materiel system: damage taxonomy with Structural group, integrity states, the three bridges, pips and redistribution, shield duality. |
 | **0.5.x** | Dot Framework, grid + Dot Interpreter, stat-groups and field-rendered floor, skill level model, class system, Dictionary and tone. |

@@ -2,11 +2,25 @@
 
 **Recorded:** 17 September 2026  
 **Reference corpus:** Triade v0.38.0  
-**Governed against:** Triade v0.44.0; conflicts are annotations on the concept, not silent adoption
-**Status:** CONCEPT FOR CURRENT SESSION C1 — unresolved and non-authoritative
+**Governed against:** Triade v0.45.0; the disposition table assigns C1-A–E to their authoritative home and preserves unresolved proposals
+**Status:** C1-A–E ADOPTED AT P·2.3f–i, 0.45.0; C1-F/G remain unresolved under ◇P14. This source proposal stays non-authoritative.
 **Authority:** This record does not author a rule, term, number, schema, economy decision, or balance value. It may not be cited as an adopted Triade design. Any adoption must be reconciled and centralised through the governed design process.
 
 ## 1. Concept summary
+
+**Disposition takes precedence over the original proposal below.** The original concept is retained as proposal evidence, not current rules. Acquisition order is channel → owned Technique Card → acquired access → installation → P12 candidate. Conferred Techniques remain cardless. Support Cards are separate. Mind/Form/Momentum are access requirements, never spendable card currency. The current slot, contribution, Combo and enhancement contracts are P·2.3f–i; original differing acquisition/lifecycle/link hypotheses are superseded or deferred there.
+
+| Reconciliation | Disposition | Authoritative home |
+| --- | --- | --- |
+| C1-A [BOTH] | Card identity, Technique authority, cardless inherent Techniques and Inventory/visual handoffs adopted | P · 2.3f |
+| C1-B [BOTH] | Atomic acquisition, pinned revision/provenance, character persistence and uninstall retention adopted | P · 2.3f |
+| C1-C [BOTH] | Stable local depths, build/runtime distinction, tier capacity, distinct Support/resonance, highest-tier duplicate contribution adopted | P · 2.3g |
+| C1-D [BOTH] | Vertical expressions, same-depth exact Technique && tier Combo authorization, two distinct hooks and cardless inherent endpoints adopted | P · 2.3h |
+| C1-E [BOTH] | Authorized modify/add fields, compatibility, deterministic stacking, conflicts, duplicate suppression, explicit Combo transfer and bounds adopted | P · 2.3i |
+| C1-F | Card information, discovery, mandatory Technique/Support templates and build preview remain pending | P · Part 8, ◇P14; V presentation handoff |
+| C1-G | Support acquisition/persistence details and architecture fixture/validation closeout remain pending | P · Part 8, ◇P14 |
+
+The record remains tracked until all questions are assigned or struck. No early retirement is authorized.
 
 The proposed skill system has two acquisition categories.
 
@@ -251,9 +265,9 @@ The concept should inform—but not be silently folded into—the upcoming node-
 
 1. **Session A — Carrier and Technique:** settle the Technique/source/payload/carrier contract and dispose the node-payload intake rulings required for it.
 2. **Session B — Lineage and Faculty:** **closed 0.44.0.** Lineage/Physique grants, Faculty identities/profiles/vocabulary, entitlement/acquisition, candidate readiness, dependency locality, target-route contracts, deterministic evaluation, exact-candidate commitment and autonomous Plannable Actions are authoritative. This does not reopen H-owned anatomy.
-3. **Session C1 — Tarot-card architecture — current:** resolve system identity, learning and persistence questions, Triade slot geometry, card links, enhancement and Combo boundaries, and generic acquisition interfaces. Any scheduled or triggered card action inherits P12-C's exact-candidate, autonomous due-node and no-silent-fallback rules.
+3. **Session C1 — Tarot-card architecture — current:** C1-A–E are adopted at P·2.3f–i. C1-F/G now resolve card information, discovery, visual templates, build previews and architecture closeout. Any scheduled or triggered card action inherits P12-C's exact-candidate, autonomous due-node and no-silent-fallback rules.
 4. **Stage 3 — Inventory and Economy:** settle custody, consumption/retention, duplicates, loss/recovery, resale/salvage, vendors, prices, and any crafting provenance.
-5. **Session C2 — acquisition and installation contract:** centralise the approved card/Technique references, unlock, expertise, slot/link, trace, validation, and accessibility requirements before broad Stage 4 content.
+5. **Session C2 — acquisition and installation contract:** realize the approved P-owned card/Technique references, unlock, expertise, slot/link, trace, validation and accessibility requirements after C1 closeout and Stage 3 custody/economy design, before broad Stage 4 content. Do not create a competing authority for C1-A–E.
 6. **Stages 5–6 — concrete rewards:** author Commander, special-monster, encounter, and boss card placement only after those content owners exist.
 7. Author schemas and fixtures only after the design homes and vocabulary are settled.
 8. Validate with the headless simulator before broad card content production.
@@ -262,4 +276,4 @@ This places Tarot architecture after Carrier/Technique and Lineage/Faculty, then
 
 ## 8. Current disposition
 
-**Stored as a governed, versioned concept record for future discussion.** No proposed mechanic in this document is adopted, centralised into a design home, indexed as a live decision, or ready for implementation. The future session should convert accepted parts into a governed intake/PATCHES record and assign every adopted decision to exactly one authoritative design home.
+**Partially dispositioned at 0.45.0.** C1-A–E are centralized at P·2.3f–i, with T/K/M/V/C integration handoffs and L vocabulary projection. C1-F/G remain ◇P14; the original proposal above has no authority. Implementation remains gated by C1 closeout, Stage 3 and C2. This record stays live and tracked; remaining acquisition/economy/presentation proposals do not become rules through this release.

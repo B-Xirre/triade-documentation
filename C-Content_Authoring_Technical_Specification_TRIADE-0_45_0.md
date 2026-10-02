@@ -1,8 +1,8 @@
 # Triade — Content Authoring Technical Specification
 
-**Version:** 0.44.0
-**Aligned to Triade:** v0.44.0
-**Date:** 27 September 2026
+**Version:** 0.45.0
+**Aligned to Triade:** v0.45.0
+**Date:** 2 October 2026
 **Status:** Stage 2 authoring-schema baseline complete; M10 dependency and equipment layers adopted; v0.29.0 faculties/fixtures candidate proved but not adoptable unchanged; P13, P11 and P12-A/B/C logical contracts are design-authored and await a technical schema/migration pass
 **Classification:** **Registered technical document.** Implements P; holds no game-design authority  
 **Design authority:** **P — Content Pipeline & Data Model**; game meaning remains in T/M/K/H/E/W/G/V/L
@@ -85,7 +85,7 @@ The direction is one-way: authored text/data → canonical JSON → database. Du
 11. Five M10 equipment revisions and their text/damage/occupancy/shield-defence child records populated, proved, adopted, and committed as `8d2776b`.
 12. v0.29.0 protected-rule reconciliation, Standard Shield 1/1 split, five faculty identities, unblocked fixture records, and M-C11 loadout previews populated and proved in an offline candidate.
 
-**Next:** preserve the proved v0.29.0 candidate as evidence, migrate `ref_rules` from 148 to the measured 213-row 0.44.0 suite, retire its obsolete `innate` Faculty-family/identity rows and definition-level origin column, then implement P·2.3a–e plus CR-11 through an explicit schema/migration pass. `TS-M10F-01`, `TS-M10F-02`, and `TS-V029-01`–`03` continue to gate complete readiness-, lineage-, and enemy-bearing fixture instantiation.
+**Next:** preserve the proved v0.29.0 candidate as evidence, migrate `ref_rules` from 148 to the measured 217-row 0.45.0 suite, retire obsolete `innate` Faculty rows and definition-level origin, then implement P·2.3a–e plus CR-11 through an explicit migration pass. Tarot §2.3f–i realization follows C1-F/G, Stage 3 and C2. `TS-M10F-01`, `TS-M10F-02`, and `TS-V029-01`–`03` still gate complete fixture instantiation.
 
 ---
 
@@ -1190,7 +1190,7 @@ The next candidate must:
 | 22 | DuckDB analytics + log-power decomposition | Pending |
 | 23 | First S-K01 / S-K02 sweep | Stage 2c exit work |
 | 24 | ~~Close ◇P7~~ | **Done — closed centrally at 0.20.0** |
-| 25 | Reconcile protected `ref_rules` from the proved 148-row candidate to the measured 213-row 0.44.0 suite | Pending; preserve stable IDs and existing coverage references |
+| 25 | Reconcile protected `ref_rules` from the proved 148-row candidate to the measured 217-row 0.45.0 suite | Pending; preserve stable IDs and existing coverage references |
 | 26 | Implement the five P·3 CR-11 record families, canonical schemas, migrations and proof fixtures | Pending; §5.24 / §8.9 acceptance applies |
 | 27 | Retire obsolete candidate `innate` Faculty family/identities, preserve the legal `innate` origin, and register M-C12–M-C16 plus P-C13/P-C14 lint coverage | Pending; §8.10 applies; P·2.3a is the design handoff |
 | 28 | Implement P·2.3a's twelve Lineage/Physique/grant relations, P·2.3b's four Faculty child relations, P·2.3c's two authoritative Faculty relations plus generated entitlement projection, P·2.3d's candidate-readiness projection, and P·2.3e's pure gate results, exact-candidate atomic commitment, resolution-participant and Plannable Action contracts with deterministic migration/export proof | Pending; exact technical columns require the technical implementation session |
@@ -1283,10 +1283,13 @@ Database CHECK constraints are for local arithmetic only; cross-row/domain seman
 
 ---
 
+**Tarot schema/migration handoff — design adopted, not implemented (0.45.0).** P·2.3f–i owns atomic acquisition/provenance, pinned Technique and Support Cards, stable column/depth topology, build/installation state, receiver-local contributions, duplicate Support suppression/capacity, same-depth exact Combos, inherent endpoints and deterministic enhancement. C1-F/G and Stage 3 gate C2 implementation. No concrete tables, migration, executable fixtures or simulation results are claimed; intake A3 remains separately bounded.
+
 ## 12. Change log
 
 | Version | Date | Change |
 | --- | --- | --- |
+| **0.45.0** | 2 Oct 2026 | P·2.3f–i Tarot architecture recorded as a gated schema/migration handoff, not implementation. Current protected-rule target is 217; C1-F/G, Stage 3 and C2 remain pending. |
 | **0.44.0** | 27 Sep 2026 | Recorded closed P12-C as a logical handoff without claiming implementation: pure ordered gate evaluation, explicit target domains and resolution participants, exact-candidate atomic commitment, milestone-local revalidation and autonomous scheduled/triggered Plannable Actions. Migration target is **213 — 143/56/14**. No AUTHORED DESIGN DECISION. |
 | **0.43.0** | 25 Sep 2026 | Recorded P12-B as a logical handoff without claiming implementation: generated `known`/`selectable`/`executable`, candidate-local typed dependencies, existential alternative routes with conjunctive within-route requirements, provider-transfer survival, declared cooldown propagation and Technique-authored direct/area target contracts. Migration target is **209 — 139/56/14**; P12-C still gates deterministic evaluation/commit order. No AUTHORED DESIGN DECISION. |
 | **0.42.0** | 22 Sep 2026 | Recorded P12-A as a logical handoff without claiming implementation: base-Faculty-only entitlements, authoritative build instructions and actor acquisitions, generated actor entitlement, derived possession, durable acquisition, and composite-profile exclusion. Migration target is **205 — 135/56/14**; P12-B/C still gate complete availability. No AUTHORED DESIGN DECISION. |
